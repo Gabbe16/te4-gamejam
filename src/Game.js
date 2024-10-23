@@ -4,25 +4,30 @@ import UserInterface from './UserInterface.js'
 import Pumpkin from './Skeleton.js'
 import Candy from './Jackolantern.js'
 import Background from './Background.js'
+import Audio from './Audio.js'
 
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
     this.height = height
     this.canvasPosition = canvasPosition
+
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.background = new Background(this)
+    this.audio = new Audio()
+    this.player = new Player(this)
+
     this.keys = []
+    this.enemies = []
     this.enemies = []
     this.gameOver = false
     this.debug = false
     this.gameTime = 0
-    this.enemies = []
     this.enemyTimer = 0
     this.enemyInterval = 1000
 
-    this.player = new Player(this)
+    this.audio.playBackgroundMusic()
   }
 
   update(deltaTime) {

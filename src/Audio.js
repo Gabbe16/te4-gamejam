@@ -9,7 +9,7 @@ export default class BackgroundMusic {
     }
 
     playBackgroundMusic(){
-        this.backgroundMusic.currentTime = 0
-        this.backgroundMusic.play()
+        this.backgroundmusic.currentTime = 0
+        this.backgroundmusic.play()
     }
 }
