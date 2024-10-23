@@ -1,3 +1,4 @@
-# Credits to creators of sprites, music and sound effects
+# Credits to creators of sprites, backgrounds, music and sound effects
 
-background music --evilduckk
+* background music -- Made By evilduckk
+* Top-Down Dungeon Tileset --Made By Enjl
