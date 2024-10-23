@@ -151,8 +151,8 @@ export default class Player {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - this.width : this.x,
-      this.y,
+      this.flip ? this.x * -1 - (this.width + 22) : this.x - 22,
+      this.y - 33,
       this.width * 2,
       this.height * 2
     )
