@@ -13,8 +13,6 @@
 * Ändra enemies spawn locations
 * Kollisioner med canvas väggarna
 
-# OBS KOM IHÅG CREDITS TILL CREATORS
-
 # DONE
 * Canvas size (går att ändra enkelt)
 
