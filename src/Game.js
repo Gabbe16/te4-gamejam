@@ -26,8 +26,6 @@ export default class Game {
     this.gameTime = 0
     this.enemyTimer = 0
     this.enemyInterval = 1000
-
-    this.audio.playBackgroundMusic()
   }
 
   update(deltaTime) {

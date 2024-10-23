@@ -17,15 +17,6 @@ export default class Projectile {
     const image = new Image()
     image.src = arrowImage
     this.image = image
-
-    // Sprite animation variables
-    this.maxFrame = 8
-    this.fps = 20
-    this.timer = 0
-    this.interval = 1000 / this.fps
-
-    // Flip sprite
-    this.flip = false
   }
 
   update(deltaTime) {
@@ -47,6 +38,7 @@ export default class Projectile {
     context.save()
     context.translate(this.x, this.y)
     context.rotate(this.angle)
+
     context.drawImage(
       this.image,
       0,
@@ -54,6 +46,7 @@ export default class Projectile {
       this.width,
       this.height,
     )
+
     context.restore()
 
     // Projectile Debugging

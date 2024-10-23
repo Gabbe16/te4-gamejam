@@ -20,7 +20,7 @@ export default class InputHandler {
       }
 
       if (event.key === ' ') {
-        this.game.player.shoot(this.mouseX, this.mouseY)
+        this.game.audio.backgroundMusic.play()
       }
 
       if (event.key === 'p') {

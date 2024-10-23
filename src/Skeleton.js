@@ -71,10 +71,10 @@ export default class Skeleton extends Enemy {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - this.width : this.x,
-      this.y,
-      this.width * 2.5,
-      this.height * 2.5
+      this.flip ? this.x * -1 - (this.width + 5.5) : this.x - 5.5,
+      this.y - 16.5,
+      this.width * 2,
+      this.height * 2
     )
 
     if (this.flip) {
