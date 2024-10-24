@@ -1,4 +1,4 @@
-import backgroundMusicURL from './assets/sounds/backgroundMusic.mp3';
+import backgroundMusicURL from './assets/sounds/music/backgroundMusic.mp3';
 
 export default class BackgroundMusic {
     constructor(game) {
