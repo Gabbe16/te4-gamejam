@@ -1,7 +1,7 @@
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
-import Pumpkin from './Skeleton.js'
+import Skeleton from './Skeleton.js'
 import Candy from './Jackolantern.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
@@ -25,12 +25,11 @@ export default class Game {
 
     this.keys = []
     this.enemies = []
-    this.enemies = []
     this.gameOver = false
     this.debug = false
     this.gameTime = 0
     this.enemyTimer = 0
-    this.enemyInterval = 1000
+    this.skeletonInterval = 1500
   }
 
   update(deltaTime) {
@@ -39,7 +38,19 @@ export default class Game {
     }
 
     if (this.gameStart === true){
-      if (this.enemyTimer > this.enemyInterval) {
+      if (this.enemyTimer > this.skeletonInterval) {
+        // Left door point
+        // let x1 = 246
+        // let y1 = 420
+
+        // Top middle door point
+        // let x2 = 905
+        // let y2 = 124
+
+        // Right door point
+        // let x3 = 1560
+        // let y3 = 420
+
         let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
         let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
         if (x === 0) {
@@ -54,7 +65,7 @@ export default class Game {
         if (Math.random() < 0.2) {
           // this.enemies.push(new Candy(this, x, y))
         } else {
-          this.enemies.push(new Pumpkin(this, x, y))
+          this.enemies.push(new Skeleton(this, x, y))
         }
         this.enemyTimer = 0
       } else {

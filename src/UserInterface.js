@@ -101,9 +101,26 @@ export default class UserInterface {
         context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20)
       }
     } else if (this.game.gameStart === true) {
-      context.fillText(`Lives: ${this.game.player.lives}`, 600, 60)
-      context.fillText(`Ammo: ${this.game.player.ammo}`, 730, 60)
-      context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 105, 60)
+      context.fillStyle = 'rgba(128, 128, 128, 0.5)'
+      context.shadowColor = 'transparent'
+      context.strokeRect(76, 880, this.game.width / 7, 50)
+      context.fillRect(76, 880, this.game.width / 7, 50)
+      context.fillStyle = 'rgba(255, 255, 255, 255)'
+      context.shadowColor = 'black'
+      context.shadowOffsetX = 2
+      context.shadowOffsetY = 2
+      context.fillText(`Lives: ${this.game.player.lives}`, 110, 920)
+      context.fillText(`Ammo: ${this.game.player.ammo}`, 210, 920)
+
+      context.fillStyle = 'rgba(128, 128, 128, 0.5)'
+      context.shadowColor = 'transparent'
+      context.strokeRect(76, 20, this.game.width / 12, 50)
+      context.fillRect(76, 20, this.game.width / 12, 50)
+      context.fillStyle = 'rgba(255, 255, 255, 255)'
+      context.shadowColor = 'black'
+      context.shadowOffsetX = 2
+      context.shadowOffsetY = 2
+      context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 110, 59)
     }
 
     if (this.game.gameOver) {
