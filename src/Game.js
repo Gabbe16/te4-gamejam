@@ -38,11 +38,6 @@ export default class Game {
   }
 
   update(deltaTime) {
-    /* if (this.mainMenu === true) {
-      this.menuTime += deltaTime
-      this.menuparalax.update()
-      console.log(this.menuTime)
-    } */
 
     this.ui.update(deltaTime)
 
