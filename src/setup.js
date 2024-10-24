@@ -20,6 +20,6 @@ export function setup(canvas) {
     game.draw(ctx)
     requestAnimationFrame(animate)
   }
-
+  
   animate(0)
 }

@@ -6,6 +6,8 @@ import Candy from './Jackolantern.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
 
+import Menuparalax from './Menuparalax.js'
+
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -15,6 +17,7 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.background = new Background(this)
+    // this.menuparalax = new Menuparalax(this)
     this.audio = new Audio()
     this.player = new Player(this)
 
@@ -27,12 +30,22 @@ export default class Game {
     this.enemies = []
     this.gameOver = false
     this.debug = false
+    this.menuTime = 0
     this.gameTime = 0
     this.enemyTimer = 0
     this.skeletonInterval = 1500
+    this.speed = 1
   }
 
   update(deltaTime) {
+    /* if (this.mainMenu === true) {
+      this.menuTime += deltaTime
+      this.menuparalax.update()
+      console.log(this.menuTime)
+    } */
+
+    this.ui.update(deltaTime)
+
     if (!this.gameOver && this.gameStart === true) {
       this.gameTime += deltaTime
     }

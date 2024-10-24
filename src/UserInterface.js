@@ -1,9 +1,9 @@
-import menuImage from './assets/sprites/menuBackground.png'
 import key_w_image from './assets/controls_images/key_W.png'
 import key_s_image from './assets/controls_images/key_S.png'
 import key_a_image from './assets/controls_images/key_A.png'
 import key_d_image from './assets/controls_images/key_D.png'
 
+import Menuparalax from './Menuparalax.js'
 
 export default class UserInterface {
   constructor(game) {
@@ -12,10 +12,8 @@ export default class UserInterface {
     this.fontFamily = 'dungeonFont'
     this.color = 'White'
 
-    // Load background image
-    const backgroundimage = new Image()
-    backgroundimage.src = menuImage
-    this.bgimage = backgroundimage
+    this.menuTime = 0
+    this.menubackground = new Menuparalax(this.game)
 
     // Load player1 controls images
     const keyW = new Image()
@@ -36,6 +34,14 @@ export default class UserInterface {
     
   }
 
+  update(deltaTime) {
+    if (this.game.mainMenu === true) {
+      this.menuTime += deltaTime
+      this.menubackground.update()
+      //console.log(this.menuTime)
+    }
+  }
+
   draw(context) {
     context.save()
     context.fillStyle = this.color
@@ -53,7 +59,7 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Movement', this.game.width / 3.5, this.game.height / 4)
         context.fillText('Shooting', this.game.width / 3.5, this.game.height - 450)
-        // Player 1 control keys
+        // Player 1 control key images
         context.drawImage(this.keyW, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 3.5, 64, 64)
         context.drawImage(this.keyS, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 2.75, 64, 64)
         context.drawImage(this.keyA, 0, 0, 32, 32, this.game.width / 4.45, this.game.height / 2.75, 64, 64)
@@ -64,9 +70,9 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Movement', this.game.width - 495, this.game.height / 4)
         context.fillText('Shooting', this.game.width - 495, this.game.height - 450)
-        // Player 2 control keys
+        // Player 2 control key images here
 
-
+        // Controls ui
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
         context.fillText('Controls', this.game.width / 2, 150)
@@ -76,6 +82,7 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press c to return to main menu', this.game.width - 20, this.game.height - 20)
       } else if (this.game.viewCredits == true) {
+        // Credits ui
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
         context.fillText('Credits', this.game.width / 2, 150)
@@ -84,7 +91,9 @@ export default class UserInterface {
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
         // Main menu background
-        context.drawImage(this.bgimage, 0, 0, this.game.width, this.game.height)
+        context.shadowColor = 'transparent'
+        this.menubackground.draw(context)
+       
         // Main menu
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
@@ -95,12 +104,15 @@ export default class UserInterface {
         context.fillText('Press C for controls', this.game.width / 2, 375)
         context.font = `30px ${this.fontFamily}`
         context.fillText('Press V for credits', this.game.width / 2, 475)
+       
         // Credits
         context.textAlign = 'right'
         context.font = `30px ${this.fontFamily}`
         context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20)
       }
     } else if (this.game.gameStart === true) {
+      
+      // Player ammo and lives ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
       context.strokeRect(76, 880, this.game.width / 7, 50)
@@ -112,6 +124,7 @@ export default class UserInterface {
       context.fillText(`Lives: ${this.game.player.lives}`, 110, 920)
       context.fillText(`Ammo: ${this.game.player.ammo}`, 210, 920)
 
+      // Time ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
       context.strokeRect(76, 20, this.game.width / 12, 50)
