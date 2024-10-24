@@ -20,7 +20,16 @@ export default class InputHandler {
       }
 
       if (event.key === ' ') {
+        this.game.gameStart = true
         this.game.audio.backgroundMusic.play()
+      }
+
+      if (event.key === 'c'){
+        this.game.viewControls = !this.game.viewControls
+      }
+
+      if (event.key === 'v'){
+        this.game.viewCredits = !this.game.viewCredits
       }
 
       if (event.key === 'p') {
