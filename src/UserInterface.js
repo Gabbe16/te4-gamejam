@@ -97,13 +97,14 @@ export default class UserInterface {
         // Main menu
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
-        context.fillText('PLACEHOLDER NAME', this.game.width / 2, 150)
+        context.fillText('PLACEHOLDER NAME', this.game.width / 2, this.game.height / 4)
         context.font = `45px ${this.fontFamily}`
-        context.fillText('Press Space to start', this.game.width / 2, 275,)
-        context.font = `35px ${this.fontFamily}`
-        context.fillText('Press C for controls', this.game.width / 2, 375)
-        context.font = `30px ${this.fontFamily}`
-        context.fillText('Press V for credits', this.game.width / 2, 475)
+        context.textAlign = 'center'
+        context.fillText('Press SPACE to start', this.game.width / 2, this.game.height / 2.45,)
+        context.font = `45px ${this.fontFamily}`
+        context.fillText('Press C for controls', this.game.width / 2, this.game.height / 2)
+        context.font = `45px ${this.fontFamily}`
+        context.fillText('Press V for credits', this.game.width / 2, this.game.height / 1.7)
        
         // Credits
         context.textAlign = 'right'
