@@ -24,7 +24,7 @@ export default class Game {
     this.secondPlayer = new secondPlayer(this)
 
     // Game states
-    this.gameStart = true
+    this.gameStart = false
     this.mainMenu = true
     this.viewControls = false
     this.viewCredits = false
