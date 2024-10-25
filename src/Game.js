@@ -12,17 +12,20 @@ export default class Game {
     this.height = height
     this.canvasPosition = canvasPosition
 
+    // Game objects
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.background = new Background(this)
     this.audio = new Audio()
     this.player = new Player(this)
 
+    // Game states
     this.gameStart = false
     this.mainMenu = true
     this.viewControls = false
     this.viewCredits = false
 
+    // Game variables
     this.score = 0
     this.keys = []
     this.enemies = []
@@ -36,7 +39,7 @@ export default class Game {
   }
 
   update(deltaTime) {
-
+    // Main menu paralax background updates
     this.ui.update(deltaTime)
 
     if (!this.gameOver && this.gameStart === true) {

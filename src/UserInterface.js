@@ -31,14 +31,13 @@ export default class UserInterface {
     const keyD = new Image()
     keyD.src = key_d_image
     this.keyD = keyD
-    
   }
 
   update(deltaTime) {
+    // paralax background update
     if (this.game.mainMenu === true) {
       this.menuTime += deltaTime
       this.menubackground.update()
-      //console.log(this.menuTime)
     }
   }
 
@@ -48,7 +47,6 @@ export default class UserInterface {
     context.shadowOffsetX = 4
     context.shadowOffsetY = 4
     context.shadowColor = 'black'
-
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
 
@@ -71,6 +69,7 @@ export default class UserInterface {
         context.fillText('Movement', this.game.width - 495, this.game.height / 4)
         context.fillText('Shooting', this.game.width - 495, this.game.height - 450)
         // Player 2 control key images here
+        // insert player 2 control key images here
 
         // Controls ui
         context.textAlign = 'center'
@@ -90,7 +89,7 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
-        // Main menu background
+        // Main menu paralax background
         context.shadowColor = 'transparent'
         this.menubackground.draw(context)
        
@@ -112,7 +111,6 @@ export default class UserInterface {
         context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20)
       }
     } else if (this.game.gameStart === true) {
-      
       // Player ammo and lives ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
