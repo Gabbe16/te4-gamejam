@@ -5,6 +5,7 @@ import Skeleton from './Skeleton.js'
 import Candy from './Jackolantern.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
+import secondPlayer from './SecondPlayer.js'
 
 export default class Game {
   constructor(width, height, canvasPosition) {
@@ -18,6 +19,7 @@ export default class Game {
     this.background = new Background(this)
     this.audio = new Audio()
     this.player = new Player(this)
+    this.secondPlayer = new secondPlayer(this)
 
     // Game states
     this.gameStart = false
@@ -81,6 +83,7 @@ export default class Game {
         this.enemyTimer += deltaTime
       }
       this.player.update(deltaTime)
+      this.secondPlayer.update(deltaTime)
   
       // Check collision between player, enemies drops (candy)
       this.enemies.forEach((enemy) => {
@@ -123,6 +126,7 @@ export default class Game {
     if (this.gameStart === true) {
       this.background.draw(context)
       this.player.draw(context)
+      this.secondPlayer.draw(context)
       this.enemies.forEach((enemy) => {
         enemy.draw(context)
       })
