@@ -209,7 +209,10 @@ export default class Player {
           angle
         )
       )
-      this.game.audio.playBowSound()
+      if(this.game.gameStart === true){
+        console.log(this.game.audio.bowSound.volume)
+        this.game.audio.playBowSound()
+      }
     } else {
       console.log('out of ammo')
     }
