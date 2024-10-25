@@ -1,4 +1,3 @@
-import arrowImage from './assets/sprites/projectile.png'
 import fireballImage from './assets/sprites/FB001.png'
 
 export default class Projectile {
