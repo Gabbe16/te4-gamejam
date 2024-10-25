@@ -86,12 +86,15 @@ export default class Game {
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
+          this.audio.playerDamage.volume = 1
           this.player.lives--
           enemy.markedForDeletion = true
           if (enemy.type === 'drops') {
             this.player.ammo += 5
             this.player.lives += 1
+            this.audio.playerDamage.volume = 0
           }
+          this.audio.playPlayerDamage()
         }
   
         // Check collision between player projectiles and enemies
