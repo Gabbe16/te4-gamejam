@@ -1,10 +1,10 @@
 import Enemy from './Enemy.js'
-import skeletonImage from './assets/sprites/SkeletonWalk.png'
+import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
 
 export default class Skeleton extends Enemy {
   constructor(game, x, y) {
     super(game)
-    this.width = 22
+    this.width = 48
     this.height = 55
     this.x = x
     this.y = y
@@ -15,13 +15,13 @@ export default class Skeleton extends Enemy {
 
     // Skeleton Walk Image
     const image = new Image()
-    image.src = skeletonImage
+    image.src = luciferSkeleton
     this.image = image
 
     // Skeleton Walk Animation
     this.frameX = 1
     this.frameY = 0
-    this.maxFrame = 13
+    this.maxFrame = 6
     this.fps = 20
     this.timer = 0
     this.interval = 1000 / this.fps
@@ -72,8 +72,8 @@ export default class Skeleton extends Enemy {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - (this.width + 5.5) : this.x - 5.5,
-      this.y - 16.5,
+      this.flip ? this.x * -1 - (this.width + 25) : this.x - 25,
+      this.y - 25,
       this.width * 2,
       this.height * 2
     )

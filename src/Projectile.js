@@ -1,10 +1,11 @@
 import arrowImage from './assets/sprites/projectile.png'
+import fireballImage from './assets/sprites/FB001.png'
 
 export default class Projectile {
   constructor(game, x, y, angle) {
     this.game = game
-    this.width = 40
-    this.height = 5
+    this.width = 80
+    this.height = 40
     this.x = x
     this.y = y
     this.angle = angle
@@ -15,7 +16,7 @@ export default class Projectile {
 
     // Arrow sprite image
     const image = new Image()
-    image.src = arrowImage
+    image.src = fireballImage
     this.image = image
   }
 

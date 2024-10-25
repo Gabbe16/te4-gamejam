@@ -1,13 +1,15 @@
-import playerImage from './assets/sprites/spritesheet.png'
+import necromancer from './assets/sprites/necromancerSheet.png'
 import Projectile from './Projectile.js'
 
 export default class Player {
   constructor(game) {
     this.game = game
-    this.width = 64
-    this.height = 64
-    this.x = this.game.width / 2 - this.width / 2
-    this.y = this.game.height / 2 - this.height / 2
+    this.width = 80
+    this.height = 110
+    this.imageheight = 160 
+    this.imagewidth = 128
+    this.x = 740
+    this.y = 393
 
     this.projectiles = []
 
@@ -26,23 +28,23 @@ export default class Player {
 
     // Player spritesheet image
     const image = new Image()
-    image.src = playerImage
+    image.src = necromancer
     this.image = image
 
     // All animations
     this.idleAnimation = {
-      frameY: 5,
-      maxFrame: 4
+      frameY: 0,
+      maxFrame: 8
     }
 
     this.walkAnimation = {
-      frameY: 0,
+      frameY: 1,
       maxFrame: 8
     }
     
     this.shootingAnimation = {
-      frameY: 3,
-      maxFrame: 7
+      frameY: 2,
+      maxFrame: 13
     }
 
     // Sprite animation variables
@@ -148,14 +150,14 @@ export default class Player {
 
     context.drawImage(
       this.image,
-      this.frameX * this.width,
-      this.frameY * this.height,
-      this.width,
-      this.height,
-      this.flip ? this.x * -1 - (this.width + 22) : this.x - 22,
-      this.y - 33,
-      this.width * 2,
-      this.height * 2
+      this.frameX * this.imageheight,
+      this.frameY * this.imagewidth,
+      this.imagewidth,
+      this.imageheight,
+      this.flip ? this.x * -1 - (this.width + 85) : this.x - 85,
+      this.y - 100,
+      this.width * 2.5,
+      this.height * 2.5
     )
 
     if (this.flip) {
