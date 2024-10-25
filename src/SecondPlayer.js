@@ -60,10 +60,13 @@ export default class Player {
   }
 
   update(deltaTime) {
-  
+    if (this.lives <= 0) {
+      this.game.gameOver = true
+      this.game.audio.playerDeath.play()
+    }
 
     // Right and left movement
-    if (this.game.keys.includes('a')) {
+    if ( this.game.keys.includes('a')) {
       this.speedX = -this.maxSpeed
     } else if (
       this.game.keys.includes('d')
@@ -77,6 +80,7 @@ export default class Player {
     if (this.game.keys.includes('w')) {
       this.speedY = -this.maxSpeed
     } else if (
+     
       this.game.keys.includes('s')
     ) {
       this.speedY = this.maxSpeed
@@ -120,6 +124,8 @@ export default class Player {
       this.frameY = this.idleAnimation.frameY
     }
 
+ 
+
    
   }
 
@@ -131,14 +137,14 @@ export default class Player {
 
     context.drawImage(
       this.image,
-      this.frameX * this.width,
-      this.frameY * this.height,
-      this.width,
-      this.height,
-      this.flip ? this.x * -1 - (this.width + 22) : this.x - 22,
-      this.y - 33,
-      this.width * 2,
-      this.height * 2
+      this.frameX * this.imageheight,
+      this.frameY * this.imagewidth,
+      this.imagewidth,
+      this.imageheight,
+      this.flip ? this.x * -1 - (this.width + 85) : this.x - 85,
+      this.y - 100,
+      this.width * 2.5,
+      this.height * 2.5
     )
 
     if (this.flip) {
