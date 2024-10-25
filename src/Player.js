@@ -69,7 +69,7 @@ export default class Player {
     if (this.game.keys.includes('ArrowLeft')) {
       this.speedX = -this.maxSpeed
     } else if (
-      this.game.keys.includes('ArrowRight') ||
+      this.game.keys.includes('ArrowRight')
     ) {
       this.speedX = this.maxSpeed
     } else {
@@ -80,7 +80,7 @@ export default class Player {
     if (this.game.keys.includes('ArrowUp')) {
       this.speedY = -this.maxSpeed
     } else if (
-      this.game.keys.includes('ArrowDown') ||
+      this.game.keys.includes('ArrowDown')
     ) {
       this.speedY = this.maxSpeed
     } else {
