@@ -109,6 +109,7 @@ export default class Game {
             }
             if (enemy.type === 'skeleton') {
               projectile.markedForDeletion = true
+              this.audio.playDamage1()
             }
             
           }
