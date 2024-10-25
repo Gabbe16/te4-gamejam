@@ -2,6 +2,8 @@ import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Skeleton from './Skeleton.js'
+import Skeletonking from './SkeletonKing.js'
+import AncientSkeleton from './AncientSkeleton.js'
 import Candy from './Jackolantern.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
@@ -22,7 +24,7 @@ export default class Game {
     this.secondPlayer = new secondPlayer(this)
 
     // Game states
-    this.gameStart = false
+    this.gameStart = true
     this.mainMenu = true
     this.viewControls = false
     this.viewCredits = false
@@ -74,9 +76,12 @@ export default class Game {
           x = Math.random() * this.width // if on bottom edge, randomize x position
         }
         if (Math.random() < 0.2) {
-          // this.enemies.push(new Candy(this, x, y))
-        } else {
+          //this.enemies.push(new Candy(this, x, y))
           this.enemies.push(new Skeleton(this, x, y))
+        } else if (Math.random() < 0.35) {
+          this.enemies.push(new Skeletonking(this, x, y))
+        } else if (Math.random() < 0.5) {
+          this.enemies.push(new AncientSkeleton(this, x, y))
         }
         this.enemyTimer = 0
       } else {
@@ -105,12 +110,12 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
-            } else if (enemy.type === 'skeleton') {
+            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
              this.enemies.push(new Candy(this, enemy.x, enemy.y))
              enemy.markedForDeletion = true
              this.score += enemy.scoreAmount
-            }
-            if (enemy.type === 'skeleton') {
+            } 
+            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               projectile.markedForDeletion = true
               this.audio.playDamage1()
             }

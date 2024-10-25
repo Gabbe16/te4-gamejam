@@ -1,27 +1,27 @@
 import Enemy from './Enemy.js'
-import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
+import ancientskeletonimage from './assets/sprites/AncientSkeletonRightWalk.png'
 
-export default class Skeleton extends Enemy {
+export default class AncientSkeleton extends Enemy {
   constructor(game, x, y) {
     super(game)
-    this.width = 48
-    this.height = 55
+    this.width = 96
+    this.height = 96
     this.x = x
     this.y = y
     this.speed = 2
-    this.lives = Math.floor(Math.random() * 1) + 1
-    this.type = 'skeleton'
-    this.scoreAmount = 10
+    this.lives = 5
+    this.type = 'ancientskeleton'
+    this.scoreAmount = 60
 
-    // Skeleton Walk Image
+    // SkeletonKing Walk Image
     const image = new Image()
-    image.src = luciferSkeleton
+    image.src = ancientskeletonimage
     this.image = image
 
-    // Skeleton Walk Animation
+    // SkeletonKing Walk Animation
     this.frameX = 1
     this.frameY = 0
-    this.maxFrame = 6
+    this.maxFrame = 8
     this.fps = 20
     this.timer = 0
     this.interval = 1000 / this.fps
@@ -33,7 +33,7 @@ export default class Skeleton extends Enemy {
   }
 
   update(player, deltaTime) {
-    // Skeleton Walk Animation
+    // SkeletonKing Walk Animation
     if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
@@ -72,8 +72,8 @@ export default class Skeleton extends Enemy {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - (this.width + 25) : this.x - 25,
-      this.y - 25,
+      this.flip ? this.x * -1 - (this.width + 75) : this.x - 75,
+      this.y - 35,
       this.width * 2,
       this.height * 2
     )
@@ -82,7 +82,7 @@ export default class Skeleton extends Enemy {
       context.restore()
     }
 
-    // Skeleton Debugging
+    // SkeletonKing Debugging
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
       context.fillStyle = 'black'
