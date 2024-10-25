@@ -6,8 +6,6 @@ import Candy from './Jackolantern.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
 
-import Menuparalax from './Menuparalax.js'
-
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -17,7 +15,6 @@ export default class Game {
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.background = new Background(this)
-    // this.menuparalax = new Menuparalax(this)
     this.audio = new Audio()
     this.player = new Player(this)
 
@@ -26,6 +23,7 @@ export default class Game {
     this.viewControls = false
     this.viewCredits = false
 
+    this.score = 0
     this.keys = []
     this.enemies = []
     this.gameOver = false
@@ -101,6 +99,7 @@ export default class Game {
             } else if (enemy.type === 'skeleton') {
              this.enemies.push(new Candy(this, enemy.x, enemy.y))
              enemy.markedForDeletion = true
+             this.score += enemy.scoreAmount
             }
             if (enemy.type === 'skeleton') {
               projectile.markedForDeletion = true

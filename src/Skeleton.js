@@ -11,6 +11,7 @@ export default class Skeleton extends Enemy {
     this.speed = 2
     this.lives = Math.floor(Math.random() * 1) + 1
     this.type = 'skeleton'
+    this.scoreAmount = 5
 
     // Skeleton Walk Image
     const image = new Image()

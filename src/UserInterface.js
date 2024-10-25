@@ -128,13 +128,14 @@ export default class UserInterface {
       // Time ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
-      context.strokeRect(76, 20, this.game.width / 12, 50)
-      context.fillRect(76, 20, this.game.width / 12, 50)
+      context.strokeRect(76, 20, this.game.width / 8, 50)
+      context.fillRect(76, 20, this.game.width / 8, 50)
       context.fillStyle = 'rgba(255, 255, 255, 255)'
       context.shadowColor = 'black'
       context.shadowOffsetX = 2
       context.shadowOffsetY = 2
       context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 110, 59)
+      context.fillText(`Score: ${(this.game.score)}`, 215, 59)
     }
 
     if (this.game.gameOver) {
