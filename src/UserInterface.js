@@ -31,13 +31,14 @@ export default class UserInterface {
     const keyD = new Image()
     keyD.src = key_d_image
     this.keyD = keyD
+    
   }
 
   update(deltaTime) {
-    // paralax background update
     if (this.game.mainMenu === true) {
       this.menuTime += deltaTime
       this.menubackground.update()
+      //console.log(this.menuTime)
     }
   }
 
@@ -47,6 +48,7 @@ export default class UserInterface {
     context.shadowOffsetX = 4
     context.shadowOffsetY = 4
     context.shadowColor = 'black'
+
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
 
@@ -69,7 +71,6 @@ export default class UserInterface {
         context.fillText('Movement', this.game.width - 495, this.game.height / 4)
         context.fillText('Shooting', this.game.width - 495, this.game.height - 450)
         // Player 2 control key images here
-        // insert player 2 control key images here
 
         // Controls ui
         context.textAlign = 'center'
@@ -89,10 +90,13 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
-        // Main menu paralax background
+        // Main menu background
         context.shadowColor = 'transparent'
         this.menubackground.draw(context)
        
+   //background music
+        this.game.audio.menuMusic.play()
+
         // Main menu
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
@@ -111,6 +115,7 @@ export default class UserInterface {
         context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20)
       }
     } else if (this.game.gameStart === true) {
+      
       // Player ammo and lives ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
@@ -126,14 +131,13 @@ export default class UserInterface {
       // Time ui
       context.fillStyle = 'rgba(128, 128, 128, 0.5)'
       context.shadowColor = 'transparent'
-      context.strokeRect(76, 20, this.game.width / 8, 50)
-      context.fillRect(76, 20, this.game.width / 8, 50)
+      context.strokeRect(76, 20, this.game.width / 12, 50)
+      context.fillRect(76, 20, this.game.width / 12, 50)
       context.fillStyle = 'rgba(255, 255, 255, 255)'
       context.shadowColor = 'black'
       context.shadowOffsetX = 2
       context.shadowOffsetY = 2
       context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 110, 59)
-      context.fillText(`Score: ${(this.game.score)}`, 215, 59)
     }
 
     if (this.game.gameOver) {

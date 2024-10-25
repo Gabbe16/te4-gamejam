@@ -93,22 +93,21 @@ export default class Game {
             this.player.lives += 1
           }
         }
-  
-        // Check collision between player projectiles and enemies
-        this.player.projectiles.forEach((projectile) => {
-          if (this.checkProjectileCollision(projectile, enemy)) {
-            if (enemy.lives > 1) {
-              enemy.lives -= projectile.damage
-            } else if (enemy.type === 'skeleton') {
-             this.enemies.push(new Candy(this, enemy.x, enemy.y))
-             enemy.markedForDeletion = true
-             this.score += enemy.scoreAmount
-            }
-            if (enemy.type === 'skeleton') {
-              projectile.markedForDeletion = true
-            }
-            
+            // Check collision between player, enemies drops (candy)
+      this.enemies.forEach((enemy) => {
+        enemy.update(this.player, deltaTime)
+        if (this.checkCollision(this.player, enemy)) {  
+          this.audio.playerDamage.volume = 1
+          this.player.lives--
+          enemy.markedForDeletion = true
+          if (enemy.type === 'drops') {
+            this.player.ammo += 5
+            this.player.lives += 1
+            this.audio.playerDamage.volume = 0
           }
+          this.audio.playPlayerDamage()
+          
+        }
         })
       })
       this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)

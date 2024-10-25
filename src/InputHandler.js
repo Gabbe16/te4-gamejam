@@ -22,6 +22,8 @@ export default class InputHandler {
       if (event.key === ' ') {
         this.game.gameStart = true
         this.game.audio.backgroundMusic.play()
+        this.game.audio.menuMusic.pause()
+        this.game.audio.bowSound.volume = 1
       }
 
       if (event.key === 'c'){
@@ -50,6 +52,7 @@ export default class InputHandler {
 
     window.addEventListener('mousedown', (event) => {
       this.game.player.shoot(this.mouseX, this.mouseY)
+      
     })
   }
 }
