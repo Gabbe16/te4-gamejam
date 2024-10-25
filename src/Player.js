@@ -8,8 +8,8 @@ export default class Player {
     this.height = 110
     this.imageheight = 160 
     this.imagewidth = 128
-    this.x = 740
-    this.y = 393
+    this.x = 1024
+    this.y = 390
 
     this.projectiles = []
 
