@@ -82,17 +82,7 @@ export default class Game {
       }
       this.player.update(deltaTime)
   
-      // Check collision between player, enemies drops (candy)
-      this.enemies.forEach((enemy) => {
-        enemy.update(this.player, deltaTime)
-        if (this.checkCollision(this.player, enemy)) {
-          this.player.lives--
-          enemy.markedForDeletion = true
-          if (enemy.type === 'drops') {
-            this.player.ammo += 5
-            this.player.lives += 1
-          }
-        }
+      
             // Check collision between player, enemies drops (candy)
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, deltaTime)

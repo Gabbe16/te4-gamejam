@@ -24,7 +24,7 @@ export default class BackgroundMusic {
         this.damage2 = new Audio(damage2URL)
         this.damage3 = new Audio(damage3URL)
         this.playerDamage = new Audio(playerDamageURL)
-        this.playerDeath = new Audio(playerDamageURL)
+        this.playerDeath = new Audio(playerDeathURL)
 
         // Loop the background music when it ends
         this.backgroundMusic.loop = true
