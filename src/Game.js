@@ -64,17 +64,20 @@ export default class Game {
 
     if (this.gameStart === true){
       if (this.enemyTimer > this.skeletonInterval) {
-        // Left door point
-        // let x1 = 246
-        // let y1 = 420
+        const leftdoor = {
+          x: 246,
+          y: 420
+        }
 
-        // Top middle door point
-        // let x2 = 905
-        // let y2 = 124
+        const topdoor = {
+          x: 905,
+          y: 124
+        }
 
-        // Right door point
-        // let x3 = 1560
-        // let y3 = 420
+        const rightdoor = {
+          x: 1560,
+          y: 420
+        }
 
         let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
         let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
@@ -94,7 +97,7 @@ export default class Game {
           this.enemies.push(new Skeletonking(this, x, y))
         } else if (Math.random() < 0.5) {
           this.enemies.push(new AncientSkeleton(this, x, y))
-        }
+        } 
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
@@ -122,10 +125,8 @@ export default class Game {
           if (this.checkCollision(this.player, wall)) {
             if (this.player.x < wall.x) {
               this.player.x = wall.x - this.player.width - 1
-              console.log('collision x axis')
             } else if (this.player.x > wall.x) {
               this.player.x = wall.x + wall.width + 1
-              console.log('collision x axis')
             }
           }
         })
