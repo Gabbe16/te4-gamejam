@@ -13,12 +13,12 @@ export default class AncientSkeleton extends Enemy {
     this.type = 'ancientskeleton'
     this.scoreAmount = 60
 
-    // SkeletonKing Walk Image
+    // AncientSkeleton Walk Image
     const image = new Image()
     image.src = ancientskeletonimage
     this.image = image
 
-    // SkeletonKing Walk Animation
+    // AncientSkeleton Walk Animation
     this.frameX = 1
     this.frameY = 0
     this.maxFrame = 8
@@ -33,7 +33,7 @@ export default class AncientSkeleton extends Enemy {
   }
 
   update(player, deltaTime) {
-    // SkeletonKing Walk Animation
+    // AncientSkeleton Walk Animation
     if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
@@ -82,7 +82,7 @@ export default class AncientSkeleton extends Enemy {
       context.restore()
     }
 
-    // SkeletonKing Debugging
+    // AncientSkeleton Debugging
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
       context.fillStyle = 'black'

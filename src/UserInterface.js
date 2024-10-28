@@ -2,6 +2,14 @@ import key_w_image from './assets/controls_images/key_W.png'
 import key_s_image from './assets/controls_images/key_S.png'
 import key_a_image from './assets/controls_images/key_A.png'
 import key_d_image from './assets/controls_images/key_D.png'
+import key_j_image from './assets/controls_images/key_J.png'
+
+import arrowkey_down_image from './assets/controls_images/arrowkey_DOWN.png'
+import arrowkey_left_image from './assets/controls_images/arrowkey_LEFT.png'
+import arrowkey_right_image from './assets/controls_images/arrowkey_RIGHT.png'
+import arrowkey_up_image from './assets/controls_images/arrowkey_UP.png'
+import mouse_image from './assets/controls_images/controlPrompts.png'
+
 
 import Menuparalax from './Menuparalax.js'
 
@@ -31,6 +39,31 @@ export default class UserInterface {
     const keyD = new Image()
     keyD.src = key_d_image
     this.keyD = keyD
+
+    const keyJ = new Image()
+    keyJ.src = key_j_image
+    this.keyJ = keyJ
+
+    // Load player2 controls images
+    const arrowkeyleft = new Image()
+    arrowkeyleft.src = arrowkey_left_image
+    this.arrowleft = arrowkeyleft
+
+    const arrowkeyright = new Image()
+    arrowkeyright.src = arrowkey_right_image
+    this.arrowright = arrowkeyright
+
+    const arrowkeyup = new Image()
+    arrowkeyup.src = arrowkey_up_image
+    this.arrowup = arrowkeyup
+
+    const arrowkeydown = new Image()
+    arrowkeydown.src = arrowkey_down_image
+    this.arrowdown = arrowkeydown
+
+    const mouseicon = new Image()
+    mouseicon.src = mouse_image
+    this.mouseicon = mouseicon
     
   }
 
@@ -54,24 +87,7 @@ export default class UserInterface {
     // Main menu interface if the game has not been started
     if (this.game.gameStart === false) {
       if (this.game.viewControls === true) {
-        context.textAlign = 'center'
-        context.font = `40px ${this.fontFamily}`
-        context.fillText('Movement', this.game.width / 3.5, this.game.height / 4)
-        context.fillText('Shooting', this.game.width / 3.5, this.game.height - 450)
-        // Player 1 control key images
-        context.drawImage(this.keyW, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 3.5, 64, 64)
-        context.drawImage(this.keyS, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 2.75, 64, 64)
-        context.drawImage(this.keyA, 0, 0, 32, 32, this.game.width / 4.45, this.game.height / 2.75, 64, 64)
-        context.drawImage(this.keyD, 0, 0, 32, 32, this.game.width / 3.23, this.game.height / 2.75, 64, 64)
-        // mouse icon here
-
-        context.textAlign = 'center'
-        context.font = `40px ${this.fontFamily}`
-        context.fillText('Movement', this.game.width - 495, this.game.height / 4)
-        context.fillText('Shooting', this.game.width - 495, this.game.height - 450)
-        // Player 2 control key images here
-
-        // Controls ui
+        // Controls UI
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
         context.fillText('Controls', this.game.width / 2, 150)
@@ -80,6 +96,29 @@ export default class UserInterface {
         context.textAlign = 'right'
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press c to return to main menu', this.game.width - 20, this.game.height - 20)
+
+        // Player 1 text and control images
+        context.textAlign = 'center'
+        context.font = `40px ${this.fontFamily}`
+        context.fillText('Movement', this.game.width / 3.5, this.game.height / 4)
+        context.fillText('Melee Attack', this.game.width / 3.5, this.game.height - 450)
+        context.drawImage(this.keyW, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 3.5, 64, 64)
+        context.drawImage(this.keyS, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 2.75, 64, 64)
+        context.drawImage(this.keyA, 0, 0, 32, 32, this.game.width / 4.45, this.game.height / 2.75, 64, 64)
+        context.drawImage(this.keyD, 0, 0, 32, 32, this.game.width / 3.23, this.game.height / 2.75, 64, 64)
+        context.drawImage(this.keyJ, 0, 0, 32, 32, this.game.width / 3.75, this.game.height / 1.8, 64, 64)
+        
+        // Player 2 text and control images
+        context.textAlign = 'center'
+        context.font = `40px ${this.fontFamily}`
+        context.fillText('Movement', this.game.width - 495, this.game.height / 4)
+        context.fillText('Cast Spell', this.game.width - 495, this.game.height - 450)
+        context.drawImage(this.arrowup, 0, 0, 32, 32, this.game.width - 525, this.game.height / 3.5, 64, 64)
+        context.drawImage(this.arrowdown, 0, 0, 32, 32, this.game.width - 525, this.game.height / 2.75, 64, 64)
+        context.drawImage(this.arrowleft, 0, 0, 32, 32, this.game.width - 450, this.game.height / 2.75, 64, 64)
+        context.drawImage(this.arrowright, 0, 0, 32, 32, this.game.width - 600, this.game.height / 2.75, 64, 64)
+        context.shadowColor = 'transparent'
+        context.drawImage(this.mouseicon, 185, -132, 245, 203, this.game.width - 515, this.game.height - 550, 245, 203)
       } else if (this.game.viewCredits == true) {
         // Credits ui
         context.textAlign = 'center'
