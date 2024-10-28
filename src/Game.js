@@ -69,6 +69,37 @@ export default class Game {
         let rounded = Math.round(mathrandom)
         console.log(xcoords[rounded])
 
+        if (Math.random() < 0.2) {
+          const xcoords = [246, 905, 1560]
+          let mathrandom = Math.random() * 2
+          let rounded = Math.round(mathrandom)
+          console.log(xcoords[rounded])
+
+          if (rounded === 0) {
+            this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
+          } else if (rounded === 1) {
+            this.enemies.push(new Skeleton(this, xcoords[rounded], 124))
+          } else {
+            this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
+          }
+        } else if (Math.random() < 0.35) {
+          if (rounded === 0) {
+            this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
+          } else if (rounded === 1) {
+            this.enemies.push(new Skeletonking(this, xcoords[rounded], 124))
+          } else {
+            this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
+          }
+        } else if (Math.random() < 0.5) {
+          if (rounded === 0) {
+            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
+          } else if (rounded === 1) {
+            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 124))
+          } else {
+            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
+          }
+        } 
+
         if (rounded === 0) {
           this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
         } else if (rounded === 1) {
@@ -77,25 +108,6 @@ export default class Game {
           this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
         }
 
-        /* let x = Math.random() < 0.5 ? 0 : this.width // spawn on left or right edge
-        let y = Math.random() < 0.5 ? 0 : this.height // spawn on top or bottom edge
-        if (x === 0) {
-          y = Math.random() * this.height // if on left edge, randomize y position
-        } else if (x === this.width) {
-          y = Math.random() * this.height // if on right edge, randomize y position
-        } else if (y === 0) {
-          x = Math.random() * this.width // if on top edge, randomize x position
-        } else {
-          x = Math.random() * this.width // if on bottom edge, randomize x position
-        }
-        if (Math.random() < 0.2) {
-          //this.enemies.push(new Candy(this, x, y))
-          this.enemies.push(new Skeleton(this, x, y))
-        } else if (Math.random() < 0.35) {
-          this.enemies.push(new Skeletonking(this, x, y))
-        } else if (Math.random() < 0.5) {
-          this.enemies.push(new AncientSkeleton(this, x, y))
-        }  */
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
