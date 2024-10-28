@@ -146,17 +146,6 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
-        // Main menu
-        context.textAlign = 'center'
-        context.font = `75px ${this.fontFamily}`
-        context.fillText('PLACEHOLDER NAME', this.game.width / 2, this.game.height / 4)
-        context.font = `45px ${this.fontFamily}`
-        context.textAlign = 'center'
-        context.fillText('Press SPACE to start', this.game.width / 2, this.game.height / 2.45,)
-        context.font = `45px ${this.fontFamily}`
-        context.fillText('Press C for controls', this.game.width / 2, this.game.height / 2)
-        context.font = `45px ${this.fontFamily}`
-        context.fillText('Press V for credits', this.game.width / 2, this.game.height / 1.7)
 
         // Main menu background paralax
         context.shadowColor = 'transparent'
@@ -164,6 +153,18 @@ export default class UserInterface {
        
         //background music
         this.game.audio.menuMusic.play()
+
+         // Main menu
+         context.textAlign = 'center'
+         context.font = `75px ${this.fontFamily}`
+         context.fillText('PLACEHOLDER NAME', this.game.width / 2, this.game.height / 4)
+         context.font = `45px ${this.fontFamily}`
+         context.textAlign = 'center'
+         context.fillText('Press SPACE to start', this.game.width / 2, this.game.height / 2.45,)
+         context.font = `45px ${this.fontFamily}`
+         context.fillText('Press C for controls', this.game.width / 2, this.game.height / 2)
+         context.font = `45px ${this.fontFamily}`
+         context.fillText('Press V for credits', this.game.width / 2, this.game.height / 1.7)
 
         // Creator Credits
         context.textAlign = 'right'
