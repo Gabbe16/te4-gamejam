@@ -9,6 +9,8 @@ import Background from './Background.js'
 import Audio from './Audio.js'
 import secondPlayer from './SecondPlayer.js'
 
+import wall from './Wall.js'
+
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -40,6 +42,24 @@ export default class Game {
     this.enemyTimer = 0
     this.skeletonInterval = 1500
     this.speed = 1
+
+    this.canvasRightWalls = [
+      new wall(this, 75, 18, 190, 915),
+      new wall(this, 1580, 18, 190, 915),
+      // new wall(this, 75, 18, 1695, 122),
+      // new wall(this, 75, 810, 1695, 122)
+
+      // new wall(this, 600, 300, 50, 150)
+    ]
+
+    this.canvasUpDownWalls = [
+      // new wall(this, 75, 18, 190, 915),
+      // new wall(this, 1580, 18, 190, 915),
+      new wall(this, 75, 18, 1695, 122),
+      new wall(this, 75, 810, 1695, 122)
+
+      // new wall(this, 600, 300, 50, 150)
+    ]
   }
 
   update(deltaTime) {
@@ -104,6 +124,29 @@ export default class Game {
           }
           this.audio.playPlayerDamage()
         }
+
+        // check collision between player and canvas walls
+        this.canvasRightWalls.forEach((wall) => {
+          if (this.checkCollision(this.player, wall)) {
+            if (this.player.x < wall.x) {
+              this.player.x = wall.x - this.player.width - 1
+              console.log('collision x axis')
+            } else if (this.player.x > wall.x) {
+              this.player.x = wall.x + wall.width + 1
+              console.log('collision x axis')
+            }
+          }
+        })
+
+        this.canvasUpDownWalls.forEach((wall) => {
+          if (this.checkCollision(this.player, wall)) {
+            if (this.player.y < wall.y) {
+              this.player.y = wall.y - this.player.height - 1
+            } else if (this.player.y > wall.y) {
+              this.player.y = wall.y + wall.height + 1
+            } 
+          }
+        })
   
         // Check collision between player projectiles and enemies
         this.player.projectiles.forEach((projectile) => {
@@ -134,6 +177,12 @@ export default class Game {
       this.secondPlayer.draw(context)
       this.enemies.forEach((enemy) => {
         enemy.draw(context)
+      })
+      this.canvasRightWalls.forEach((wall) => {
+        wall.draw(context)
+      })
+      this.canvasUpDownWalls.forEach((wall) => {
+        wall.draw(context)
       })
     }
     this.ui.draw(context)

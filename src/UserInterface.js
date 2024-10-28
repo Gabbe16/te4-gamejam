@@ -10,7 +10,6 @@ import arrowkey_right_image from './assets/controls_images/arrowkey_RIGHT.png'
 import arrowkey_up_image from './assets/controls_images/arrowkey_UP.png'
 import mouse_image from './assets/controls_images/controlPrompts.png'
 
-
 import Menuparalax from './Menuparalax.js'
 
 export default class UserInterface {
@@ -128,7 +127,7 @@ export default class UserInterface {
         // Asset Credits 
         context.fillText('Assets', this.game.width / 3.5, this.game.height / 5.35)
         context.font = `35px ${this.fontFamily}`
-        context.fillText('Menu Paralax made by --ansimuz', this.game.width / 3.5, this.game.height - 700)
+        context.fillText('Menu Paralax made by --Lil Cthulhu', this.game.width / 3.5, this.game.height - 700)
         context.fillText('Top-down Dungeon tileset made by --Enjl', this.game.width / 3.5, this.game.height - 600)
         context.fillText('Keyboard icons made by --Caz Wolf', this.game.width / 3.5, this.game.height - 500)
         context.fillText('Mouse icon made by --MitziTheDev', this.game.width / 3.5, this.game.height - 400)
@@ -146,7 +145,6 @@ export default class UserInterface {
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
-
         // Main menu background paralax
         context.shadowColor = 'transparent'
         this.menubackground.draw(context)
@@ -157,7 +155,7 @@ export default class UserInterface {
          // Main menu
          context.textAlign = 'center'
          context.font = `75px ${this.fontFamily}`
-         context.fillText('PLACEHOLDER NAME', this.game.width / 2, this.game.height / 4)
+         context.fillText('The Gateway To Hell', this.game.width / 2, this.game.height / 4)
          context.font = `45px ${this.fontFamily}`
          context.textAlign = 'center'
          context.fillText('Press SPACE to start', this.game.width / 2, this.game.height / 2.45,)
@@ -206,6 +204,14 @@ export default class UserInterface {
         this.game.width / 2,
         this.game.height / 2 - 20
       )
+    }
+
+    if (this.game.score >= 1000) {
+      context.textAlign = 'center'
+      context.font = `70px ${this.fontFamily}`
+      context.fillText('You win!', this.game.width / 2, this.game.height / 2 - 35)
+      context.font = `50px ${this.fontFamily}`
+      context.fillText('Thank you for playing!', this.game.width / 2, this.game.height / 2 + 20)
     }
 
     // debug

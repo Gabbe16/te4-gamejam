@@ -1,10 +1,10 @@
 import Layer from "./Layer.js"
-import skyLayer from './assets/paralax_Menu/sky.png'
-import farClouds from './assets/paralax_Menu/far-clouds.png'
-import nearClouds from './assets/paralax_Menu/near-clouds.png'
-import farMountains from './assets/paralax_Menu/far-mountains.png'
-import nearMountains from './assets/paralax_Menu/mountains.png'
-import foregroundTrees from './assets/paralax_Menu/trees.png'
+import skyLayer from './assets/paralax_Menu/Mushroom_Cave_L1.png'
+import farClouds from './assets/paralax_Menu/Mushroom_Cave_L2.png'
+import nearClouds from './assets/paralax_Menu/Mushroom_Cave_L3.png'
+import farMountains from './assets/paralax_Menu/Mushroom_Cave_L4.png'
+// import nearMountains from './assets/paralax_Menu/mountains.png'
+// import foregroundTrees from './assets/paralax_Menu/trees.png'
 
 export default class{
     constructor(game){
@@ -27,21 +27,21 @@ export default class{
         farMountainsImage.src = farMountains
         this.farmountains = new Layer(this.game, farMountainsImage, this.game.width, this.game.height, 0.3)
 
-        const nearMountainsImage = new Image()
-        nearMountainsImage.src = nearMountains
-        this.nearmountains = new Layer(this.game, nearMountainsImage, this.game.width, this.game.height, 0.45)
+        // const nearMountainsImage = new Image()
+        // nearMountainsImage.src = nearMountains
+        // this.nearmountains = new Layer(this.game, nearMountainsImage, this.game.width, this.game.height, 0.45)
 
-        const foregroundTreesImage = new Image()
-        foregroundTreesImage.src = foregroundTrees
-        this.foregroundtrees = new Layer(this.game, foregroundTreesImage, this.game.width, this.game.height, 0.4)
+        // const foregroundTreesImage = new Image()
+        // foregroundTreesImage.src = foregroundTrees
+        // this.foregroundtrees = new Layer(this.game, foregroundTreesImage, this.game.width, this.game.height, 0.4)
         
         this.layers = [
             this.skylayer,
             this.farclouds,
             this.nearclouds,
             this.farmountains,
-            this.nearmountains,
-            this.foregroundtrees
+            // this.nearmountains,
+            // this.foregroundtrees
         ]
         console.log(this.layers)
     }

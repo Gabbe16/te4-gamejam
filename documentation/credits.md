@@ -5,7 +5,7 @@
 
 * background music -- Made by evilduckk
 
-* Menu paralax -- Made by ansimuz
+* Menu dusk paralax -- Made by ansimuz
 
 * Menu music -- Made by
 
