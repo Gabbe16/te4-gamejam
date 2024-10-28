@@ -1,8 +1,12 @@
 # Credits to creators of sprites, backgrounds, music and sound effects
 
-* Pixel fantasy rpg icons -- Made By Caz Wolf
+* Pixel fantasy rpg icons -- Made by Caz Wolf
     - Link to his page https://cazwolf.itch.io/caz-pixel-keyboard
 
-* background music -- Made By evilduckk
+* background music -- Made by evilduckk
 
-* Top-Down Dungeon Tileset --Made By Enjl
+* Menu paralax -- Made by ansimuz
+
+* Menu music -- Made by
+
+* Top-Down Dungeon Tileset --Made by Enjl

@@ -120,21 +120,32 @@ export default class UserInterface {
         context.shadowColor = 'transparent'
         context.drawImage(this.mouseicon, 185, -132, 245, 203, this.game.width - 515, this.game.height - 550, 245, 203)
       } else if (this.game.viewCredits == true) {
-        // Credits ui
+        // Asset Credits ui
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
         context.fillText('Credits', this.game.width / 2, 150)
+
+        // Asset Credits 
+        context.fillText('Assets', this.game.width / 3.5, this.game.height / 5.35)
+        context.font = `35px ${this.fontFamily}`
+        context.fillText('Menu Paralax made by --ansimuz', this.game.width / 3.5, this.game.height - 700)
+        context.fillText('Top-down Dungeon tileset made by --Enjl', this.game.width / 3.5, this.game.height - 600)
+        context.fillText('Keyboard icons made by --Caz Wolf', this.game.width / 3.5, this.game.height - 500)
+        context.fillText('Mouse icon made by --MitziTheDev', this.game.width / 3.5, this.game.height - 400)
+        context.fillText('Player sprites made by --CreativeKind', this.game.width / 3.5, this.game.height - 300)
+        context.fillText('Enemy sprites made by --Foozle', this.game.width / 3.5, this.game.height - 200)
+
+        // Music/SFX Credits
+        context.font = `75px ${this.fontFamily}`
+        context.fillText('Music/SFX', this.game.width - 495, this.game.height / 5.35)
+        context.font = `35px ${this.fontFamily}`
+        context.fillText('Menu Music made by --', this.game.width - 495, this.game.height - 700)
+        context.fillText('Game Music made by --Evilduckk', this.game.width - 495, this.game.height - 600)
+        context.fillText('Game SFX made by --', this.game.width - 495, this.game.height - 500)
         context.textAlign = 'right'
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
       } else {
-        // Main menu background
-        context.shadowColor = 'transparent'
-        this.menubackground.draw(context)
-       
-        //background music
-        this.game.audio.menuMusic.play()
-
         // Main menu
         context.textAlign = 'center'
         context.font = `75px ${this.fontFamily}`
@@ -146,8 +157,15 @@ export default class UserInterface {
         context.fillText('Press C for controls', this.game.width / 2, this.game.height / 2)
         context.font = `45px ${this.fontFamily}`
         context.fillText('Press V for credits', this.game.width / 2, this.game.height / 1.7)
+
+        // Main menu background paralax
+        context.shadowColor = 'transparent'
+        this.menubackground.draw(context)
        
-        // Credits
+        //background music
+        this.game.audio.menuMusic.play()
+
+        // Creator Credits
         context.textAlign = 'right'
         context.font = `30px ${this.fontFamily}`
         context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20) 

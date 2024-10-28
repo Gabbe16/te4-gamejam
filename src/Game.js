@@ -27,7 +27,7 @@ export default class Game {
     this.gameStart = false
     this.mainMenu = true
     this.viewControls = false
-    this.viewCredits = false
+    this.viewCredits = true
 
     // Game variables
     this.score = 0
