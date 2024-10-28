@@ -46,19 +46,11 @@ export default class Game {
     this.canvasRightWalls = [
       new wall(this, 75, 18, 190, 915),
       new wall(this, 1580, 18, 190, 915),
-      // new wall(this, 75, 18, 1695, 122),
-      // new wall(this, 75, 810, 1695, 122)
-
-      // new wall(this, 600, 300, 50, 150)
     ]
 
     this.canvasUpDownWalls = [
-      // new wall(this, 75, 18, 190, 915),
-      // new wall(this, 1580, 18, 190, 915),
       new wall(this, 75, 18, 1695, 122),
       new wall(this, 75, 810, 1695, 122)
-
-      // new wall(this, 600, 300, 50, 150)
     ]
   }
 
