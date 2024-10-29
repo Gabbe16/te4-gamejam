@@ -132,7 +132,10 @@ export default class UserInterface {
         context.fillText('Keyboard icons made by --Caz Wolf', this.game.width / 3.5, this.game.height - 500)
         context.fillText('Mouse icon made by --MitziTheDev', this.game.width / 3.5, this.game.height - 400)
         context.fillText('Player sprites made by --CreativeKind', this.game.width / 3.5, this.game.height - 300)
-        context.fillText('Enemy sprites made by --Foozle', this.game.width / 3.5, this.game.height - 200)
+        context.fillText('Spell sprite made by --nyknck', this.game.width / 3.5, this.game.height - 250)
+        context.fillText('Enemy sprites made by --Foozle', this.game.width / 3.5, this.game.height - 150)
+        context.fillText('Enemy drops made by --PixelTier', this.game.width / 3.5, this.game.height - 100)
+        
 
         // Music/SFX Credits
         context.font = `75px ${this.fontFamily}`

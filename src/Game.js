@@ -98,7 +98,6 @@ export default class Game {
             this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
           }
         }
-
         this.enemyTimer = 0
       } else {
         this.enemyTimer += deltaTime
