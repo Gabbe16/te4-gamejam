@@ -114,12 +114,9 @@ export default class Game {
           this.player.lives--
           enemy.markedForDeletion = true
           if (enemy.type === 'jackolantern') {
-            this.player.ammo += 2
-            this.secondPlayer.slashInterval -= 100
-            this.player.lives += 1
-            this.audio.playerDamage.volume = 0
+          
           } else if (enemy.type === 'bloodvial') {
-            this.player.lives += 2
+            
           } else {
             this.audio.playPlayerDamage()
           }
@@ -131,12 +128,9 @@ export default class Game {
             this.secondPlayer.lives--
             enemy.markedForDeletion = true
             if (enemy.type === 'jackolantern') {
-              this.player.ammo += 2
-              this.secondPlayer.slashInterval -= 100
-              this.player.lives += 1
-              this.audio.playerDamage.volume = 0
+              
             } else if (enemy.type === 'bloodvial') {
-              this.secondPlayer.lives += 2
+              
             } else {
               this.audio.playPlayerDamage()
             }
@@ -229,7 +223,8 @@ export default class Game {
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
-                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                this.enemies.push(new Candy(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
