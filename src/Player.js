@@ -17,8 +17,8 @@ export default class Player {
     this.speedY = 0
     this.maxSpeed = 3.5
 
-    this.maxAmmo = 20
-    this.ammo = 20
+    this.maxAmmo = 10
+    this.ammo = 10
     this.ammoTimer = 0
     this.ammoInterval = 500
 

@@ -113,7 +113,7 @@ export default class Game {
           this.player.lives--
           enemy.markedForDeletion = true
           if (enemy.type === 'drops') {
-            this.player.ammo += 5
+            this.player.ammo += 2
             this.player.lives += 1
             this.audio.playerDamage.volume = 0
           } else {
