@@ -141,7 +141,7 @@ export default class UserInterface {
         context.font = `75px ${this.fontFamily}`
         context.fillText('Music/SFX', this.game.width - 495, this.game.height / 5.35)
         context.font = `35px ${this.fontFamily}`
-        context.fillText('Menu Music made by --', this.game.width - 495, this.game.height - 700)
+        context.fillText('Menu Music made by --RyanAvx', this.game.width - 495, this.game.height - 700)
         context.fillText('Game Music made by --Evilduckk', this.game.width - 495, this.game.height - 600)
         context.fillText('Game SFX made by --', this.game.width - 495, this.game.height - 500)
         context.textAlign = 'right'

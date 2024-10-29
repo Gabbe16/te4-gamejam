@@ -29,7 +29,7 @@
 ## Music and sound effects
 
 * Menu Music
-    - made by
+    - made by RyanAvx (https://ryanavx.itch.io/)
 
 * Game Music
     - made by Evilduckk (https://evilduckk.itch.io/)
