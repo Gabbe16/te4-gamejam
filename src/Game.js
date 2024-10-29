@@ -115,6 +115,7 @@ export default class Game {
           enemy.markedForDeletion = true
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
+            this.secondPlayer.slashInterval -= 100
             this.player.lives += 1
             this.audio.playerDamage.volume = 0
           } else if (enemy.type === 'bloodvial') {
@@ -130,7 +131,9 @@ export default class Game {
             this.secondPlayer.lives--
             enemy.markedForDeletion = true
             if (enemy.type === 'jackolantern') {
-              this, this.player.ammo += 2
+              this.player.ammo += 2
+              this.secondPlayer.slashInterval -= 100
+              this.player.lives += 1
               this.audio.playerDamage.volume = 0
             } else if (enemy.type === 'bloodvial') {
               this.secondPlayer.lives += 2
