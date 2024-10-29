@@ -23,6 +23,8 @@ export default class SecondPlayer {
 
     this.shooting = false
 
+    this.hit = true
+
     // Player spritesheet image
     const image = new Image()
     image.src = nightBorne
@@ -42,6 +44,10 @@ export default class SecondPlayer {
     this.shootingAnimation = {
       frameY: 2,
       maxFrame: 12
+    }
+    this.hitAnimation = {
+      frameY: 3,
+      maxFrame: 5
     }
 
     // Sprite animation variables
@@ -132,6 +138,13 @@ export default class SecondPlayer {
     } else {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
+    }
+    if(this.hit){
+      this.maxFrame = this.hitAnimation.maxFrame
+      this.frameY = this.hitAnimation.frameY
+      if(this.frameX === this.hitAnimation.maxFrame - 1){
+        this.hit = false
+      }
     }
 
     this.slashes.forEach((slash) => {
