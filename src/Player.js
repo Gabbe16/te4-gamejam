@@ -25,6 +25,7 @@ export default class Player {
     this.lives = 10
 
     this.shooting = false
+    this.hit = true
 
     // Player spritesheet image
     const image = new Image()
@@ -45,6 +46,10 @@ export default class Player {
     this.shootingAnimation = {
       frameY: 2,
       maxFrame: 13
+    }
+    this.hitAnimation = {
+      frameY: 5,
+      maxFrame: 5
     }
 
     // Sprite animation variables
@@ -121,6 +126,13 @@ export default class Player {
     } else {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
+    }
+    if(this.hit){
+      this.maxFrame = this.hitAnimation.maxFrame
+      this.frameY = this.hitAnimation.frameY
+      if(this.frameX === this.hitAnimation.maxFrame - 1){
+        this.hit = false
+      }
     }
 
     // Ammo regeneration
