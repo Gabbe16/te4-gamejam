@@ -74,11 +74,12 @@ export default class BackgroundMusic {
         const newDamage1 = this.damage1.cloneNode()
         newDamage1.play()
         
+        
     }
     playDamage2(){
         const newDamage2 = this.damage2.cloneNode()
         newDamage2.play()
-        
+       
     }
     playDamage3(){
         const newDamage3 = this.damage3.cloneNode()

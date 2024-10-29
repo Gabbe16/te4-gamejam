@@ -190,6 +190,13 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
+              if(enemy.type === 'skeleton'){
+                this.audio.playDamage1()
+              } else if(enemy.type === 'skeletonking'){
+                this.audio.playDamage2()
+              } else if(enemy.type === 'ancientskeleton'){
+                this.audio.playDamage3()
+              }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
                 this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
