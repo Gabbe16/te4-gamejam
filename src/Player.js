@@ -210,7 +210,6 @@ export default class Player {
         )
       )
       if(this.game.gameStart === true){
-        console.log(this.game.audio.bowSound.volume)
         this.game.audio.playBowSound()
       }
     } else {

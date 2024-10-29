@@ -13,7 +13,8 @@ export default class InputHandler {
           event.key === 'w' ||
           event.key === 'a' ||
           event.key === 's' ||
-          event.key === 'd') &&
+          event.key === 'd' ||
+          event.key === 'j') &&
         this.game.keys.indexOf(event.key) === -1
       ) {
         this.game.keys.push(event.key)
@@ -36,6 +37,9 @@ export default class InputHandler {
 
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
+      }
+      if (event.key === 'j'){
+        this.game.secondPlayer.Slash()
       }
     })
 
