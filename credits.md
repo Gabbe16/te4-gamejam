@@ -1,4 +1,4 @@
-# Credits to free gane assets from itch.io
+# Credits to free game assets from itch.io
 
 ## Sprites, Backgrounds and Icons
 
