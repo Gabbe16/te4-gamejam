@@ -1,4 +1,4 @@
-import nightBorne from './assets/nightborne.png'
+import necromancer from './assets/sprites/necromancerSheet.png'
 import Slash from './Slash'
 
 export default class Player {
@@ -23,7 +23,7 @@ export default class Player {
 
     // Player spritesheet image
     const image = new Image()
-    image.src = nightBorne
+    image.src = necromancer
     this.image = image
 
     // All animations
