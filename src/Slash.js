@@ -3,13 +3,13 @@ import fireballImage from './assets/sprites/FB001.png'
 export default class Slash {
   constructor(game, x, y, flip) {
     this.game = game
-    this.width = 150
-    this.height = 150
-    this.x = x - 50
+    this.width = 180
+    this.height = 180
+    this.x = x - 30
     this.y = y - this.height / 2
 
     this.timer = 0
-    this.timeThreshold = 200
+    this.timeThreshold = 300
     this.angle = 0
 
 
@@ -27,7 +27,7 @@ export default class Slash {
     this.flip = flip
 
     if (flip) {
-      this.x -= 0
+      this.x -= 50
     }
   }
 
@@ -44,9 +44,9 @@ export default class Slash {
 
   draw(context) {
 
-    if (this.flip) {
-      context.save()
-      context.scale(-1, 1)
+    
+    if(this.game.debug){
+      context.strokeRect(this.x, this.y, this.width, this.height)
     }
 
    /*  context.drawImage(
@@ -59,8 +59,6 @@ export default class Slash {
     context.strokeRect(this.x, this.y, this.width, this.height)
     context.lineWidth = 1
  */
-    if (this.flip) {
-      context.restore()
-    }
+    
   }
 }

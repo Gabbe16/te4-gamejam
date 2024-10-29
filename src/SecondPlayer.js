@@ -13,7 +13,7 @@ export default class SecondPlayer {
 
     this.slashes = []
     this.slashTimer = 0
-    this.slashInterval = 500
+    this.slashInterval = 350
 
     this.speedX = 0
     this.speedY = 0
