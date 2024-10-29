@@ -148,7 +148,10 @@ export default class Game {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-              this.enemies.push(new Candy(this, enemy.x, enemy.y))
+              if (Math.random() < 0.5) {
+                this.enemies.push(new Candy(this, enemy.x, enemy.y))
+
+              }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
             }
