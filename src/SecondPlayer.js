@@ -5,8 +5,8 @@ export default class SecondPlayer {
   constructor(game) {
     this.game = game
     this.width = 80
-    this.height = 80  
-    this.imageheight = 80 
+    this.height = 80
+    this.imageheight = 80
     this.imagewidth = 80
     this.x = 740
     this.y = 393
@@ -22,8 +22,9 @@ export default class SecondPlayer {
     this.lives = 10
 
     this.shooting = false
-
     this.hit = true
+    this.isDead = false
+    this.isDeadDone = false
 
     // Player spritesheet image
     const image = new Image()
@@ -40,7 +41,7 @@ export default class SecondPlayer {
       frameY: 1,
       maxFrame: 6
     }
-    
+
     this.shootingAnimation = {
       frameY: 2,
       maxFrame: 12
@@ -48,6 +49,10 @@ export default class SecondPlayer {
     this.hitAnimation = {
       frameY: 3,
       maxFrame: 5
+    }
+    this.deathAnimation = {
+      frameY: 4,
+      maxFrame: 16
     }
 
     // Sprite animation variables
@@ -63,13 +68,14 @@ export default class SecondPlayer {
   }
 
   update(deltaTime) {
-    
+
     if (this.lives <= 0) {
       this.game.gameOver = true
       this.game.audio.playerDeath.play()
+      this.isDead = true
     }
-    
-    if(this.beginSlashing){ 
+
+    if (this.beginSlashing) {
       if (this.slashTimer > this.slashInterval) {
         this.game.audio.playMeleeAttack()
         this.Slash()
@@ -82,7 +88,7 @@ export default class SecondPlayer {
     }
 
     // Right and left movement
-    if ( this.game.keys.includes('a')) {
+    if (this.game.keys.includes('a')) {
       this.speedX = -this.maxSpeed
     } else if (
       this.game.keys.includes('d')
@@ -96,7 +102,7 @@ export default class SecondPlayer {
     if (this.game.keys.includes('w')) {
       this.speedY = -this.maxSpeed
     } else if (
-     
+
       this.game.keys.includes('s')
     ) {
       this.speedY = this.maxSpeed
@@ -128,7 +134,7 @@ export default class SecondPlayer {
     // Idle, walk, and shoot animations
     if (this.shooting) {
       this.maxFrame = this.shootingAnimation.maxFrame
-      this.frameY = this.shootingAnimation.frameY 
+      this.frameY = this.shootingAnimation.frameY
       if (this.frameX === this.shootingAnimation.maxFrame - 1) {
         this.shooting = false
       }
@@ -139,24 +145,35 @@ export default class SecondPlayer {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
     }
-    if(this.hit){
-      this.maxFrame = this.hitAnimation.maxFrame
-      this.frameY = this.hitAnimation.frameY
-      if(this.frameX === this.hitAnimation.maxFrame - 1){
-        this.hit = false
+    if (this.isDead) {
+      if (this.isDeadDone) {
+        this.frameY = 100
+      } else {
+        this.maxFrame = this.deathAnimation.maxFrame
+        this.frameY = this.deathAnimation.frameY
+      }
+      if (this.frameX === this.deathAnimation.maxFrame - 1) {
+        this.isDeadDone = true
       }
     }
+      if (this.hit) {
+        this.maxFrame = this.hitAnimation.maxFrame
+        this.frameY = this.hitAnimation.frameY
+        if (this.frameX === this.hitAnimation.maxFrame - 1) {
+          this.hit = false
+        }
+      }
 
-    this.slashes.forEach((slash) => {
-      slash.update(deltaTime)
-    })
-    this.slashes = this.slashes.filter(
-      (slash) => !slash.markedForDeletion
-    )
-  }
+      this.slashes.forEach((slash) => {
+        slash.update(deltaTime)
+      })
+      this.slashes = this.slashes.filter(
+        (slash) => !slash.markedForDeletion
+      )
+    }
 
-   
   
+
 
   draw(context) {
     if (this.flip) {
@@ -207,29 +224,29 @@ export default class SecondPlayer {
     this.slashes.forEach((slash) => {
       slash.draw(context)
     })
-    
+
   }
-  SlashInitiate(){  
-   
-    if(this.shooting===false){
+  SlashInitiate() {
+
+    if (this.shooting === false) {
       this.beginSlashing = true
       this.shooting = true
     }
   }
 
 
-  
-  Slash(){
-   
+
+  Slash() {
+
     this.slashes.push(
       new Slash(
         this.game,
-       this.x,
-       this.y,
-       this.flip
+        this.x,
+        this.y,
+        this.flip
       )
     )
   }
 
- 
+
 }

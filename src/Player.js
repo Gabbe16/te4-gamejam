@@ -26,6 +26,8 @@ export default class Player {
 
     this.shooting = false
     this.hit = true
+    this.isDead = false
+    this.isDeadDone = false
 
     // Player spritesheet image
     const image = new Image()
@@ -51,6 +53,10 @@ export default class Player {
       frameY: 5,
       maxFrame: 5
     }
+    this.deathAnimation = {
+      frameY: 6,
+      maxFrame: 9
+    }
 
     // Sprite animation variables
     this.frameX = 0
@@ -68,6 +74,7 @@ export default class Player {
     if (this.lives <= 0) {
       this.game.gameOver = true
       this.game.audio.playerDeath.play()
+      this.isDead = true
     }
 
     // Right and left movement
@@ -126,6 +133,17 @@ export default class Player {
     } else {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
+    }
+    if (this.isDead) {
+      if (this.isDeadDone) {
+        this.frameY = 100
+      } else {
+        this.maxFrame = this.deathAnimation.maxFrame
+        this.frameY = this.deathAnimation.frameY
+      }
+      if (this.frameX === this.deathAnimation.maxFrame - 1) {
+        this.isDeadDone = true
+      }
     }
     if(this.hit){
       this.maxFrame = this.hitAnimation.maxFrame
