@@ -170,7 +170,7 @@ export default class UserInterface {
         // Creator Credits
         context.textAlign = 'right'
         context.font = `30px ${this.fontFamily}`
-        context.fillText('Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20) 
+        context.fillText('Game Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20) 
       }
     } else if (this.game.gameStart === true) {
       
