@@ -150,7 +150,6 @@ export default class Game {
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() < 0.5) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
-
               }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
