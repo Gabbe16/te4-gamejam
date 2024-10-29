@@ -1,11 +1,8 @@
 Mille
-- Ljudeffekter
-- Spelare2 hitbox + slash
+- animations enemies (death, hit)
 
 Gabbe
-- Userinterface score + lives + ammo
 - drops
 
-(Enemies ska gå till närmsta spelare)
-(cavnas hitboxes)
-(Spawna boss)
+- Enemies ska gå till närmsta spelare 
+- Hosting

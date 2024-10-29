@@ -193,9 +193,10 @@ export default class Game {
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
-                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-              } else if (Math.random() < 0.25) {
+                // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
+              } else if (Math.random() < 0.25) {
+                // this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
@@ -226,7 +227,7 @@ export default class Game {
                 // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
-                this.enemies.push(new Candy(this, enemy.x, enemy.y))
+                // this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
               if(enemy.type === 'skeleton'){
                 this.audio.playDamage1()
