@@ -113,7 +113,7 @@ export default class Game {
           this.player.lives--
           enemy.markedForDeletion = true
           if (enemy.type === 'drops') {
-            this.player.ammo += 2
+            this.player.ammo += 5
             this.player.lives += 1
             this.audio.playerDamage.volume = 0
           } else {
@@ -199,7 +199,7 @@ export default class Game {
         // Check collision between player slashes and enemies
         this.secondPlayer.slashes.forEach((slash) => {
           if (this.checkCollision(slash, enemy)) {
-            if (enemy.lives > 5) {
+            if (enemy.lives > 2) {
               enemy.lives -= this.slash.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() < 0.5) {

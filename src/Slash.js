@@ -14,7 +14,7 @@ export default class Slash {
 
 
 
-    this.damage = 100
+    this.damage = 2
     this.markedForDeletion = false
 
     // Arrow sprite image
