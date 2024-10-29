@@ -3,28 +3,28 @@
 ## Sprites, Backgrounds and Icons
 
 * Menu Paralax 
-    - made by Lil Cthulhu
+    - made by Lil Cthulhu (https://lil-cthulhu.itch.io/)
 
 * Top-Down Dungeon tileset
-    - made by Enjl
+    - made by Enjl (https://enjl.itch.io/)
 
 * Keyboard Icons
-    - made by Caz Wolf
+    - made by Caz Wolf (https://cazwolf.itch.io/)
 
 * Mouse Icon
-    - made by MitziTheDev
+    - made by MitziTheDev (https://mitzithedev.itch.io/)
 
 * Player1 and Player2 Sprites
-    - made by CreativeKind
+    - made by CreativeKind (https://creativekind.itch.io/)
 
 * Spell sprite
-    - made by NYKNCK
+    - made by NYKNCK (https://nyknck.itch.io/)
 
 * Enemy sprites
-    - made by Foozle
+    - made by Foozle (https://foozlecc.itch.io/)
 
 * Enemy drop icons
-    - made by PixelTier
+    - made by PixelTier (https://pixeltier.itch.io/)
 
 ## Music and sound effects
 
@@ -32,7 +32,7 @@
     - made by
 
 * Game Music
-    - made by Evilduckk
+    - made by Evilduckk (https://evilduckk.itch.io/)
 
 * Game sfx
     -made by
