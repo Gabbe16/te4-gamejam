@@ -5,6 +5,7 @@ import Skeleton from './Skeleton.js'
 import Skeletonking from './SkeletonKing.js'
 import AncientSkeleton from './AncientSkeleton.js'
 import Candy from './Jackolantern.js'
+import Bloodvial from './Bloodvial.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
 import secondPlayer from './SecondPlayer.js'
@@ -112,10 +113,12 @@ export default class Game {
           this.audio.playerDamage.volume = 1
           this.player.lives--
           enemy.markedForDeletion = true
-          if (enemy.type === 'drops') {
+          if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             this.player.lives += 1
             this.audio.playerDamage.volume = 0
+          } else if (enemy.type === 'bloodvial') {
+            this.player.lives += 2
           } else {
             this.audio.playPlayerDamage()
           }
@@ -126,8 +129,11 @@ export default class Game {
             this.audio.playerDamage.volume = 1
             this.secondPlayer.lives--
             enemy.markedForDeletion = true
-            if (enemy.type === 'drops') {
+            if (enemy.type === 'jackolantern') {
+              this, this.player.ammo += 2
               this.audio.playerDamage.volume = 0
+            } else if (enemy.type === 'bloodvial') {
+              this.secondPlayer.lives += 2
             } else {
               this.audio.playPlayerDamage()
             }
@@ -182,7 +188,9 @@ export default class Game {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-              if (Math.random() < 0.5) {
+              if (Math.random() < 0.45) {
+                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+              } else if (Math.random() < 0.25) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
               enemy.markedForDeletion = true

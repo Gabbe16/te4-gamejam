@@ -1,5 +1,5 @@
 import Enemy from './Enemy'
-import jackoImage from './assets/sprites/jackolantern_basket.png'
+import jackoImage from './assets/sprites/blood.png'
 
 export default class Jackolantern extends Enemy {
   constructor(game, x, y) {
@@ -10,9 +10,9 @@ export default class Jackolantern extends Enemy {
     this.y = y
     this.speed = 0
     this.lives = 1
-    this.type = 'jackolantern'
+    this.type = 'bloodvial'
 
-    // Jack-o-lantern Image
+    // bloodvial Image
     const image = new Image()
     image.src = jackoImage
     this.image = image
@@ -21,7 +21,7 @@ export default class Jackolantern extends Enemy {
   }
 
   draw(context) {
-    // Draw Jack-o-lantern image
+    // Draw bloodvial image
     context.drawImage(
       this.image,
       this.x,
@@ -30,7 +30,7 @@ export default class Jackolantern extends Enemy {
       this.height,
     )
 
-    // Jack-o-lantern debugging
+    // bloodvial debugging
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
       context.fillStyle = 'black'
