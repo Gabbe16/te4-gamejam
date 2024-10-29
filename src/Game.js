@@ -62,18 +62,17 @@ export default class Game {
       this.gameTime += deltaTime
     }
 
-    if (this.gameStart === true){
+    if (this.gameStart === true) {
       if (this.enemyTimer > this.skeletonInterval) {
         const xcoords = [246, 905, 1560]
         let mathrandom = Math.random() * 2
         let rounded = Math.round(mathrandom)
         console.log(xcoords[rounded])
 
-        if (Math.random() < 0.2) {
+        if (Math.random() > 0.5) {
           const xcoords = [246, 905, 1560]
           let mathrandom = Math.random() * 2
           let rounded = Math.round(mathrandom)
-          console.log(xcoords[rounded])
 
           if (rounded === 0) {
             this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
@@ -82,7 +81,7 @@ export default class Game {
           } else {
             this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
           }
-        } else if (Math.random() < 0.35) {
+        } else if (Math.random() < 0.45) {
           if (rounded === 0) {
             this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
           } else if (rounded === 1) {
@@ -90,7 +89,7 @@ export default class Game {
           } else {
             this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
           }
-        } else if (Math.random() < 0.5) {
+        } else if (Math.random() < 0.25) {
           if (rounded === 0) {
             this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
           } else if (rounded === 1) {
@@ -98,14 +97,6 @@ export default class Game {
           } else {
             this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
           }
-        } 
-
-        if (rounded === 0) {
-          this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
-        } else if (rounded === 1) {
-          this.enemies.push(new Skeleton(this, xcoords[rounded], 124))
-        } else {
-          this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
         }
 
         this.enemyTimer = 0
@@ -114,7 +105,7 @@ export default class Game {
       }
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
-  
+
       // Check collision between player, enemies drops (candy)
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, deltaTime)
@@ -147,31 +138,31 @@ export default class Game {
               this.player.y = wall.y - this.player.height - 1
             } else if (this.player.y > wall.y) {
               this.player.y = wall.y + wall.height + 1
-            } 
+            }
           }
         })
-  
+
         // Check collision between player projectiles and enemies
         this.player.projectiles.forEach((projectile) => {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-             this.enemies.push(new Candy(this, enemy.x, enemy.y))
-             enemy.markedForDeletion = true
-             this.score += enemy.scoreAmount
-            } 
+              this.enemies.push(new Candy(this, enemy.x, enemy.y))
+              enemy.markedForDeletion = true
+              this.score += enemy.scoreAmount
+            }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               projectile.markedForDeletion = true
               this.audio.playDamage1()
             }
-            
+
           }
         })
       })
       this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
     }
-    } 
+  }
 
   draw(context) {
     if (this.gameStart === true) {
