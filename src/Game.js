@@ -116,8 +116,9 @@ export default class Game {
             this.player.ammo += 5
             this.player.lives += 1
             this.audio.playerDamage.volume = 0
+          } else {
+            this.audio.playPlayerDamage()
           }
-          this.audio.playPlayerDamage()
         }
 
         // check collision between player and canvas walls
