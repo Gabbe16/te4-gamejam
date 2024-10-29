@@ -188,7 +188,7 @@ export default class Game {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-              if (Math.random() < 0.45) {
+              if (Math.random() > 0.45) {
                 this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
