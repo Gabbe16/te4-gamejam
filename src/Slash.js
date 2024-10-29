@@ -3,7 +3,7 @@ import fireballImage from './assets/sprites/FB001.png'
 export default class Slash {
   constructor(game, x, y, flip) {
     this.game = game
-    this.width = 180
+    this.width = 200
     this.height = 180
     this.x = x 
     this.y = y 
@@ -14,7 +14,7 @@ export default class Slash {
 
 
 
-    this.damage = 100
+    this.damage = 2
     this.markedForDeletion = false
 
     // Arrow sprite image
@@ -36,7 +36,7 @@ export default class Slash {
       this.markedForDeletion = true
     }
     if (this.flip) {
-      this.x = this.game.secondPlayer.x - 80
+      this.x = this.game.secondPlayer.x - this.width/2
       this.y = this.game.secondPlayer.y - 75
     } else {
       this.x = this.game.secondPlayer.x - 20

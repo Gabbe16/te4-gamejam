@@ -207,8 +207,8 @@ export default class Game {
         // Check collision between player slashes and enemies
         this.secondPlayer.slashes.forEach((slash) => {
           if (this.checkCollision(slash, enemy)) {
-            if (enemy.lives > 5) {
-              enemy.lives -= this.slash.damage
+            if (enemy.lives > slash.damage) {
+              enemy.lives -= slash.damage
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() < 0.5) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
