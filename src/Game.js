@@ -161,6 +161,25 @@ export default class Game {
 
           }
         })
+         // Check collision between player slashes and enemies
+         this.secondPlayer.slashes.forEach((slash) => {
+          if (this.checkCollision(slash, enemy)) {
+            if (enemy.lives > 1) {
+              enemy.lives -= slash.damage
+            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+              if (Math.random() < 0.5) {
+                this.enemies.push(new Candy(this, enemy.x, enemy.y))
+              }
+              enemy.markedForDeletion = true
+              this.score += enemy.scoreAmount
+            }
+            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+              slash.markedForDeletion = true
+              this.audio.playDamage1()
+            }
+
+          }
+        })
       })
       this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion)
     }

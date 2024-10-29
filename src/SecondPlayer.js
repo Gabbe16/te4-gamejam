@@ -1,5 +1,5 @@
-import necromancer from './assets/sprites/necromancerSheet.png'
-import Projectile from './Projectile.js'
+import nightBorne from './assets/nightborne.png'
+import Slash from './Slash'
 
 export default class Player {
   constructor(game) {
@@ -11,16 +11,11 @@ export default class Player {
     this.x = 740
     this.y = 393
 
-    this.projectiles = []
+    this.slashes = []
 
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 3.5
-
-    this.maxAmmo = 20
-    this.ammo = 20
-    this.ammoTimer = 0
-    this.ammoInterval = 500
 
     this.lives = 10
 
@@ -28,7 +23,7 @@ export default class Player {
 
     // Player spritesheet image
     const image = new Image()
-    image.src = necromancer
+    image.src = nightBorne
     this.image = image
 
     // All animations
@@ -60,6 +55,7 @@ export default class Player {
   }
 
   update(deltaTime) {
+    
     if (this.lives <= 0) {
       this.game.gameOver = true
       this.game.audio.playerDeath.play()
@@ -112,7 +108,7 @@ export default class Player {
     // Idle, walk, and shoot animations
     if (this.shooting) {
       this.maxFrame = this.shootingAnimation.maxFrame
-      this.frameY = this.shootingAnimation.frameY
+      this.frameY = this.shootingAnimation.frameY 
       if (this.frameX === this.shootingAnimation.maxFrame - 1) {
         this.shooting = false
       }
@@ -124,10 +120,16 @@ export default class Player {
       this.frameY = this.idleAnimation.frameY
     }
 
- 
+    this.slashes.forEach((slash) => {
+      slash.update(deltaTime)
+    })
+    this.slashes = this.slashes.filter(
+      (slash) => !slash.markedForDeletion
+    )
+  }
 
    
-  }
+  
 
   draw(context) {
     if (this.flip) {
@@ -175,7 +177,22 @@ export default class Player {
       context.fillText(`y: ${this.y.toFixed()}`, this.x + 35, this.y - 20)
     }
 
+    this.slashes.forEach((slash) => {
+      slash.draw(context)
+    })
     
+  }
+  
+  Slash(){
+   
+    this.slashes.push(
+      new Slash(
+        this.game,
+       this.x,
+       this.y,
+       this.flip
+      )
+    )
   }
 
  
