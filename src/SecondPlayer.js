@@ -65,6 +65,7 @@ export default class SecondPlayer {
     
     if(this.beginSlashing){ 
       if (this.slashTimer > this.slashInterval) {
+        this.game.audio.playMeleeAttack()
         this.Slash()
         this.slashTimer = 0
         this.beginSlashing = false

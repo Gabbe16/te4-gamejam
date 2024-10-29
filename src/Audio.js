@@ -6,6 +6,8 @@ import damage2URL from './assets/sounds/damage/damage2.wav'
 import damage3URL from './assets/sounds/damage/damage3.wav'
 import playerDamageURL from './assets/sounds/damage/playerdamage3.wav'
 import playerDeathURL from './assets/sounds/damage/playerdeath.wav'
+import MeleeAttackURL from './assets/sounds/attacks/meleeAttack.wav'
+import FireSoundURL from './assets/sounds/attacks/fireSound.wav'
 
 
 export default class BackgroundMusic {
@@ -18,6 +20,10 @@ export default class BackgroundMusic {
         this.menuMusic = new Audio(menuMusicURL)
         this.bowSound = new Audio(bowSoundURL)
         this.audioRandom = 1
+
+        //attack sounds
+        this.MeleeAttack = new Audio(MeleeAttackURL)
+        this.FireSound = new Audio(FireSoundURL)
         
         //damage sounds
         this.damage1 = new Audio(damage1URL)
@@ -67,7 +73,17 @@ export default class BackgroundMusic {
     playDamage1(){
         const newDamage1 = this.damage1.cloneNode()
         newDamage1.play()
-        /* this.damage1.play() */
+        
+    }
+    playDamage2(){
+        const newDamage2 = this.damage2.cloneNode()
+        newDamage2.play()
+        
+    }
+    playDamage3(){
+        const newDamage3 = this.damage3.cloneNode()
+        newDamage3.play()
+        
     }
     
     playPlayerDamage(){
@@ -78,6 +94,15 @@ export default class BackgroundMusic {
 
     playPlayerDeath(){
         this.playerDeath.play()
+    }
+
+    playMeleeAttack(){
+        const newMeleeAttack = this.MeleeAttack.cloneNode()
+        newMeleeAttack.play()
+    }
+    playFireSound(){
+        const newFireSound = this.FireSound.cloneNode()
+        newFireSound.play()
     }
 
 

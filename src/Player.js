@@ -210,7 +210,7 @@ export default class Player {
         )
       )
       if(this.game.gameStart === true){
-        this.game.audio.playBowSound()
+        this.game.audio.playFireSound()
       }
     } else {
       console.log('out of ammo')

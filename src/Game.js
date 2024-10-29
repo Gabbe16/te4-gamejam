@@ -203,24 +203,39 @@ export default class Game {
 
           }
         })
+        
 
         // Check collision between player slashes and enemies
         this.secondPlayer.slashes.forEach((slash) => {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > slash.damage) {
               enemy.lives -= slash.damage
+              if(enemy.type === 'skeleton'){
+                this.audio.playDamage1()
+              } else if(enemy.type === 'skeletonking'){
+                this.audio.playDamage2()
+              } else if(enemy.type === 'ancientskeleton'){
+                this.audio.playDamage3()
+              }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
                 this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
                 this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
+              if(enemy.type === 'skeleton'){
+                this.audio.playDamage1()
+              } else if(enemy.type === 'skeletonking'){
+                this.audio.playDamage2()
+              } else if(enemy.type === 'ancientskeleton'){
+                this.audio.playDamage3()
+              }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               slash.markedForDeletion = true
-              this.audio.playDamage1()
+              
             }
 
           }
