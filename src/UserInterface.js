@@ -204,6 +204,14 @@ export default class UserInterface {
       context.fillRect(this.game.width / 2 -160, 5, 300, 50)
       context.fillStyle = 'white'
       context.fillText(`Score: ${(this.game.score)}`, (this.game.width / 2) -130, 59)
+
+      context.fillStyle = 'rgba(65, 65, 65, 65)'
+      context.shadowOffsetX = 4
+      context.shadowOffsetY = 4
+      context.font = `40px ${this.fontFamily}`
+      context.fillRect(135, 850, 250, 50)
+      context.fillStyle = 'white'
+      context.fillText(`Slash cd: ${this.game.secondPlayer.slashInterval / 1000}s`, 155, 895)
     }
 
     if (this.game.gameOver) {
