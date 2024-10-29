@@ -125,7 +125,7 @@ export default class UserInterface {
         context.fillText('Credits', this.game.width / 2, 150)
 
         // Asset Credits 
-        context.fillText('Assets', this.game.width / 3.5, this.game.height / 5.35)
+        context.fillText('Free Assets', this.game.width / 3.5, this.game.height / 5.35)
         context.font = `35px ${this.fontFamily}`
         context.fillText('Menu Paralax made by --Lil Cthulhu', this.game.width / 3.5, this.game.height - 700)
         context.fillText('Top-down Dungeon tileset made by --Enjl', this.game.width / 3.5, this.game.height - 600)
