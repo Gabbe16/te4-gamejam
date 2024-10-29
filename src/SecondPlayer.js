@@ -1,21 +1,23 @@
-import necromancer from './assets/sprites/necromancerSheet.png'
+import nightBorne from './assets/sprites/NightBorne.png'
 import Slash from './Slash'
 
-export default class Player {
+export default class SecondPlayer {
   constructor(game) {
     this.game = game
     this.width = 80
-    this.height = 110
-    this.imageheight = 160 
-    this.imagewidth = 128
+    this.height = 80  
+    this.imageheight = 80 
+    this.imagewidth = 80
     this.x = 740
     this.y = 393
 
     this.slashes = []
+    this.slashTimer = 0
+    this.slashInterval = 500
 
     this.speedX = 0
     this.speedY = 0
-    this.maxSpeed = 3.5
+    this.maxSpeed = 6
 
     this.lives = 10
 
@@ -23,23 +25,23 @@ export default class Player {
 
     // Player spritesheet image
     const image = new Image()
-    image.src = necromancer
+    image.src = nightBorne
     this.image = image
 
     // All animations
     this.idleAnimation = {
       frameY: 0,
-      maxFrame: 8
+      maxFrame: 9
     }
 
     this.walkAnimation = {
       frameY: 1,
-      maxFrame: 8
+      maxFrame: 6
     }
     
     this.shootingAnimation = {
       frameY: 2,
-      maxFrame: 13
+      maxFrame: 12
     }
 
     // Sprite animation variables
@@ -59,6 +61,15 @@ export default class Player {
     if (this.lives <= 0) {
       this.game.gameOver = true
       this.game.audio.playerDeath.play()
+    }
+    
+    if(this.beginSlashing){ 
+      this.slashTimer += deltaTime
+      if (this.slashTimer > this.slashInterval) {
+        this.Slash()
+        this.slashTimer = 0
+        this.beginSlashing = false
+      }
     }
 
     // Right and left movement
@@ -182,6 +193,14 @@ export default class Player {
     })
     
   }
+  SlashInitiate(){ 
+    if(this.shooting===false){
+      this.beginSlashing = true
+      this.shooting = true
+    }
+  }
+
+
   
   Slash(){
    

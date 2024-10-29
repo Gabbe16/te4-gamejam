@@ -39,7 +39,7 @@ export default class InputHandler {
         this.game.debug = !this.game.debug
       }
       if (event.key === 'j'){
-        this.game.secondPlayer.Slash()
+        this.game.secondPlayer.SlashInitiate()
       }
     })
 
