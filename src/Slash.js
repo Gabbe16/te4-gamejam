@@ -5,16 +5,16 @@ export default class Slash {
     this.game = game
     this.width = 180
     this.height = 180
-    this.x = x - 30
-    this.y = y - this.height / 2
+    this.x = x 
+    this.y = y 
 
     this.timer = 0
-    this.timeThreshold = 300
+    this.timeThreshold = 400
     this.angle = 0
 
 
 
-    this.damage = 5
+    this.damage = 100
     this.markedForDeletion = false
 
     // Arrow sprite image
@@ -26,9 +26,7 @@ export default class Slash {
 
     this.flip = flip
 
-    if (flip) {
-      this.x -= 50
-    }
+  
   }
 
   update(deltaTime) {
@@ -37,8 +35,14 @@ export default class Slash {
     if (this.timer > this.timeThreshold) {
       this.markedForDeletion = true
     }
+    if (this.flip) {
+      this.x = this.game.secondPlayer.x - 80
+      this.y = this.game.secondPlayer.y - 75
+    } else {
+      this.x = this.game.secondPlayer.x - 20
+    this.y = this.game.secondPlayer.y -75
 
-
+    }
 
   }
 

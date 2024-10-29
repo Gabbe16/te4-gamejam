@@ -64,11 +64,13 @@ export default class SecondPlayer {
     }
     
     if(this.beginSlashing){ 
-      this.slashTimer += deltaTime
       if (this.slashTimer > this.slashInterval) {
         this.Slash()
         this.slashTimer = 0
         this.beginSlashing = false
+      } else {
+
+        this.slashTimer += deltaTime
       }
     }
 
@@ -154,8 +156,8 @@ export default class SecondPlayer {
       this.frameY * this.imagewidth,
       this.imagewidth,
       this.imageheight,
-      this.flip ? this.x * -1 - (this.width + 85) : this.x - 85,
-      this.y - 100,
+      this.flip ? this.x * -1 - (this.width + 60) : this.x - 60,
+      this.y - 85,
       this.width * 2.5,
       this.height * 2.5
     )
@@ -193,7 +195,8 @@ export default class SecondPlayer {
     })
     
   }
-  SlashInitiate(){ 
+  SlashInitiate(){  
+   
     if(this.shooting===false){
       this.beginSlashing = true
       this.shooting = true
