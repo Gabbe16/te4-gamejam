@@ -121,7 +121,21 @@ export default class Game {
           }
         }
 
-        // check collision between player and canvas walls
+        this.enemies.forEach((enemy) => {
+          if (this.checkCollision(this.secondPlayer, enemy)) {
+            this.audio.playerDamage.volume = 1
+            this.secondPlayer.lives--
+            enemy.markedForDeletion = true
+            if (enemy.type === 'drops') {
+              this.audio.playerDamage.volume = 0
+            } else {
+              this.audio.playPlayerDamage()
+            }
+          }
+        })
+
+
+        // check collision between players and canvas walls
         this.canvasRightWalls.forEach((wall) => {
           if (this.checkCollision(this.player, wall)) {
             if (this.player.x < wall.x) {
@@ -132,12 +146,32 @@ export default class Game {
           }
         })
 
+        this.canvasRightWalls.forEach((wall) => {
+          if (this.checkCollision(this.secondPlayer, wall)) {
+            if (this.secondPlayer.x < wall.x) {
+              this.secondPlayer.x = wall.x - this.secondPlayer.width - 1
+            } else if (this.secondPlayer.x > wall.x) {
+              this.secondPlayer.x = wall.x + wall.width + 1
+            }
+          }
+        })
+
         this.canvasUpDownWalls.forEach((wall) => {
           if (this.checkCollision(this.player, wall)) {
             if (this.player.y < wall.y) {
               this.player.y = wall.y - this.player.height - 1
             } else if (this.player.y > wall.y) {
               this.player.y = wall.y + wall.height + 1
+            }
+          }
+        })
+
+        this.canvasUpDownWalls.forEach((wall) => {
+          if (this.checkCollision(this.secondPlayer, wall)) {
+            if (this.secondPlayer.y < wall.y) {
+              this.secondPlayer.y = wall.y - this.secondPlayer.height - 1
+            } else if (this.secondPlayer.y > wall.y) {
+              this.secondPlayer.y = wall.y + wall.height + 1
             }
           }
         })
@@ -161,8 +195,9 @@ export default class Game {
 
           }
         })
-         // Check collision between player slashes and enemies
-         this.secondPlayer.slashes.forEach((slash) => {
+
+        // Check collision between player slashes and enemies
+        this.secondPlayer.slashes.forEach((slash) => {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= slash.damage
