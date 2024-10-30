@@ -205,9 +205,8 @@ export default class Game {
               enemy.isDead = true
               if (enemy.damage === 1) {
                 enemy.frameX = 0
-              } else {
                 this.score += enemy.scoreAmount
-              };
+              } 
               
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
@@ -247,9 +246,8 @@ export default class Game {
               enemy.isDead = true
               if (enemy.damage === 1) {
                 enemy.frameX = 0
-              } else {
                 this.score += enemy.scoreAmount
-              };
+              } 
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               slash.markedForDeletion = true
