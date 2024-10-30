@@ -124,19 +124,19 @@ export default class Game {
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
           this.audio.playerDamage.volume = 1
-            this.secondPlayer.lives -= 1
-            enemy.markedForDeletion = true
-            if (enemy.type === 'jackolantern') {
-              this.secondPlayer.lives += 1
-              this.secondPlayer.slashInterval -= 50
-              if (this.secondPlayer.slashInterval < 50) {
-                this.secondPlayer.slashInterval = 50
-              }
-            } else if (enemy.type === 'bloodvial') {
-              this.secondPlayer.lives += 2
-            } else {
-              this.audio.playPlayerDamage()
+          this.secondPlayer.lives -= 1
+          enemy.markedForDeletion = true
+          if (enemy.type === 'jackolantern') {
+            this.secondPlayer.lives += 1
+            this.secondPlayer.slashInterval -= 50
+            if (this.secondPlayer.slashInterval < 50) {
+              this.secondPlayer.slashInterval = 50
             }
+          } else if (enemy.type === 'bloodvial') {
+            this.secondPlayer.lives += 2
+          } else {
+            this.audio.playPlayerDamage()
+          }
         }
 
         // check collision between players and canvas walls
@@ -185,18 +185,18 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
-              if(enemy.type === 'skeleton'){
+              if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
-              } else if(enemy.type === 'skeletonking'){
+              } else if (enemy.type === 'skeletonking') {
                 this.audio.playDamage2()
-              } else if(enemy.type === 'ancientskeleton'){
+              } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
-                // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
+                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
+                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
               }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
@@ -208,31 +208,31 @@ export default class Game {
 
           }
         })
-        
+
 
         // Check collision between player slashes and enemies
         this.secondPlayer.slashes.forEach((slash) => {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > slash.damage) {
               enemy.lives -= slash.damage
-              if(enemy.type === 'skeleton'){
+              if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
-              } else if(enemy.type === 'skeletonking'){
+              } else if (enemy.type === 'skeletonking') {
                 this.audio.playDamage2()
-              } else if(enemy.type === 'ancientskeleton'){
+              } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
-                // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
+                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
+                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
               }
-              if(enemy.type === 'skeleton'){
+              if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
-              } else if(enemy.type === 'skeletonking'){
+              } else if (enemy.type === 'skeletonking') {
                 this.audio.playDamage2()
-              } else if(enemy.type === 'ancientskeleton'){
+              } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
               enemy.markedForDeletion = true
@@ -240,7 +240,7 @@ export default class Game {
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               slash.markedForDeletion = true
-              
+
             }
 
           }
