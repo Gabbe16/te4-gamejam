@@ -217,12 +217,14 @@ export default class UserInterface {
     if (this.game.gameOver) {
       context.fillStyle = 'rgba(255, 255, 255, 255)'
       context.textAlign = 'center'
-      context.font = `50px ${this.fontFamily}`
+      context.font = `70px ${this.fontFamily}`
       context.fillText(
         'Game over',
         this.game.width / 2,
         this.game.height / 2 - 20
       )
+      context.font = `50px ${this.fontFamily}`
+      context.fillText('Refresh the page to play again', this.game.width / 2, this.game.height / 2 + 40)
     }
 
     if (this.game.score >= 1000) {
