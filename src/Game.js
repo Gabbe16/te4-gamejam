@@ -113,7 +113,7 @@ export default class Game {
           enemy.isDead = true
           if (enemy.damage === 1) {
             enemy.frameX = 0
-            this.audio.playerDamage.volume = 1
+            this.audio.playPlayerDamage()
           } 
           this.player.lives = this.player.lives - enemy.damage
 
@@ -124,14 +124,13 @@ export default class Game {
             this.player.lives += 2
             enemy.markedForDeletion = true
           } else {
-            this.audio.playPlayerDamage()
             this.player.hit = true
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
           enemy.isDead = true
           if (enemy.damage === 1) {
             enemy.frameX = 0
-            this.audio.playerDamage.volume = 1
+            this.audio.playPlayerDamage()
           } 
           this.secondPlayer.lives = this.secondPlayer.lives - enemy.damage
           if (enemy.type === 'jackolantern') {
@@ -144,7 +143,7 @@ export default class Game {
             this.secondPlayer.lives += 2
             enemy.markedForDeletion = true
           } else {
-            this.audio.playPlayerDamage()
+            
             this.secondPlayer.hit = true
           }
         }
