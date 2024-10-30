@@ -4,7 +4,7 @@ import UserInterface from './UserInterface.js'
 import Skeleton from './Skeleton.js'
 import Skeletonking from './SkeletonKing.js'
 import AncientSkeleton from './AncientSkeleton.js'
-import Candy from './Jackolantern.js'
+import Jackolantern from './Jackolantern.js'
 import Bloodvial from './Bloodvial.js'
 import Background from './Background.js'
 import Audio from './Audio.js'
@@ -27,17 +27,17 @@ export default class Game {
     this.secondPlayer = new secondPlayer(this)
 
     // Game states
-    this.gameStart = false
+    this.gameStart = true
     this.mainMenu = true
     this.viewControls = false
     this.viewCredits = false
+    this.gameOver = false
+    this.debug = false
 
     // Game variables
     this.score = 0
     this.keys = []
     this.enemies = []
-    this.gameOver = false
-    this.debug = false
     this.menuTime = 0
     this.gameTime = 0
     this.enemyTimer = 0
@@ -103,6 +103,7 @@ export default class Game {
       } else {
         this.enemyTimer += deltaTime
       }
+
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
@@ -194,9 +195,8 @@ export default class Game {
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
                 // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-                this.enemies.push(new Candy(this, enemy.x, enemy.y))
+                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
-                // this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
               enemy.markedForDeletion = true
               this.score += enemy.scoreAmount
@@ -225,9 +225,8 @@ export default class Game {
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               if (Math.random() > 0.45) {
                 // this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-                this.enemies.push(new Candy(this, enemy.x, enemy.y))
+                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
               } else if (Math.random() < 0.25) {
-                // this.enemies.push(new Candy(this, enemy.x, enemy.y))
               }
               if(enemy.type === 'skeleton'){
                 this.audio.playDamage1()
