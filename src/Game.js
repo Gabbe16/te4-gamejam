@@ -113,9 +113,8 @@ export default class Game {
           enemy.isDead = true
           if (enemy.damage === 1) {
             enemy.frameX = 0
-          } else {
             this.audio.playerDamage.volume = 1
-          };
+          } 
           this.player.lives = this.player.lives - enemy.damage
 
           if (enemy.type === 'jackolantern') {
@@ -132,9 +131,8 @@ export default class Game {
           enemy.isDead = true
           if (enemy.damage === 1) {
             enemy.frameX = 0
-          } else {
             this.audio.playerDamage.volume = 1
-          }
+          } 
           this.secondPlayer.lives = this.secondPlayer.lives - enemy.damage
           if (enemy.type === 'jackolantern') {
             this.secondPlayer.slashInterval -= 50
