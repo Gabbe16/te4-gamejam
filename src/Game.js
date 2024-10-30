@@ -68,7 +68,6 @@ export default class Game {
         const xcoords = [246, 905, 1560]
         let mathrandom = Math.random() * 2
         let rounded = Math.round(mathrandom)
-        console.log(xcoords[rounded])
 
         if (Math.random() > 0.5) {
           const xcoords = [246, 905, 1560]
