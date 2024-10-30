@@ -23,5 +23,5 @@
 
 @font-face {
   font-family: dungeonFont;
-  src: url(assets/fonts/DungeonFont.ttf);
+  src: url(/DungeonFont.ttf);
 }
