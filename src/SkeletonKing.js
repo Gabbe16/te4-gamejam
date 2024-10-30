@@ -32,7 +32,7 @@ export default class SkeletonKing extends Enemy {
     } 
   }
 
-  update(player, deltaTime) {
+  update(player, secondPlayer, deltaTime) {
     // SkeletonKing Walk Animation
     if (this.speedX < 0) {
       this.flip = true
@@ -53,11 +53,25 @@ export default class SkeletonKing extends Enemy {
 
     const dx = player.x - this.x // calculate the x distance to the player
     const dy = player.y - this.y // calculate the y distance to the player
+    const dx2 = secondPlayer.x - this.x // calculate the x distance to the player
+    const dy2 = secondPlayer.y - this.y // calculate the y distance to the player
     const distance = Math.sqrt(dx * dx + dy * dy) // calculate the total distance to the player
+    const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2) // calculate the total distance to the player
+
     const speedX = (dx / distance) * this.speed // calculate the x speed towards the player
     const speedY = (dy / distance) * this.speed // calculate the y speed towards the player
-    this.x += speedX // move the enemy towards the player on the x axis
-    this.y += speedY // move the enemy towards the player on the y axis
+    const speedX2 = (dx2 / distance2) * this.speed // calculate the x speed towards the player
+    const speedY2 = (dy2 / distance2) * this.speed // calculate the y speed towards the player
+
+
+    // if  distance is greater than distance2 move towards player else move towards second player
+    if (distance > distance2) {
+      this.x += speedX2 // move the enemy towards the player on the x axis
+      this.y += speedY2 // move the enemy towards the player on the y axis
+    } else {
+      this.x += speedX // move the enemy towards the player on the x axis
+      this.y += speedY // move the enemy towards the player on the y axis
+    }
   }
 
   draw(context) {

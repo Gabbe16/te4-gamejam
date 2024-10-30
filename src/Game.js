@@ -108,7 +108,7 @@ export default class Game {
 
       // Check collision between players enemies and drops
       this.enemies.forEach((enemy) => {
-        enemy.update(this.player, deltaTime)
+        enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
           this.audio.playerDamage.volume = 1
           this.player.lives--
