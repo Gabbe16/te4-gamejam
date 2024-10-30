@@ -147,11 +147,7 @@ export default class Game {
             } else if (this.player.x > wall.x) {
               this.player.x = wall.x + wall.width + 1
             }
-          }
-        })
-
-        this.canvasRightWalls.forEach((wall) => {
-          if (this.checkCollision(this.secondPlayer, wall)) {
+          } else if (this.checkCollision(this.secondPlayer, wall)) {
             if (this.secondPlayer.x < wall.x) {
               this.secondPlayer.x = wall.x - this.secondPlayer.width - 1
             } else if (this.secondPlayer.x > wall.x) {
@@ -167,11 +163,7 @@ export default class Game {
             } else if (this.player.y > wall.y) {
               this.player.y = wall.y + wall.height + 1
             }
-          }
-        })
-
-        this.canvasUpDownWalls.forEach((wall) => {
-          if (this.checkCollision(this.secondPlayer, wall)) {
+          } else if (this.checkCollision(this.secondPlayer, wall)) {
             if (this.secondPlayer.y < wall.y) {
               this.secondPlayer.y = wall.y - this.secondPlayer.height - 1
             } else if (this.secondPlayer.y > wall.y) {
@@ -179,6 +171,7 @@ export default class Game {
             }
           }
         })
+
 
         // Check collision between player projectiles and enemies
         this.player.projectiles.forEach((projectile) => {
