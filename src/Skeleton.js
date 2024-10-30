@@ -57,7 +57,6 @@ export default class Skeleton extends Enemy {
       this.speed=0
       this.image.src = luciferSkeletonDeath
       this.maxFrame = this.deathAnimation.maxFrame
-      
       if (this.frameX === this.deathAnimation.maxFrame - 1) {
         this.markedForDeletion = true
       }

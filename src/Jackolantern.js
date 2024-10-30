@@ -9,6 +9,7 @@ export default class Jackolantern extends Enemy {
     this.x = x
     this.y = y
     this.type = 'jackolantern'
+    this.damage = 0
 
     // Jack-o-lantern Image
     const image = new Image()

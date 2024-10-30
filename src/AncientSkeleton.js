@@ -1,6 +1,6 @@
 import Enemy from './Enemy.js'
 import ancientskeletonimage from './assets/sprites/AncientSkeletonRightWalk.png'
-
+import ancientSkeletonDeath from './assets/sprites/AncientSkeletonRightDeath.png'
 export default class AncientSkeleton extends Enemy {
   constructor(game, x, y) {
     super(game)
@@ -12,6 +12,9 @@ export default class AncientSkeleton extends Enemy {
     this.lives = 5
     this.type = 'ancientskeleton'
     this.scoreAmount = 60
+    this.damage = 1
+
+    this.isDead = false
 
     // AncientSkeleton Walk Image
     const image = new Image()
@@ -26,6 +29,12 @@ export default class AncientSkeleton extends Enemy {
     this.timer = 0
     this.interval = 1000 / this.fps
 
+    //skeleton death animation
+    this.deathAnimation = {
+      frameY: 0,
+      maxFrame: 9
+    }
+
     // Flip sprite if x is greater than 400
     if (this.x > 400){
       this.flip = true
@@ -38,6 +47,16 @@ export default class AncientSkeleton extends Enemy {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
+    }
+    //skeleton death animation
+    if(this.isDead){
+      this.damage=0
+      this.speed=0
+      this.image.src = ancientSkeletonDeath
+      this.maxFrame = this.deathAnimation.maxFrame
+      if (this.frameX === this.deathAnimation.maxFrame - 1) {
+        this.markedForDeletion = true
+      }
     }
 
     if (this.timer > this.interval) {

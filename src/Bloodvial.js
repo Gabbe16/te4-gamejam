@@ -9,6 +9,7 @@ export default class Bloodvial extends Enemy {
     this.x = x
     this.y = y
     this.type = 'bloodvial'
+    this.damage = 0
 
     // bloodvial Image
     const image = new Image()

@@ -111,30 +111,40 @@ export default class Game {
         enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
           enemy.isDead = true
-          this.audio.playerDamage.volume = 1
+          if (enemy.damage === 1) {
+            enemy.frameX = 0
+          } else {
+            this.audio.playerDamage.volume = 1
+          };
           this.player.lives = this.player.lives - enemy.damage
-          
+
           if (enemy.type === 'jackolantern') {
-            this.player.lives += 1
             this.player.ammo += 2
+            enemy.markedForDeletion = true
           } else if (enemy.type === 'bloodvial') {
             this.player.lives += 2
+            enemy.markedForDeletion = true
           } else {
             this.audio.playPlayerDamage()
             this.player.hit = true
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
-          this.audio.playerDamage.volume = 1
-          this.secondPlayer.lives -= 1
-          enemy.markedForDeletion = true
+          enemy.isDead = true
+          if (enemy.damage === 1) {
+            enemy.frameX = 0
+          } else {
+            this.audio.playerDamage.volume = 1
+          }
+          this.secondPlayer.lives = this.secondPlayer.lives - enemy.damage
           if (enemy.type === 'jackolantern') {
-            this.secondPlayer.lives += 1
             this.secondPlayer.slashInterval -= 50
+            enemy.markedForDeletion = true
             if (this.secondPlayer.slashInterval < 50) {
               this.secondPlayer.slashInterval = 50
             }
           } else if (enemy.type === 'bloodvial') {
             this.secondPlayer.lives += 2
+            enemy.markedForDeletion = true
           } else {
             this.audio.playPlayerDamage()
             this.secondPlayer.hit = true
@@ -193,12 +203,16 @@ export default class Game {
               } else if (Math.random() < 0.25) {
                 this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
               }
-              enemy.markedForDeletion = true
-              this.score += enemy.scoreAmount
+              enemy.isDead = true
+              if (enemy.damage === 1) {
+                enemy.frameX = 0
+              } else {
+                this.score += enemy.scoreAmount
+              };
+              
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               projectile.markedForDeletion = true
-              this.audio.playDamage1()
             }
 
           }
@@ -230,8 +244,12 @@ export default class Game {
               } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
-              enemy.markedForDeletion = true
-              this.score += enemy.scoreAmount
+              enemy.isDead = true
+              if (enemy.damage === 1) {
+                enemy.frameX = 0
+              } else {
+                this.score += enemy.scoreAmount
+              };
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               slash.markedForDeletion = true
