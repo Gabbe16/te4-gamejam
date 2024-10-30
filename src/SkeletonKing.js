@@ -1,6 +1,7 @@
 import Enemy from './Enemy.js'
 import skeletonkingimage from './assets/sprites/SkeletonKingRightWalk.png'
 import skeletonkingdeath from './assets/sprites/SkeletonKingRightDeath.png'
+import skeletonkinghit from './assets/sprites/SkeletonKingRightHurt.png'
 
 export default class SkeletonKing extends Enemy {
   constructor(game, x, y) {
@@ -16,6 +17,7 @@ export default class SkeletonKing extends Enemy {
     this.damage = 1
 
     this.isDead = false
+    this.isHit = false
 
     // SkeletonKing Walk Image
     const image = new Image()
@@ -35,6 +37,11 @@ export default class SkeletonKing extends Enemy {
       frameY: 0,
       maxFrame: 13
     }
+    //hit animation
+    this.hitAnimation = {
+      frameY: 0,
+      maxFrame: 4
+    }
 
     // Flip sprite if x is greater than 400
     if (this.x > 400){
@@ -48,6 +55,13 @@ export default class SkeletonKing extends Enemy {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
+    }
+    if(this.isHit){
+      this.maxFrame = this.hitAnimation.maxFrame
+      this.image.src = skeletonkinghit
+      if (this.frameX === this.hitAnimation.maxFrame - 1) {
+        this.hit = false
+      }
     }
     //skeleton death animation
     if(this.isDead){
