@@ -110,9 +110,10 @@ export default class Game {
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
+          enemy.isDead = true
           this.audio.playerDamage.volume = 1
-          this.player.lives--
-          enemy.markedForDeletion = true
+          this.player.lives = this.player.lives - enemy.damage
+          
           if (enemy.type === 'jackolantern') {
             this.player.lives += 1
             this.player.ammo += 2
@@ -120,6 +121,7 @@ export default class Game {
             this.player.lives += 2
           } else {
             this.audio.playPlayerDamage()
+            this.player.hit = true
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
           this.audio.playerDamage.volume = 1
@@ -135,6 +137,7 @@ export default class Game {
             this.secondPlayer.lives += 2
           } else {
             this.audio.playPlayerDamage()
+            this.secondPlayer.hit = true
           }
         }
 
