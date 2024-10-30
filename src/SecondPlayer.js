@@ -149,6 +149,8 @@ export default class SecondPlayer {
     if (this.isDead) {
       if (this.isDeadDone) {
         this.frameY = 100
+        this.x = -100
+        this.y = -100
       } else {
         this.maxFrame = this.deathAnimation.maxFrame
         this.frameY = this.deathAnimation.frameY
