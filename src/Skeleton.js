@@ -1,5 +1,6 @@
 import Enemy from './Enemy.js'
 import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
+import luciferSkeletonDeath from './assets/sprites/SkeletonWithSwordRightDeath.png'
 
 export default class Skeleton extends Enemy {
   constructor(game, x, y) {
@@ -9,9 +10,12 @@ export default class Skeleton extends Enemy {
     this.x = x
     this.y = y
     this.speed = 2
-    this.lives = Math.floor(Math.random() * 1) + 1
+    this.lives = 1
     this.type = 'skeleton'
     this.scoreAmount = 10
+    this.damage = 1
+
+    this.isDead = false
 
     // Skeleton Walk Image
     const image = new Image()
@@ -26,6 +30,14 @@ export default class Skeleton extends Enemy {
     this.timer = 0
     this.interval = 1000 / this.fps
 
+    //skeleton death animation
+    this.deathAnimation = {
+      frameY: 0,
+      maxFrame: 8
+    }
+
+
+
     // Flip sprite if x is greater than 400
     if (this.x > 400) {
       this.flip = true
@@ -38,6 +50,17 @@ export default class Skeleton extends Enemy {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
+    }
+    //skeleton death animation
+    if(this.isDead){
+      this.damage=0
+      this.speed=0
+      this.image.src = luciferSkeletonDeath
+      this.maxFrame = this.deathAnimation.maxFrame
+      
+      if (this.frameX === this.deathAnimation.maxFrame - 1) {
+        this.markedForDeletion = true
+      }
     }
 
     if (this.timer > this.interval) {
