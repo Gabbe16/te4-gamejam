@@ -35,4 +35,4 @@
     - made by Evilduckk (https://evilduckk.itch.io/)
 
 * Game sfx
-    -made by
+    -made by Leohpaz (https://leohpaz.itch.io/)
