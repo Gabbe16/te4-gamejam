@@ -9,7 +9,7 @@ export default class SecondPlayer {
     this.imageheight = 80
     this.imagewidth = 80
     this.x = 740
-    this.y = 393
+    this.y = 405
 
     this.slashes = []
     this.slashTimer = 0
@@ -18,7 +18,6 @@ export default class SecondPlayer {
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 6
-    this.ammo = 0
 
     this.lives = 10
 
@@ -146,6 +145,7 @@ export default class SecondPlayer {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
     }
+    
     if (this.isDead) {
       if (this.isDeadDone) {
         this.frameY = 100
@@ -157,23 +157,24 @@ export default class SecondPlayer {
         this.isDeadDone = true
       }
     }
-      if (this.hit) {
-        this.maxFrame = this.hitAnimation.maxFrame
-        this.frameY = this.hitAnimation.frameY
-        if (this.frameX === this.hitAnimation.maxFrame - 1) {
-          this.hit = false
-        }
-      }
 
-      this.slashes.forEach((slash) => {
-        slash.update(deltaTime)
-      })
-      this.slashes = this.slashes.filter(
-        (slash) => !slash.markedForDeletion
-      )
+    if (this.hit) {
+      this.maxFrame = this.hitAnimation.maxFrame
+      this.frameY = this.hitAnimation.frameY
+      if (this.frameX === this.hitAnimation.maxFrame - 1) {
+        this.hit = false
+      }
     }
 
-  
+    this.slashes.forEach((slash) => {
+      slash.update(deltaTime)
+    })
+    this.slashes = this.slashes.filter(
+      (slash) => !slash.markedForDeletion
+    )
+  }
+
+
 
 
   draw(context) {
@@ -228,7 +229,6 @@ export default class SecondPlayer {
 
   }
   SlashInitiate() {
-
     if (this.shooting === false) {
       this.beginSlashing = true
       this.shooting = true
@@ -238,7 +238,6 @@ export default class SecondPlayer {
 
 
   Slash() {
-
     this.slashes.push(
       new Slash(
         this.game,
@@ -248,6 +247,4 @@ export default class SecondPlayer {
       )
     )
   }
-
-
 }

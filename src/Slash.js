@@ -1,5 +1,3 @@
-import fireballImage from './assets/sprites/FB001.png'
-
 export default class Slash {
   constructor(game, x, y, flip) {
     this.game = game
@@ -12,21 +10,10 @@ export default class Slash {
     this.timeThreshold = 400
     this.angle = 0
 
-
-
     this.damage = 2
     this.markedForDeletion = false
 
-    // Arrow sprite image
-    const image = new Image()
-    image.src = fireballImage
-    this.image = image
-
-    console.log(flip)
-
     this.flip = flip
-
-  
   }
 
   update(deltaTime) {
@@ -47,22 +34,8 @@ export default class Slash {
   }
 
   draw(context) {
-
-    
     if(this.game.debug){
       context.strokeRect(this.x, this.y, this.width, this.height)
     }
-
-   /*  context.drawImage(
-      this.image,
-      this.flip ? this.x * -1 - (this.width) : this.x,
-      this.y,
-      this.width,
-      this.height,
-    )
-    context.strokeRect(this.x, this.y, this.width, this.height)
-    context.lineWidth = 1
- */
-    
   }
 }
