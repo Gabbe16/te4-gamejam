@@ -16,6 +16,7 @@ export default class Skeleton extends Enemy {
     this.damage = 1
 
     this.isDead = false
+  
 
     // Skeleton Walk Image
     const image = new Image()
@@ -46,6 +47,7 @@ export default class Skeleton extends Enemy {
 
   update(player, secondPlayer, deltaTime) {
     // Skeleton Walk Animation
+    
     if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
