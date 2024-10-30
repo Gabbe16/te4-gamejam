@@ -18,6 +18,7 @@ export default class SecondPlayer {
     this.speedX = 0
     this.speedY = 0
     this.maxSpeed = 6
+    this.ammo = 0
 
     this.lives = 10
 

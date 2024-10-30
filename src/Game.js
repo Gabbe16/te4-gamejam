@@ -115,29 +115,29 @@ export default class Game {
           this.player.lives--
           enemy.markedForDeletion = true
           if (enemy.type === 'jackolantern') {
-          
+            this.player.lives += 1
+            this.player.ammo += 2
           } else if (enemy.type === 'bloodvial') {
-            
+            this.player.lives += 2
           } else {
             this.audio.playPlayerDamage()
           }
-        }
-
-        this.enemies.forEach((enemy) => {
-          if (this.checkCollision(this.secondPlayer, enemy)) {
-            this.audio.playerDamage.volume = 1
-            this.secondPlayer.lives--
+        } else if (this.checkCollision(this.secondPlayer, enemy)) {
+          this.audio.playerDamage.volume = 1
+            this.secondPlayer.lives -= 1
             enemy.markedForDeletion = true
             if (enemy.type === 'jackolantern') {
-              
+              this.secondPlayer.lives += 1
+              this.secondPlayer.slashInterval -= 50
+              if (this.secondPlayer.slashInterval < 50) {
+                this.secondPlayer.slashInterval = 50
+              }
             } else if (enemy.type === 'bloodvial') {
-              
+              this.secondPlayer.lives += 2
             } else {
               this.audio.playPlayerDamage()
             }
-          }
-        })
-
+        }
 
         // check collision between players and canvas walls
         this.canvasRightWalls.forEach((wall) => {
