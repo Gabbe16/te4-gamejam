@@ -7,9 +7,6 @@ export default class Layer{
         this.speedModifier = speedModifier
         this.x = 0
         this.y = 0
-        console.log(this.game)
-        console.log(-this.game.width)
-
     }
 
     update(){

@@ -107,7 +107,7 @@ export default class Game {
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
-      // Check collision between player, enemies drops (candy)
+      // Check collision between players enemies and drops
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, deltaTime)
         if (this.checkCollision(this.player, enemy)) {

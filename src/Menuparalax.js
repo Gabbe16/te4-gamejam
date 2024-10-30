@@ -1,8 +1,8 @@
 import Layer from "./Layer.js"
-import skyLayer from './assets/paralax_Menu/Mushroom_Cave_L1.png'
-import farClouds from './assets/paralax_Menu/Mushroom_Cave_L2.png'
-import nearClouds from './assets/paralax_Menu/Mushroom_Cave_L3.png'
-import farMountains from './assets/paralax_Menu/Mushroom_Cave_L4.png'
+import Mushroom_Cave_L1 from './assets/paralax_Menu/Mushroom_Cave_L1.png'
+import Mushroom_Cave_L2 from './assets/paralax_Menu/Mushroom_Cave_L2.png'
+import Mushroom_Cave_L3 from './assets/paralax_Menu/Mushroom_Cave_L3.png'
+import Mushroom_Cave_L4 from './assets/paralax_Menu/Mushroom_Cave_L4.png'
 // import nearMountains from './assets/paralax_Menu/mountains.png'
 // import foregroundTrees from './assets/paralax_Menu/trees.png'
 
@@ -11,39 +11,28 @@ export default class{
         this.game = game
         
         // layer(game, image, width, height, speedModifier)
-        const skyImage = new Image()
-        skyImage.src = skyLayer
-        this.skylayer = new Layer(this.game, skyImage, this.game.width, this.game.height, 0.15)
+        const layer1 = new Image()
+        layer1.src = Mushroom_Cave_L1
+        this.mushroom_l1 = new Layer(this.game, layer1, this.game.width, this.game.height, 0.15)
 
-        const farCloudsImage = new Image()
-        farCloudsImage.src = farClouds
-        this.farclouds = new Layer(this.game, farCloudsImage, this.game.width, this.game.height, 0.25)
+        const layer2 = new Image()
+        layer2.src = Mushroom_Cave_L2
+        this.mushroom_l2 = new Layer(this.game, layer2, this.game.width, this.game.height, 0.25)
 
-        const nearCloudsImage = new Image()
-        nearCloudsImage.src = nearClouds
-        this.nearclouds = new Layer(this.game, nearCloudsImage, this.game.width, this.game.height, 0.20)
+        const layer3 = new Image()
+        layer3.src = Mushroom_Cave_L3
+        this.mushroom_l3 = new Layer(this.game, layer3, this.game.width, this.game.height, 0.20)
 
-        const farMountainsImage = new Image()
-        farMountainsImage.src = farMountains
-        this.farmountains = new Layer(this.game, farMountainsImage, this.game.width, this.game.height, 0.3)
-
-        // const nearMountainsImage = new Image()
-        // nearMountainsImage.src = nearMountains
-        // this.nearmountains = new Layer(this.game, nearMountainsImage, this.game.width, this.game.height, 0.45)
-
-        // const foregroundTreesImage = new Image()
-        // foregroundTreesImage.src = foregroundTrees
-        // this.foregroundtrees = new Layer(this.game, foregroundTreesImage, this.game.width, this.game.height, 0.4)
+        const layer4 = new Image()
+        layer4.src = Mushroom_Cave_L4
+        this.mushroom_l4 = new Layer(this.game, layer4, this.game.width, this.game.height, 0.3)
         
         this.layers = [
-            this.skylayer,
-            this.farclouds,
-            this.nearclouds,
-            this.farmountains,
-            // this.nearmountains,
-            // this.foregroundtrees
+            this.mushroom_l1,
+            this.mushroom_l2,
+            this.mushroom_l3,
+            this.mushroom_l4,
         ]
-        console.log(this.layers)
     }
 
     update() {
