@@ -3,6 +3,7 @@ import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Skeleton from './Skeleton.js'
 import Skeletonking from './SkeletonKing.js'
+import SkeletonBoss from './SkeletonBoss.js'
 import AncientSkeleton from './AncientSkeleton.js'
 import Jackolantern from './Jackolantern.js'
 import Bloodvial from './Bloodvial.js'
@@ -68,6 +69,11 @@ export default class Game {
         const xcoords = [246, 905, 1560]
         let mathrandom = Math.random() * 2
         let rounded = Math.round(mathrandom)
+
+        if (this.score >= 100) {
+          this.enemies.push(new SkeletonBoss(this, 905, 124))
+          this.skeletonInterval = 5000000
+        }
 
         if (Math.random() > 0.5) {
           const xcoords = [246, 905, 1560]
