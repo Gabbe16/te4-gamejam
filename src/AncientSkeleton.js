@@ -13,7 +13,7 @@ export default class AncientSkeleton extends Enemy {
     this.lives = 5
     this.type = 'ancientskeleton'
     this.scoreAmount = 60
-    this.damage = 1
+    this.damage = 3 
 
     this.isDead = false
     this.isHit = false
