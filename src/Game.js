@@ -44,12 +44,12 @@ export default class Game {
     this.skeletonInterval = 1500
     this.speed = 1
 
-    this.canvasRightWalls = [
+    this.canvasRightLeftWalls = [
       new wall(this, 75, 18, 190, 915),
       new wall(this, 1580, 18, 190, 915),
     ]
 
-    this.canvasUpDownWalls = [
+    this.canvasTopBottomWalls = [
       new wall(this, 75, 18, 1695, 122),
       new wall(this, 75, 810, 1695, 122)
     ]
@@ -149,7 +149,7 @@ export default class Game {
         }
 
         // check collision between players and canvas walls
-        this.canvasRightWalls.forEach((wall) => {
+        this.canvasRightLeftWalls.forEach((wall) => {
           if (this.checkCollision(this.player, wall)) {
             if (this.player.x < wall.x) {
               this.player.x = wall.x - this.player.width - 1
@@ -165,7 +165,7 @@ export default class Game {
           }
         })
 
-        this.canvasUpDownWalls.forEach((wall) => {
+        this.canvasTopBottomWalls.forEach((wall) => {
           if (this.checkCollision(this.player, wall)) {
             if (this.player.y < wall.y) {
               this.player.y = wall.y - this.player.height - 1
@@ -269,10 +269,10 @@ export default class Game {
       this.enemies.forEach((enemy) => {
         enemy.draw(context)
       })
-      this.canvasRightWalls.forEach((wall) => {
+      this.canvasRightLeftWalls.forEach((wall) => {
         wall.draw(context)
       })
-      this.canvasUpDownWalls.forEach((wall) => {
+      this.canvasTopBottomWalls.forEach((wall) => {
         wall.draw(context)
       })
     }
