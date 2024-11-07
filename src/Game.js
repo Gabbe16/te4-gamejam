@@ -120,8 +120,8 @@ export default class Game {
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             enemy.markedForDeletion = true
-          } else if (enemy.type === 'bloodvial') {
-            this.player.lives += 2
+          } else if (enemy.type === 'bloodvial' && this.player.lives < this.player.maxLives) {
+            this.player.lives += 1
             enemy.markedForDeletion = true
           } else {
             this.player.hit = true
@@ -139,8 +139,8 @@ export default class Game {
             if (this.secondPlayer.slashInterval < 50) {
               this.secondPlayer.slashInterval = 50
             }
-          } else if (enemy.type === 'bloodvial') {
-            this.secondPlayer.lives += 2
+          } else if (enemy.type === 'bloodvial' && this.secondPlayer.lives < this.secondPlayer.maxLives) {
+            this.secondPlayer.lives += 1
             enemy.markedForDeletion = true
           } else {
             

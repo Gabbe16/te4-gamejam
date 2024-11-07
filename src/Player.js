@@ -23,6 +23,7 @@ export default class Player {
     this.ammoInterval = 500
 
     this.lives = 10
+    this.maxLives = 10
 
     this.shooting = false
     this.hit = true

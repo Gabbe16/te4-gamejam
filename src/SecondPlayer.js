@@ -20,6 +20,7 @@ export default class SecondPlayer {
     this.maxSpeed = 6
 
     this.lives = 10
+    this.maxLives = 10
 
     this.shooting = false
     this.hit = true
