@@ -227,7 +227,7 @@ export default class Game {
               }
 
             }
-            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
               projectile.markedForDeletion = true
             }
 
@@ -271,7 +271,7 @@ export default class Game {
                 this.score += enemy.scoreAmount
               }
             }
-            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+            if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
               slash.markedForDeletion = true
 
             }
