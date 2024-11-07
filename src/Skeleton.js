@@ -9,7 +9,7 @@ export default class Skeleton extends Enemy {
     this.height = 55
     this.x = x
     this.y = y
-    this.speed = 2
+    this.speed = 2.5
     this.lives = 1
     this.type = 'skeleton'
     this.scoreAmount = 10
