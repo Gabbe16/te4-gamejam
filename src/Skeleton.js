@@ -14,6 +14,7 @@ export default class Skeleton extends Enemy {
     this.type = 'skeleton'
     this.scoreAmount = 10
     this.damage = 1
+    this.baseDamage = 1
 
     this.isDead = false
   

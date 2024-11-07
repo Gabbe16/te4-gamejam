@@ -187,7 +187,7 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
-              enemy.frameX = 1
+              /* enemy.frameX = 1 */
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
@@ -215,7 +215,7 @@ export default class Game {
               }
 
               enemy.isDead = true
-              if (enemy.damage === 1) {
+              if (enemy.damage === enemy.baseDamage) {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
@@ -234,7 +234,6 @@ export default class Game {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > slash.damage) {
               enemy.lives -= slash.damage
-              enemy.frameX = 1
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
@@ -261,7 +260,7 @@ export default class Game {
                 }
               }
               enemy.isDead = true
-              if (enemy.damage === 1) {
+              if (enemy.damage === enemy.baseDamage) {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
