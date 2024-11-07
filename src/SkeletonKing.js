@@ -60,7 +60,8 @@ export default class SkeletonKing extends Enemy {
       this.maxFrame = this.hitAnimation.maxFrame
       this.image.src = skeletonkinghit
       if (this.frameX === this.hitAnimation.maxFrame - 1) {
-        this.hit = false
+        this.isHit = false
+        this.image.src = skeletonkingimage
       }
     }
     //skeleton death animation

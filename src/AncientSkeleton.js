@@ -56,20 +56,27 @@ export default class AncientSkeleton extends Enemy {
       this.flip = false
     }
     if(this.isHit){
+      this.width = 80
+      this.height = 80
       this.maxFrame = this.hitAnimation.maxFrame
       this.image.src = ancientSkeletonHit
       if (this.frameX === this.hitAnimation.maxFrame - 1) {
-        this.hit = false
+        this.isHit = false
+        this.image.src = ancientskeletonimage
+        this.width = 96
+        this.height = 96
       }
     }
     //skeleton death animation
     if(this.isDead){
+      this.width = 80
       this.damage=0
       this.speed=0
       this.image.src = ancientSkeletonDeath
       this.maxFrame = this.deathAnimation.maxFrame
       if (this.frameX === this.deathAnimation.maxFrame - 1) {
         this.markedForDeletion = true
+        this.width = 96
       }
     }
 
