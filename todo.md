@@ -8,7 +8,6 @@
 
 
 ## Göra spelet svårare, mer gameplay
-* Olika enemies gör att man tappar olika mycket hp + de har olika speed
 * Lägga till bossar
 * Någon typ av progression?
 
@@ -16,3 +15,4 @@
 ## Klart
 * Sätta max hp
 * Justera hur ofta drops spawnas
+* Enemies har olika speed och damage
