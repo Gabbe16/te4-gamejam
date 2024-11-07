@@ -187,7 +187,7 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
-              /* enemy.frameX = 1 */
+              enemy.frameX = 1
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
@@ -234,6 +234,7 @@ export default class Game {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > slash.damage) {
               enemy.lives -= slash.damage
+              enemy.frameX = 1
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
