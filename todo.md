@@ -5,7 +5,7 @@
 * Byta player1 attack från j --> Space
 * Repetitiva ljudeffekter, lägg till fler för alla olika enemies (hit, death, etc.)
 * Buggade animationer på ancient skeleton (deathanimation)
-* Justera hur ofta healthdrops spawnas
+
 
 ## Göra spelet svårare, mer gameplay
 * Olika enemies gör att man tappar olika mycket hp + de har olika speed
@@ -15,3 +15,4 @@
 
 ## Klart
 * Sätta max hp
+* Justera hur ofta drops spawnas
