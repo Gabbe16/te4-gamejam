@@ -114,7 +114,7 @@ export default class Game {
           if (enemy.damage === 1) {
             enemy.frameX = 0
             this.audio.playPlayerDamage()
-          } 
+          }
           this.player.lives = this.player.lives - enemy.damage
 
           if (enemy.type === 'jackolantern') {
@@ -131,7 +131,7 @@ export default class Game {
           if (enemy.damage === 1) {
             enemy.frameX = 0
             this.audio.playPlayerDamage()
-          } 
+          }
           this.secondPlayer.lives = this.secondPlayer.lives - enemy.damage
           if (enemy.type === 'jackolantern') {
             this.secondPlayer.slashInterval -= 50
@@ -143,7 +143,7 @@ export default class Game {
             this.secondPlayer.lives += 1
             enemy.markedForDeletion = true
           } else {
-            
+
             this.secondPlayer.hit = true
           }
         }
@@ -197,17 +197,29 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-              if (Math.random() > 0.45) {
-                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-              } else if (Math.random() < 0.25) {
-                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
+              if (enemy.type === 'skeleton') {
+                this.audio.playDamage1()
+                if (Math.random() < 0.15) {
+                  this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                }
+              } else if (enemy.type === 'skeletonking') {
+                this.audio.playDamage2()
+                if (Math.random() < 0.25) {
+                  this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                }
+              } else if (enemy.type === 'ancientskeleton') {
+                this.audio.playDamage3()
+                if (Math.random() < 0.15) {
+                  this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
+                }
               }
+
               enemy.isDead = true
               if (enemy.damage === 1) {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
-              } 
-              
+              }
+
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               projectile.markedForDeletion = true
@@ -231,23 +243,27 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
-              if (Math.random() > 0.45) {
-                this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
-              } else if (Math.random() < 0.25) {
-                this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
-              }
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
+                if (Math.random() < 0.15) {
+                  this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                }
               } else if (enemy.type === 'skeletonking') {
                 this.audio.playDamage2()
+                if (Math.random() < 0.25) {
+                  this.enemies.push(new Bloodvial(this, enemy.x, enemy.y))
+                }
               } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
+                if (Math.random() < 0.15) {
+                  this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
+                }
               }
               enemy.isDead = true
               if (enemy.damage === 1) {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
-              } 
+              }
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
               slash.markedForDeletion = true
