@@ -16,7 +16,7 @@ export default class SkeletonBoss extends Enemy {
     this.scoreAmount = 10
     this.damage = 5
     this.baseDamage = 5
-    this.range = 100
+    
 
     this.isDead = false
     this.isHit = false

@@ -2,6 +2,7 @@ import Enemy from './Enemy.js'
 import skeletonkingimage from './assets/sprites/SkeletonKingRightWalk.png'
 import skeletonkingdeath from './assets/sprites/SkeletonKingRightDeath.png'
 import skeletonkinghit from './assets/sprites/SkeletonKingRightHurt.png'
+import skeletonkingattack from './assets/sprites/SkeletonKingRightAttack01.png'
 
 export default class SkeletonKing extends Enemy {
   constructor(game, x, y) {
@@ -14,11 +15,20 @@ export default class SkeletonKing extends Enemy {
     this.lives = 3
     this.type = 'skeletonking'
     this.scoreAmount = 30
-    this.damage = 2
-    this.baseDamage = 2
+    this.damage = 1
+    this.baseDamage = 1
 
     this.isDead = false
     this.isHit = false
+
+    this.attackPlayer1 = false
+    this.attackDoneFirst = false
+    this.attackDoneSecond = false
+    this.attackBegin = false
+    this.attackPlayer2 = false
+    this.attackDoneFirst2 = false
+    this.attackDoneSecond2 = false
+    this.attackBegin2 = false
 
     // SkeletonKing Walk Image
     const image = new Image()
@@ -43,6 +53,11 @@ export default class SkeletonKing extends Enemy {
       frameY: 0,
       maxFrame: 4
     }
+     //attack animation
+     this.attackAnimation = {
+      frameY: 0,
+      maxFrame: 10
+    }
 
     // Flip sprite if x is greater than 400
     if (this.x > 400) {
@@ -57,11 +72,77 @@ export default class SkeletonKing extends Enemy {
     } else if (this.speedX > 0) {
       this.flip = false
     }
+    if(this.attackPlayer1) {
+      if(this.attackBegin === false) {
+        this.attackBegin = true
+        this.frameX = 0
+      }
+
+      this.image.src = skeletonkingattack
+      this.width = 64
+      this.height = 64
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 4 && !this.attackDoneFirst) {
+        this.game.player.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDoneFirst = true
+      }
+      if (this.frameX === 9 && !this.attackDoneSecond) {
+        this.game.player.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDoneSecond = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer1 = false
+        this.attackDoneFirst = false
+        this.attackDoneSecond = false
+        this.attackBegin = false
+        this.frameX = 0
+        
+       
+
+      }
+    }
+    if(this.attackPlayer2) {
+      if(this.attackBegin2 === false) {
+        this.attackBegin2 = true
+        this.frameX = 0
+      }
+
+      this.image.src = skeletonkingattack
+      this.width = 64
+      this.height = 64
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 4 && !this.attackDoneFirst2) {
+        this.game.secondPlayer.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDoneFirst2 = true
+      }
+      if (this.frameX === 9 && !this.attackDoneSecond2) {
+        this.game.secondPlayer.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDoneSecond2 = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer2 = false
+        this.attackDoneFirst2 = false
+        this.attackDoneSecond2 = false
+        this.attackBegin2 = false
+        this.frameX = 0
+        
+       
+
+      }
+    }
 
     // SkeletonKing Hit Animation
     if (this.isHit) {
       this.maxFrame = this.hitAnimation.maxFrame
       this.image.src = skeletonkinghit
+      this.width = 48
+      this.height = 55
       if (this.frameX === this.hitAnimation.maxFrame - 1) {
         this.isHit = false
         this.image.src = skeletonkingimage
@@ -72,6 +153,8 @@ export default class SkeletonKing extends Enemy {
     if (this.isDead) {
       this.damage = 0
       this.speed = 0
+      this.width = 48
+      this.height = 55
       this.image.src = skeletonkingdeath
       this.maxFrame = this.deathAnimation.maxFrame
 
