@@ -110,6 +110,7 @@ export default class Player {
       this.flip = false
     }
 
+    // Frame update
     if (this.timer > this.interval) {
       this.frameX++
       this.timer = 0
@@ -135,6 +136,8 @@ export default class Player {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
     }
+
+    // Death animation
     if (this.isDead) {
       if (this.isDeadDone) {
         this.frameY = 100
@@ -148,6 +151,8 @@ export default class Player {
         this.isDeadDone = true
       }
     }
+
+    // Hit animation
     if(this.hit){
       this.maxFrame = this.hitAnimation.maxFrame
       this.frameY = this.hitAnimation.frameY
@@ -164,7 +169,7 @@ export default class Player {
       this.ammoTimer += deltaTime
     }
 
-    // projectiles
+    // Projectiles
     this.projectiles.forEach((projectile) => {
       projectile.update(deltaTime)
     })

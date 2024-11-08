@@ -70,12 +70,14 @@ export default class SecondPlayer {
 
   update(deltaTime) {
 
+    // Player2 death
     if (this.lives <= 0) {
       this.game.gameOver = true
       this.game.audio.playerDeath.play()
       this.isDead = true
     }
 
+    // Player2 slashing
     if (this.beginSlashing) {
       if (this.slashTimer > this.slashInterval) {
         this.game.audio.playMeleeAttack()
@@ -114,13 +116,14 @@ export default class SecondPlayer {
     this.y += this.speedY
     this.x += this.speedX
 
-    // Sprite animation
+    // Sprite flipping
     if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
     }
 
+    // Frame update
     if (this.timer > this.interval) {
       this.frameX++
       this.timer = 0
@@ -146,7 +149,8 @@ export default class SecondPlayer {
       this.maxFrame = this.idleAnimation.maxFrame
       this.frameY = this.idleAnimation.frameY
     }
-    
+
+    // Death animation
     if (this.isDead) {
       if (this.isDeadDone) {
         this.frameY = 100
@@ -161,6 +165,7 @@ export default class SecondPlayer {
       }
     }
 
+    // Hit animation
     if (this.hit) {
       this.maxFrame = this.hitAnimation.maxFrame
       this.frameY = this.hitAnimation.frameY
@@ -169,6 +174,7 @@ export default class SecondPlayer {
       }
     }
 
+    // Slash update
     this.slashes.forEach((slash) => {
       slash.update(deltaTime)
     })
@@ -229,16 +235,14 @@ export default class SecondPlayer {
     this.slashes.forEach((slash) => {
       slash.draw(context)
     })
-
   }
+
   SlashInitiate() {
     if (this.shooting === false) {
       this.beginSlashing = true
       this.shooting = true
     }
   }
-
-
 
   Slash() {
     this.slashes.push(

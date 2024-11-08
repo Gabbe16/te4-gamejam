@@ -13,9 +13,6 @@ import FireSoundURL from './assets/sounds/attacks/fireSound.wav'
 export default class BackgroundMusic {
     constructor(game) {
         this.game = game
-
-
-   
         this.backgroundMusic = new Audio(backgroundMusicURL)
         this.menuMusic = new Audio(menuMusicURL)
         this.bowSound = new Audio(bowSoundURL)
@@ -24,7 +21,7 @@ export default class BackgroundMusic {
         //attack sounds
         this.MeleeAttack = new Audio(MeleeAttackURL)
         this.FireSound = new Audio(FireSoundURL)
-        
+
         //damage sounds
         this.damage1 = new Audio(damage1URL)
         this.damage2 = new Audio(damage2URL)
@@ -34,96 +31,90 @@ export default class BackgroundMusic {
 
         // Loop the background music when it ends
         this.backgroundMusic.loop = true
-        this.menuMusic.loop = true 
+        this.menuMusic.loop = true
 
         //Volume (1 to 0)
         this.backgroundMusic.volume = 1
         this.menuMusic.volume = 0.1
         this.bowSound.volume = 0
-        this.damage1.volume =1
-        this.damage2.volume =1
-        this.damage3.volume =1
-       
+        this.damage1.volume = 1
+        this.damage2.volume = 1
+        this.damage3.volume = 1
+
 
         //audio speed
-        this.bowSound.playbackRate=1.3;
+        this.bowSound.playbackRate = 1.3;
 
-/*         this.i = 1 */
+        /*         this.i = 1 */
     }
 
-   
-    playBackgroundMusic(){
-            this.backgroundMusic.play()
+    playBackgroundMusic() {
+        this.backgroundMusic.play()
     }
-    
-    playMenuMusic(){
+
+    playMenuMusic() {
         this.menuMusic.play()
     }
-    
-    playBowSound(){
+
+    playBowSound() {
         const newBowSound = this.bowSound.cloneNode()
         newBowSound.play()
         //this.bowSound.play()
     }
 
-
-    //damage sounds
-    
-
-    playDamage1(){
+    // Damage sounds
+    playDamage1() {
         const newDamage1 = this.damage1.cloneNode()
         newDamage1.play()
-        
-        
+
+
     }
-    playDamage2(){
+    playDamage2() {
         const newDamage2 = this.damage2.cloneNode()
         newDamage2.play()
-       
+
     }
-    playDamage3(){
+    playDamage3() {
         const newDamage3 = this.damage3.cloneNode()
         newDamage3.play()
-        
+
     }
-    
-    playPlayerDamage(){
+
+    playPlayerDamage() {
         const newPlayerDamage = this.playerDamage.cloneNode()
         newPlayerDamage.play()
         /* this.playerDamage.play() */
     }
 
-    playPlayerDeath(){
+    playPlayerDeath() {
         this.playerDeath.play()
     }
 
-    playMeleeAttack(){
+    playMeleeAttack() {
         const newMeleeAttack = this.MeleeAttack.cloneNode()
         newMeleeAttack.play()
     }
-    playFireSound(){
+    playFireSound() {
         const newFireSound = this.FireSound.cloneNode()
         newFireSound.play()
     }
 
-
-
-/* 
-    playDamage(){
-        console.log("gahsahpsa")
-        if(this.i=1){
-            console.log("1")
-            this.damage1.play()
-            this.i++
-        } else if(this.i=2){
-            console.log("2")
-            this.damage2.play()
-            this.i++
-        } else {
-            console.log("3")
-            this.damage3.play()
-            this.i = 1
-        }
-
-    } */
+    /* 
+        playDamage(){
+            console.log("gahsahpsa")
+            if(this.i=1){
+                console.log("1")
+                this.damage1.play()
+                this.i++
+            } else if(this.i=2){
+                console.log("2")
+                this.damage2.play()
+                this.i++
+            } else {
+                console.log("3")
+                this.damage3.play()
+                this.i = 1
+            }
+    
+        } */
 }

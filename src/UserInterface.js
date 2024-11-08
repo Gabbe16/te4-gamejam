@@ -135,7 +135,6 @@ export default class UserInterface {
         context.fillText('Spell sprite made by --nyknck', this.game.width / 3.5, this.game.height - 250)
         context.fillText('Enemy sprites made by --Foozle', this.game.width / 3.5, this.game.height - 150)
         context.fillText('Enemy drops made by --PixelTier', this.game.width / 3.5, this.game.height - 100)
-        
 
         // Music/SFX Credits
         context.font = `75px ${this.fontFamily}`
@@ -173,7 +172,6 @@ export default class UserInterface {
         context.fillText('Game Created by: Gabbe and Mille', this.game.width - 20, this.game.height - 20) 
       }
     } else if (this.game.gameStart === true) {
-      
       // Player ammo and lives ui
       context.fillStyle = 'rgba(65, 65, 65, 65)'
       context.shadowOffsetX = 4
