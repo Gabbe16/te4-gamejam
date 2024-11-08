@@ -13,7 +13,7 @@ export default class AncientSkeleton extends Enemy {
     this.lives = 5
     this.type = 'ancientskeleton'
     this.scoreAmount = 60
-    this.damage = 3 
+    this.damage = 3
     this.baseDamage = 3
 
     this.isDead = false
@@ -44,9 +44,9 @@ export default class AncientSkeleton extends Enemy {
     }
 
     // Flip sprite if x is greater than 400
-    if (this.x > 400){
+    if (this.x > 400) {
       this.flip = true
-    } 
+    }
   }
 
   update(player, secondPlayer, deltaTime) {
@@ -56,7 +56,9 @@ export default class AncientSkeleton extends Enemy {
     } else if (this.speedX > 0) {
       this.flip = false
     }
-    if(this.isHit){
+
+    // AncientSkeleton Hit Animation
+    if (this.isHit) {
       this.width = 80
       this.height = 80
       this.maxFrame = this.hitAnimation.maxFrame
@@ -68,11 +70,12 @@ export default class AncientSkeleton extends Enemy {
         this.height = 96
       }
     }
+
     //skeleton death animation
-    if(this.isDead){
+    if (this.isDead) {
       this.width = 80
-      this.damage=0
-      this.speed=0
+      this.damage = 0
+      this.speed = 0
       this.image.src = ancientSkeletonDeath
       this.maxFrame = this.deathAnimation.maxFrame
       if (this.frameX === this.deathAnimation.maxFrame - 1) {
@@ -81,6 +84,7 @@ export default class AncientSkeleton extends Enemy {
       }
     }
 
+    // Frame update
     if (this.timer > this.interval) {
       this.frameX++
       this.timer = 0
@@ -92,26 +96,26 @@ export default class AncientSkeleton extends Enemy {
       this.frameX = 0
     }
 
-    const dx = player.x - this.x // calculate the x distance to the player
-    const dy = player.y - this.y // calculate the y distance to the player
-    const dx2 = secondPlayer.x - this.x // calculate the x distance to the player
-    const dy2 = secondPlayer.y - this.y // calculate the y distance to the player
-    const distance = Math.sqrt(dx * dx + dy * dy) // calculate the total distance to the player
-    const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2) // calculate the total distance to the player
+    // calculate distance between player and the skeletonBoss
+    const dx = player.x - this.x
+    const dy = player.y - this.y
+    const dx2 = secondPlayer.x - this.x
+    const dy2 = secondPlayer.y - this.y
+    const distance = Math.sqrt(dx * dx + dy * dy)
+    const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2)
 
-    const speedX = (dx / distance) * this.speed // calculate the x speed towards the player
-    const speedY = (dy / distance) * this.speed // calculate the y speed towards the player
-    const speedX2 = (dx2 / distance2) * this.speed // calculate the x speed towards the player
-    const speedY2 = (dy2 / distance2) * this.speed // calculate the y speed towards the player
+    const speedX = (dx / distance) * this.speed
+    const speedY = (dy / distance) * this.speed
+    const speedX2 = (dx2 / distance2) * this.speed
+    const speedY2 = (dy2 / distance2) * this.speed
 
-
-    // if  distance is greater than distance2 move towards player else move towards second player
+    // if distance is greater than distance2 move towards player1 else move towards player2
     if (distance > distance2) {
-      this.x += speedX2 // move the enemy towards the player on the x axis
-      this.y += speedY2 // move the enemy towards the player on the y axis
+      this.x += speedX2
+      this.y += speedY2
     } else {
-      this.x += speedX // move the enemy towards the player on the x axis
-      this.y += speedY // move the enemy towards the player on the y axis
+      this.x += speedX
+      this.y += speedY
     }
   }
 
@@ -148,5 +152,4 @@ export default class AncientSkeleton extends Enemy {
       context.fillText(`y: ${this.y.toFixed()}`, this.x + 20, this.y - 20)
     }
   }
-
 }
