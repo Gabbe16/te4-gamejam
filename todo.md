@@ -9,7 +9,8 @@
 
 ## Göra spelet svårare och mer gameplay
 * Lägga till fler bossar
-* Levels med någon typ av progression?
+* Levels med någon typ av progression
+    - Nya bakgrunder, enemies och bossar 
 
 
 ## Borde läggas till
