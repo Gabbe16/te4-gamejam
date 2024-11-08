@@ -23,6 +23,9 @@
 * Enemy sprites
     - made by Foozle (https://foozlecc.itch.io/)
 
+* Skeleton Boss Sprite
+    - made by AstroBob (https://astrobob.itch.io/)
+
 * Enemy drop icons
     - made by PixelTier (https://pixeltier.itch.io/)
 

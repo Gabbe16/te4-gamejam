@@ -7,12 +7,18 @@
 * Attack när kollision med spelare, dö inte
 
 
-## Göra spelet svårare, mer gameplay
-* Lägga till bossar
-* Någon typ av progression?
+## Göra spelet svårare och mer gameplay
+* Lägga till fler bossar
+* Levels med någon typ av progression?
+
+
+## Borde läggas till
+* IFrame för itch.io embedd
+* Gameover screen (kan visa score, kills etc.)
 
 
 ## Klart
+* Lagt till en boss
 * Sätta max hp
 * Justera hur ofta drops spawnas
 * Enemies har olika speed och damage
