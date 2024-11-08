@@ -112,6 +112,39 @@ export default class Game {
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
+      // check collision between players and the canvas walls
+      this.canvasRightLeftWalls.forEach((wall) => {
+        if (this.checkCollision(this.player, wall)) {
+          if (this.player.x < wall.x) {
+            this.player.x = wall.x - this.player.width - 1
+          } else if (this.player.x > wall.x) {
+            this.player.x = wall.x + wall.width + 1
+          }
+        } else if (this.checkCollision(this.secondPlayer, wall)) {
+          if (this.secondPlayer.x < wall.x) {
+            this.secondPlayer.x = wall.x - this.secondPlayer.width - 1
+          } else if (this.secondPlayer.x > wall.x) {
+            this.secondPlayer.x = wall.x + wall.width + 1
+          }
+        }
+      })
+
+      this.canvasTopBottomWalls.forEach((wall) => {
+        if (this.checkCollision(this.player, wall)) {
+          if (this.player.y < wall.y) {
+            this.player.y = wall.y - this.player.height - 1
+          } else if (this.player.y > wall.y) {
+            this.player.y = wall.y + wall.height + 1
+          }
+        } else if (this.checkCollision(this.secondPlayer, wall)) {
+          if (this.secondPlayer.y < wall.y) {
+            this.secondPlayer.y = wall.y - this.secondPlayer.height - 1
+          } else if (this.secondPlayer.y > wall.y) {
+            this.secondPlayer.y = wall.y + wall.height + 1
+          }
+        }
+      })
+
       // Check collision between players enemies and drops
       this.enemies.forEach((enemy) => {
         enemy.update(this.player, this.secondPlayer, deltaTime)
@@ -153,40 +186,6 @@ export default class Game {
             this.secondPlayer.hit = true
           }
         }
-
-        // check collision between players and canvas walls
-        this.canvasRightLeftWalls.forEach((wall) => {
-          if (this.checkCollision(this.player, wall)) {
-            if (this.player.x < wall.x) {
-              this.player.x = wall.x - this.player.width - 1
-            } else if (this.player.x > wall.x) {
-              this.player.x = wall.x + wall.width + 1
-            }
-          } else if (this.checkCollision(this.secondPlayer, wall)) {
-            if (this.secondPlayer.x < wall.x) {
-              this.secondPlayer.x = wall.x - this.secondPlayer.width - 1
-            } else if (this.secondPlayer.x > wall.x) {
-              this.secondPlayer.x = wall.x + wall.width + 1
-            }
-          }
-        })
-
-        this.canvasTopBottomWalls.forEach((wall) => {
-          if (this.checkCollision(this.player, wall)) {
-            if (this.player.y < wall.y) {
-              this.player.y = wall.y - this.player.height - 1
-            } else if (this.player.y > wall.y) {
-              this.player.y = wall.y + wall.height + 1
-            }
-          } else if (this.checkCollision(this.secondPlayer, wall)) {
-            if (this.secondPlayer.y < wall.y) {
-              this.secondPlayer.y = wall.y - this.secondPlayer.height - 1
-            } else if (this.secondPlayer.y > wall.y) {
-              this.secondPlayer.y = wall.y + wall.height + 1
-            }
-          }
-        })
-
 
         // Check collision between player projectiles and enemies
         this.player.projectiles.forEach((projectile) => {
@@ -233,7 +232,6 @@ export default class Game {
 
           }
         })
-
 
         // Check collision between player slashes and enemies
         this.secondPlayer.slashes.forEach((slash) => {
