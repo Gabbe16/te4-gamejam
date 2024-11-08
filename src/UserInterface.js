@@ -111,7 +111,7 @@ export default class UserInterface {
         context.textAlign = 'center'
         context.font = `40px ${this.fontFamily}`
         context.fillText('Movement', this.game.width - 495, this.game.height / 4)
-        context.fillText('Cast Spell', this.game.width - 495, this.game.height - 450)
+        context.fillText('Cast Spell And Aim With The Mouse', this.game.width - 495, this.game.height - 450)
         context.drawImage(this.arrowup, 0, 0, 32, 32, this.game.width - 525, this.game.height / 3.5, 64, 64)
         context.drawImage(this.arrowdown, 0, 0, 32, 32, this.game.width - 525, this.game.height / 2.75, 64, 64)
         context.drawImage(this.arrowleft, 0, 0, 32, 32, this.game.width - 450, this.game.height / 2.75, 64, 64)
