@@ -16,9 +16,16 @@ export default class SkeletonBoss extends Enemy {
     this.scoreAmount = 10
     this.damage = 5
     this.baseDamage = 5
+    this.range = 100
 
     this.isDead = false
     this.isHit = false
+    this.attackPlayer1 = false
+    this.attackDone = false
+    this.attackBegin = false
+    this.attackPlayer2 = false
+    this.attackDone2 = false
+    this.attackBegin2 = false
 
     // SkeletonBoss sprite sheet
     const image = new Image()
@@ -28,6 +35,10 @@ export default class SkeletonBoss extends Enemy {
     this.walkAnimation = {
       frameY: 2,
       maxFrame: 12
+    }
+    this.attackAnimation = {
+      frameY: 0,
+      maxFrame: 13
     }
 
     // Sprite animation variables
@@ -49,6 +60,55 @@ export default class SkeletonBoss extends Enemy {
     } else if (this.speedX > 0) {
       this.flip = false
     }
+    if(this.attackPlayer1) {
+      if(this.attackBegin === false) {
+        this.attackBegin = true
+        this.frameX = 0
+      }
+
+      this.frameY = this.attackAnimation.frameY
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 6 && !this.attackDone) {
+        this.game.player.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer1 = false
+        this.attackDone = false
+        this.attackBegin = false
+        this.frameX = 0
+        this.frameY = this.walkAnimation.frameY
+        this.maxFrame = this.walkAnimation.maxFrame
+
+      }
+    }
+    if(this.attackPlayer2) {
+      if(this.attackBegin2 === false) {
+        this.attackBegin2 = true
+        this.frameX = 0
+      }
+      this.frameY = this.attackAnimation.frameY
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 6 && !this.attackDone2) {
+        this.game.secondPlayer.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone2 = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer2 = false
+        this.attackDone2 = false
+        this.attackBegin2 = false
+        this.frameX = 0
+        this.frameY = this.walkAnimation.frameY
+        this.maxFrame = this.walkAnimation.maxFrame
+
+      }
+    }
+    
+
     
 
     if (this.timer > this.interval) {

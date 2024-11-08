@@ -70,7 +70,7 @@ export default class Game {
         let mathrandom = Math.random() * 2
         let rounded = Math.round(mathrandom)
 
-        if (this.score >= 100) {
+        if (this.score >= 0) {
           this.enemies.push(new SkeletonBoss(this, 905, 124))
           this.skeletonInterval = 5000000
         }
@@ -150,12 +150,8 @@ export default class Game {
         enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
           enemy.isDead = true
-          if (enemy.damage === 1) {
-            enemy.frameX = 0
-            this.audio.playPlayerDamage()
-          }
-          this.player.lives = this.player.lives - enemy.damage
-
+          enemy.attackPlayer1 = true
+          
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             enemy.markedForDeletion = true
@@ -167,11 +163,7 @@ export default class Game {
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
           enemy.isDead = true
-          if (enemy.damage === 1) {
-            enemy.frameX = 0
-            this.audio.playPlayerDamage()
-          }
-          this.secondPlayer.lives = this.secondPlayer.lives - enemy.damage
+          enemy.attackPlayer2 = true
           if (enemy.type === 'jackolantern') {
             this.secondPlayer.slashInterval -= 50
             enemy.markedForDeletion = true
