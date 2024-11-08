@@ -2,6 +2,7 @@ import Enemy from './Enemy.js'
 import ancientskeletonimage from './assets/sprites/AncientSkeletonRightWalk.png'
 import ancientSkeletonDeath from './assets/sprites/AncientSkeletonRightDeath.png'
 import ancientSkeletonHit from './assets/sprites/AncientSkeletonRightHurt.png'
+import ancientSkeletonAttack from './assets/sprites/AncientSkeletonRightAttack01.png'
 export default class AncientSkeleton extends Enemy {
   constructor(game, x, y) {
     super(game)
@@ -13,11 +14,18 @@ export default class AncientSkeleton extends Enemy {
     this.lives = 5
     this.type = 'ancientskeleton'
     this.scoreAmount = 60
-    this.damage = 3
-    this.baseDamage = 3
+    this.damage = 2
+    this.baseDamage = 2
 
     this.isDead = false
     this.isHit = false
+
+    this.attackPlayer1 = false
+    this.attackDone = false
+    this.attackBegin = false
+    this.attackPlayer2 = false
+    this.attackDone2 = false
+    this.attackBegin2 = false
 
     // AncientSkeleton Walk Image
     const image = new Image()
@@ -42,6 +50,11 @@ export default class AncientSkeleton extends Enemy {
       frameY: 0,
       maxFrame: 4
     }
+    //attack animation
+    this.attackAnimation = {
+      frameY: 0,
+      maxFrame: 7
+    }
 
     // Flip sprite if x is greater than 400
     if (this.x > 400) {
@@ -55,6 +68,59 @@ export default class AncientSkeleton extends Enemy {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
+    }
+    if(this.attackPlayer1) {
+      if(this.attackBegin === false) {
+        this.attackBegin = true
+        this.frameX = 0
+      }
+
+      this.image.src = ancientSkeletonAttack
+      this.width = 80
+      this.height = 80
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 6 && !this.attackDone) {
+        this.game.player.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer1 = false
+        this.attackDone = false
+        this.attackBegin = false
+        this.frameX = 0
+        
+       
+
+      }
+    }
+    if(this.attackPlayer2) {
+      if(this.attackBegin2 === false) {
+        this.attackBegin2 = true
+        this.frameX = 0
+      }
+
+      this.image.src = ancientSkeletonAttack
+      this.width = 80
+      this.height = 80
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 6 && !this.attackDone2) {
+        this.game.secondPlayer.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone2 = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer2 = false
+        this.attackDone2 = false
+        this.attackBegin2 = false
+        this.frameX = 0
+        this.image.src = ancientskeletonimage
+        
+       
+
+      }
     }
 
     // AncientSkeleton Hit Animation

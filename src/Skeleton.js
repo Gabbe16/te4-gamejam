@@ -1,12 +1,13 @@
 import Enemy from './Enemy.js'
 import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
 import luciferSkeletonDeath from './assets/sprites/SkeletonWithSwordRightDeath.png'
+import skeletonAttack from './assets/sprites/SkeletonWithSwordRightAttack01.png'
 
 export default class Skeleton extends Enemy {
   constructor(game, x, y) {
     super(game)
     this.width = 48
-    this.height = 55
+    this.height = 48
     this.x = x
     this.y = y
     this.speed = 2.5
@@ -17,6 +18,13 @@ export default class Skeleton extends Enemy {
     this.baseDamage = 1
 
     this.isDead = false
+
+    this.attackPlayer1 = false
+    this.attackDone = false
+    this.attackBegin = false
+    this.attackPlayer2 = false
+    this.attackDone2 = false
+    this.attackBegin2 = false
 
     // Skeleton Walk Image
     const image = new Image()
@@ -31,8 +39,19 @@ export default class Skeleton extends Enemy {
     this.timer = 0
     this.interval = 1000 / this.fps
 
+    //walk animation
+    this.walkAnimation = {
+      frameY: 0,
+      maxFrame: 6
+    }
+
     //skeleton death animation
     this.deathAnimation = {
+      frameY: 0,
+      maxFrame: 8
+    }
+     //attack animation
+     this.attackAnimation = {
       frameY: 0,
       maxFrame: 8
     }
@@ -48,6 +67,58 @@ export default class Skeleton extends Enemy {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
+    }
+    if(this.attackPlayer1) {
+      if(this.attackBegin === false) {
+        this.attackBegin = true
+        this.frameX = 0
+      }
+
+      this.image.src = skeletonAttack
+      
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 7 && !this.attackDone) {
+        this.game.player.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer1 = false
+        this.attackDone = false
+        this.attackBegin = false
+        this.image.src = luciferSkeleton
+        this.maxFrame = this.walkAnimation.maxFrame
+        this.frameX = 0
+      }
+    }
+    if(this.attackPlayer2) {
+      if(this.attackBegin2 === false) {
+        this.attackBegin2 = true
+        this.frameX = 0
+      }
+
+      this.image.src = skeletonAttack
+      
+      this.maxFrame = this.attackAnimation.maxFrame
+      if (this.frameX === 7 && !this.attackDone2) {
+        this.game.secondPlayer.lives -= this.damage
+        this.game.audio.playPlayerDamage()
+        this.attackDone2 = true
+      }
+      
+      if (this.frameX === this.attackAnimation.maxFrame - 1) {
+        this.attackPlayer2 = false
+        this.attackDone2 = false
+        this.attackBegin2 = false
+        this.frameX = 0
+        this.image.src = luciferSkeleton
+        this.maxFrame = this.walkAnimation.maxFrame
+      
+        
+       
+
+      }
     }
 
     //skeleton death animation
