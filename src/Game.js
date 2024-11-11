@@ -141,7 +141,7 @@ export default class Game {
               } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
-            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
                 if (Math.random() < 0.15) {
