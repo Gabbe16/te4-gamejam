@@ -38,6 +38,7 @@ export default class Game {
     this.speed = 1
 
     // Levels
+    this.currentLevel = 0
     this.levels = []
     this.levels.push(this.Level1)
 
@@ -55,7 +56,7 @@ export default class Game {
     }
 
     if (this.gameStart === true) {
-      this.levels[0].update(deltaTime)
+      this.levels[this.currentLevel].update(deltaTime)
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
@@ -222,7 +223,7 @@ export default class Game {
 
   draw(context) {
     if (this.gameStart === true) {
-      this.levels[0].draw(context)
+      this.levels[this.currentLevel].draw(context)
       this.player.draw(context)
       this.secondPlayer.draw(context)
       this.enemies.forEach((enemy) => {
