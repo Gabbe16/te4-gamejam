@@ -1,4 +1,5 @@
 import Level from "./level";
+import Wall from "../Wall.js";
 import Skeleton from "../enemies/Skeleton.js";
 import Skeletonking from "../enemies/SkeletonKing.js";
 import AncientSkeleton from "../enemies/AncientSkeleton.js";
@@ -11,15 +12,27 @@ export default class Level1 extends Level {
         this.name = 'The Skeleton Dungeon';
         this.background = new Background(this.game)
         this.enemyInterval = 1500
+        this.wallInterval = 10
+        this.wallTimer = 10
     }
 
     update(deltaTime) {
+        // Add walls to canvas
+        if (this.wallTimer > this.wallInterval) {
+            this.addCanvasWalls()
+            this.wallTimer = 0
+            this.wallInterval = 5000000
+        } else {
+            this.wallTimer += deltaTime
+        }
+
+        // Add enemies to game.enemies array
         if (this.enemyTimer > this.enemyInterval) {
             const xcoords = [246, 905, 1560]
             let mathrandom = Math.random() * 2
             let rounded = Math.round(mathrandom)
 
-            if (this.score >= 100) {
+            if (this.game.score >= 100) {
                 this.game.enemies.push(new SkeletonBoss(this, 905, 124))
                 this.enemyInterval = 5000000
             }
@@ -58,6 +71,13 @@ export default class Level1 extends Level {
             this.enemyTimer += deltaTime
         }
 
+    }
+
+    addCanvasWalls() {
+        this.game.canvasRightLeftWalls.push(new Wall(this, 75, 18, 190, 915))
+        this.game.canvasRightLeftWalls.push(new Wall(this, 1580, 18, 190, 915))
+        this.game.canvasTopBottomWalls.push(new Wall(this, 75, 18, 1695, 122))
+        this.game.canvasTopBottomWalls.push(new Wall(this, 75, 810, 1695, 122))
     }
 
     draw(context) {

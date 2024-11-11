@@ -6,7 +6,6 @@ export default class Level {
         this.audio = game.audio
         // override name for each level
         this.name = 'Level';
-        this.canvasWalls = []
         // override background for each level
         this.background = null
 

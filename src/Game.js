@@ -7,8 +7,6 @@ import Bloodvial from './drops/Bloodvial.js'
 import Audio from './Audio.js'
 import secondPlayer from './SecondPlayer.js'
 
-import wall from './Wall.js'
-
 export default class Game {
   constructor(width, height, canvasPosition) {
     this.width = width
@@ -34,26 +32,18 @@ export default class Game {
     // Game variables
     this.score = 0
     this.keys = []
-
-    // Levels
-    this.levels = []
-    this.levels.push(this.Level1)
-    console.log(this.levels)
-
     this.enemies = []
     this.menuTime = 0
     this.gameTime = 0
     this.speed = 1
 
-    this.canvasRightLeftWalls = [
-      new wall(this, 75, 18, 190, 915),
-      new wall(this, 1580, 18, 190, 915),
-    ]
+    // Levels
+    this.levels = []
+    this.levels.push(this.Level1)
 
-    this.canvasTopBottomWalls = [
-      new wall(this, 75, 18, 1695, 122),
-      new wall(this, 75, 810, 1695, 122)
-    ]
+    // Level canvas hitboxes
+    this.canvasRightLeftWalls = []
+    this.canvasTopBottomWalls = []
   }
 
   update(deltaTime) {
