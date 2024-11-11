@@ -1,4 +1,4 @@
-import Level from "./level";
+import Level from "./Level.js";
 import Wall from "../Wall.js";
 
 import Background from "../backgrounds/Background.js";
