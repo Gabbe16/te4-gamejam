@@ -10,7 +10,7 @@ import arrowkey_right_image from './assets/controls_images/arrowkey_RIGHT.png'
 import arrowkey_up_image from './assets/controls_images/arrowkey_UP.png'
 import mouse_image from './assets/controls_images/controlPrompts.png'
 
-import Menuparalax from './Menuparalax.js'
+import Menuparalax from './backgrounds/Menuparalax.js'
 
 export default class UserInterface {
   constructor(game) {

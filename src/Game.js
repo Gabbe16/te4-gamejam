@@ -7,7 +7,7 @@ import SkeletonBoss from './enemies/SkeletonBoss.js'
 import AncientSkeleton from './enemies/AncientSkeleton.js'
 import Jackolantern from './drops/Jackolantern.js'
 import Bloodvial from './drops/Bloodvial.js'
-import Background from './Background.js'
+import Background from './backgrounds/Background.js'
 import Audio from './Audio.js'
 import secondPlayer from './SecondPlayer.js'
 
