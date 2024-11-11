@@ -2,6 +2,7 @@ import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Level1 from './levels/Level1.js'
+import Level2 from './levels/Level2.js'
 import Jackolantern from './drops/Jackolantern.js'
 import Bloodvial from './drops/Bloodvial.js'
 import Audio from './Audio.js'
@@ -20,6 +21,7 @@ export default class Game {
     this.player = new Player(this)
     this.secondPlayer = new secondPlayer(this)
     this.Level1 = new Level1(this, this.player, this.secondPlayer, this.audio)
+    this.Level2 = new Level2(this, this.player, this.secondPlayer, this.audio)
 
     // Game states
     this.gameStart = false
@@ -41,6 +43,7 @@ export default class Game {
     this.currentLevel = 0
     this.levels = []
     this.levels.push(this.Level1)
+    this.levels.push(this.Level2)
 
     // Level canvas hitboxes
     this.canvasRightLeftWalls = []
@@ -65,12 +68,14 @@ export default class Game {
         if (this.checkCollision(this.player, wall)) {
           if (this.player.x < wall.x) {
             this.player.x = wall.x - this.player.width - 1
+            this.currentLevel = 1
           } else if (this.player.x > wall.x) {
             this.player.x = wall.x + wall.width + 1
           }
         } else if (this.checkCollision(this.secondPlayer, wall)) {
           if (this.secondPlayer.x < wall.x) {
             this.secondPlayer.x = wall.x - this.secondPlayer.width - 1
+            this.currentLevel = 1
           } else if (this.secondPlayer.x > wall.x) {
             this.secondPlayer.x = wall.x + wall.width + 1
           }
@@ -141,7 +146,7 @@ export default class Game {
               } else if (enemy.type === 'ancientskeleton') {
                 this.audio.playDamage3()
               }
-            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton') {
+            } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
                 if (Math.random() < 0.15) {
