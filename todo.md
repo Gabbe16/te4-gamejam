@@ -13,11 +13,11 @@
 
 
 ## Borde läggas till
-* IFrame för itch.io embedd
 * Gameover screen (kan visa score, kills etc.)
 
 
 ## Klart
+* IFrame för itch.io embedd
 * Lagt till en boss
 * Sätta max hp
 * Justera hur ofta drops spawnas
