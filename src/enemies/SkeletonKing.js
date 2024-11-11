@@ -1,8 +1,8 @@
 import Enemy from './Enemy.js'
-import skeletonkingimage from './assets/sprites/SkeletonKingRightWalk.png'
-import skeletonkingdeath from './assets/sprites/SkeletonKingRightDeath.png'
-import skeletonkinghit from './assets/sprites/SkeletonKingRightHurt.png'
-import skeletonkingattack from './assets/sprites/SkeletonKingRightAttack01.png'
+import skeletonkingimage from '../assets/sprites/SkeletonKingRightWalk.png'
+import skeletonkingdeath from '../assets/sprites/SkeletonKingRightDeath.png'
+import skeletonkinghit from '../assets/sprites/SkeletonKingRightHurt.png'
+import skeletonkingattack from '../assets/sprites/SkeletonKingRightAttack01.png'
 
 export default class SkeletonKing extends Enemy {
   constructor(game, x, y) {

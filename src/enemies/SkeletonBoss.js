@@ -1,5 +1,5 @@
 import Enemy from './Enemy.js'
-import skeletonBoss from './assets/sprites/skeletonBoss.png'
+import skeletonBoss from '../assets/sprites/skeletonBoss.png'
 
 export default class SkeletonBoss extends Enemy {
   constructor(game, x, y) {

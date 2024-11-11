@@ -1,5 +1,5 @@
 import Enemy from '../enemies/Enemy'
-import bloodVialImage from './assets/sprites/blood.png'
+import bloodVialImage from '../assets/sprites/blood.png'
 
 export default class Bloodvial extends Enemy {
   constructor(game, x, y) {

@@ -1,8 +1,8 @@
 import Enemy from './Enemy.js'
-import ancientskeletonimage from './assets/sprites/AncientSkeletonRightWalk.png'
-import ancientSkeletonDeath from './assets/sprites/AncientSkeletonRightDeath.png'
-import ancientSkeletonHit from './assets/sprites/AncientSkeletonRightHurt.png'
-import ancientSkeletonAttack from './assets/sprites/AncientSkeletonRightAttack01.png'
+import ancientskeletonimage from '../assets/sprites/AncientSkeletonRightWalk.png'
+import ancientSkeletonDeath from '../assets/sprites/AncientSkeletonRightDeath.png'
+import ancientSkeletonHit from '../assets/sprites/AncientSkeletonRightHurt.png'
+import ancientSkeletonAttack from '../assets/sprites/AncientSkeletonRightAttack01.png'
 export default class AncientSkeleton extends Enemy {
   constructor(game, x, y) {
     super(game)

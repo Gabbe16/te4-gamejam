@@ -1,4 +1,4 @@
-import dungeonBackground from './assets/sprites/dungeon.png';
+import dungeonBackground from '../assets/sprites/dungeon.png';
 
 export default class Background {
     constructor(game) {

@@ -1,8 +1,8 @@
 import Layer from "./Layer.js"
-import Mushroom_Cave_L1 from './assets/paralax_Menu/Mushroom_Cave_L1.png'
-import Mushroom_Cave_L2 from './assets/paralax_Menu/Mushroom_Cave_L2.png'
-import Mushroom_Cave_L3 from './assets/paralax_Menu/Mushroom_Cave_L3.png'
-import Mushroom_Cave_L4 from './assets/paralax_Menu/Mushroom_Cave_L4.png'
+import Mushroom_Cave_L1 from '../assets/paralax_Menu/Mushroom_Cave_L1.png'
+import Mushroom_Cave_L2 from '../assets/paralax_Menu/Mushroom_Cave_L2.png'
+import Mushroom_Cave_L3 from '../assets/paralax_Menu/Mushroom_Cave_L3.png'
+import Mushroom_Cave_L4 from '../assets/paralax_Menu/Mushroom_Cave_L4.png'
 
 export default class{
     constructor(game){
