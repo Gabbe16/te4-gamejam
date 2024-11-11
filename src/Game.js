@@ -1,14 +1,9 @@
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
-import Skeleton from './enemies/Skeleton.js'
-import Skeletonking from './enemies/SkeletonKing.js'
-import SkeletonBoss from './enemies/SkeletonBoss.js'
-import AncientSkeleton from './enemies/AncientSkeleton.js'
-import Level1 from './levels/level1_example.js'
+import Level1 from './levels/Level1.js'
 import Jackolantern from './drops/Jackolantern.js'
 import Bloodvial from './drops/Bloodvial.js'
-import Background from './backgrounds/Background.js'
 import Audio from './Audio.js'
 import secondPlayer from './SecondPlayer.js'
 
@@ -23,10 +18,10 @@ export default class Game {
     // Game objects
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
-    this.background = new Background(this)
-    this.audio = new Audio()
+    this.audio = new Audio(this)
     this.player = new Player(this)
     this.secondPlayer = new secondPlayer(this)
+    this.Level1 = new Level1(this, this.player, this.secondPlayer, this.audio)
 
     // Game states
     this.gameStart = false
@@ -39,11 +34,15 @@ export default class Game {
     // Game variables
     this.score = 0
     this.keys = []
+
+    // Levels
+    this.levels = []
+    this.levels.push(this.Level1)
+    console.log(this.levels)
+
     this.enemies = []
     this.menuTime = 0
     this.gameTime = 0
-    this.enemyTimer = 0
-    this.skeletonInterval = 1500
     this.speed = 1
 
     this.canvasRightLeftWalls = [
@@ -66,50 +65,7 @@ export default class Game {
     }
 
     if (this.gameStart === true) {
-     /*  if (this.enemyTimer > this.skeletonInterval) {
-        const xcoords = [246, 905, 1560]
-        let mathrandom = Math.random() * 2
-        let rounded = Math.round(mathrandom)
-
-        if (this.score >= 100) {
-          this.enemies.push(new SkeletonBoss(this, 905, 124))
-          this.skeletonInterval = 5000000
-        }
-
-        if (Math.random() > 0.5) {
-          const xcoords = [246, 905, 1560]
-          let mathrandom = Math.random() * 2
-          let rounded = Math.round(mathrandom)
-
-          if (rounded === 0) {
-            this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
-          } else if (rounded === 1) {
-            this.enemies.push(new Skeleton(this, xcoords[rounded], 124))
-          } else {
-            this.enemies.push(new Skeleton(this, xcoords[rounded], 420))
-          }
-        } else if (Math.random() < 0.45) {
-          if (rounded === 0) {
-            this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
-          } else if (rounded === 1) {
-            this.enemies.push(new Skeletonking(this, xcoords[rounded], 124))  
-          } else {
-            this.enemies.push(new Skeletonking(this, xcoords[rounded], 420))
-          }
-        } else if (Math.random() < 0.25) {
-          if (rounded === 0) {
-            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
-          } else if (rounded === 1) {
-            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 124))
-          } else {
-            this.enemies.push(new AncientSkeleton(this, xcoords[rounded], 420))
-          }
-        }
-        this.enemyTimer = 0
-      } else {
-        this.enemyTimer += deltaTime
-      }
- */
+      this.levels[0].update(deltaTime)
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
@@ -276,7 +232,7 @@ export default class Game {
 
   draw(context) {
     if (this.gameStart === true) {
-      this.background.draw(context)
+      this.levels[0].draw(context)
       this.player.draw(context)
       this.secondPlayer.draw(context)
       this.enemies.forEach((enemy) => {
