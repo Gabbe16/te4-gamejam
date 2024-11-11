@@ -1,8 +1,7 @@
 # Feedback
 
 ## Bör justeras
-* Se till att det går att sikta och skjuta (kolla andra webbläsare också)
-* Byta player1 attack från j --> Space
+* Se till att det går att sikta och skjuta (testa andra webbläsare också)
 * Repetitiva ljudeffekter, lägg till fler för alla olika enemies (hit, death, etc.)
 * Attack när kollision med spelare, dö inte
 
