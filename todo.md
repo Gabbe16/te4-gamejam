@@ -7,12 +7,12 @@
 
 ## Göra spelet svårare och mer gameplay
 * Nya bakgrunder, enemies och bossar på levels
-* Sätt att nå nya levels
+* Sätt att nå nya levels, mest troligt genom dörrar
 
 
 ## Borde läggas till
 * Gameover screen (kan visa score, kills etc.)
-*fiender slår bredvid istället för i player
+* Fiender slår bredvid istället för i player
 
 
 ## Work in progress
