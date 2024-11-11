@@ -1,4 +1,4 @@
-import Enemy from '../Enemy.js'
+import Enemy from './Enemy.js'
 import ancientskeletonimage from './assets/sprites/AncientSkeletonRightWalk.png'
 import ancientSkeletonDeath from './assets/sprites/AncientSkeletonRightDeath.png'
 import ancientSkeletonHit from './assets/sprites/AncientSkeletonRightHurt.png'

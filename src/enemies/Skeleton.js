@@ -1,4 +1,4 @@
-import Enemy from '../Enemy.js'
+import Enemy from './Enemy.js'
 import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
 import luciferSkeletonDeath from './assets/sprites/SkeletonWithSwordRightDeath.png'
 import skeletonAttack from './assets/sprites/SkeletonWithSwordRightAttack01.png'

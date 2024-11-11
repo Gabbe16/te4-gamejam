@@ -1,4 +1,4 @@
-import Enemy from './Enemy'
+import Enemy from './enemies/Enemy'
 import jackoImage from './assets/sprites/jackolantern_basket.png'
 
 export default class Jackolantern extends Enemy {
