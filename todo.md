@@ -16,6 +16,11 @@
 * Gameover screen (kan visa score, kills etc.)
 
 
+## Work in progress
+* Struktur på projektet
+* OOP
+
+
 ## Klart
 * IFrame för itch.io embedd
 * Lagt till en boss
