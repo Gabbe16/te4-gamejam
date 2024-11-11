@@ -99,6 +99,23 @@ export default class BackgroundMusic {
         newFireSound.play()
     }
 
+    playDamageSound() {
+        const i = Math.floor(Math.random() * 3) + 1
+        if (i === 1) {
+            const newDamage1 = this.damage1.cloneNode()
+            newDamage1.play()
+            console.log("1")
+        } else if (i === 2) {
+            const newDamage2 = this.damage2.cloneNode()
+            newDamage2.play()
+            console.log("2")
+        } else {
+            const newDamage3 = this.damage3.cloneNode()
+            newDamage3.play()
+            console.log("3")
+        }
+    }
+
     /* 
         playDamage(){
             console.log("gahsahpsa")
