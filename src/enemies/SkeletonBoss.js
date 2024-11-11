@@ -1,24 +1,25 @@
-import Enemy from './Enemy.js'
-import luciferSkeleton from './assets/sprites/SkeletonWithSwordRightRun.png'
-import luciferSkeletonDeath from './assets/sprites/SkeletonWithSwordRightDeath.png'
-import skeletonAttack from './assets/sprites/SkeletonWithSwordRightAttack01.png'
+import Enemy from '../Enemy.js'
+import skeletonBoss from './assets/sprites/skeletonBoss.png'
 
-export default class Skeleton extends Enemy {
+export default class SkeletonBoss extends Enemy {
   constructor(game, x, y) {
     super(game)
-    this.width = 48
-    this.height = 48
+    this.width = 64
+    this.height = 64
+    this.imageheight = 64
+    this.imagewidth = 64
     this.x = x
     this.y = y
-    this.speed = 2.5
-    this.lives = 1
-    this.type = 'skeleton'
+    this.speed = 1
+    this.lives = 25
+    this.type = 'SkeletonBoss'
     this.scoreAmount = 10
-    this.damage = 1
-    this.baseDamage = 1
+    this.damage = 5
+    this.baseDamage = 5
+    
 
     this.isDead = false
-
+    this.isHit = false
     this.attackPlayer1 = false
     this.attackDone = false
     this.attackBegin = false
@@ -26,43 +27,34 @@ export default class Skeleton extends Enemy {
     this.attackDone2 = false
     this.attackBegin2 = false
 
-    // Skeleton Walk Image
+    // SkeletonBoss sprite sheet
     const image = new Image()
-    image.src = luciferSkeleton
+    image.src = skeletonBoss
     this.image = image
 
-    // Skeleton Walk Animation
-    this.frameX = 1
-    this.frameY = 0
-    this.maxFrame = 6
+    this.walkAnimation = {
+      frameY: 2,
+      maxFrame: 12
+    }
+    this.attackAnimation = {
+      frameY: 0,
+      maxFrame: 13
+    }
+
+    // Sprite animation variables
+    this.frameX = 0
+    this.frameY = 2
+    this.maxFrame = 12
     this.fps = 20
     this.timer = 0
     this.interval = 1000 / this.fps
 
-    //walk animation
-    this.walkAnimation = {
-      frameY: 0,
-      maxFrame: 6
-    }
-
-    //skeleton death animation
-    this.deathAnimation = {
-      frameY: 0,
-      maxFrame: 8
-    }
-     //attack animation
-     this.attackAnimation = {
-      frameY: 0,
-      maxFrame: 8
-    }
-
-    // Flip sprite if x is greater than 400
-    if (this.x > 400) {
-      this.flip = true
-    }
-  }
+    // Flip sprite
+    this.flip = false
+}
 
   update(player, secondPlayer, deltaTime) {
+    // SkeletonKing Walk Animation
     if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
@@ -74,10 +66,9 @@ export default class Skeleton extends Enemy {
         this.frameX = 0
       }
 
-      this.image.src = skeletonAttack
-      
+      this.frameY = this.attackAnimation.frameY
       this.maxFrame = this.attackAnimation.maxFrame
-      if (this.frameX === 7 && !this.attackDone) {
+      if (this.frameX === 6 && !this.attackDone) {
         this.game.player.lives -= this.damage
         this.game.audio.playPlayerDamage()
         this.attackDone = true
@@ -87,9 +78,10 @@ export default class Skeleton extends Enemy {
         this.attackPlayer1 = false
         this.attackDone = false
         this.attackBegin = false
-        this.image.src = luciferSkeleton
-        this.maxFrame = this.walkAnimation.maxFrame
         this.frameX = 0
+        this.frameY = this.walkAnimation.frameY
+        this.maxFrame = this.walkAnimation.maxFrame
+
       }
     }
     if(this.attackPlayer2) {
@@ -97,11 +89,9 @@ export default class Skeleton extends Enemy {
         this.attackBegin2 = true
         this.frameX = 0
       }
-
-      this.image.src = skeletonAttack
-      
+      this.frameY = this.attackAnimation.frameY
       this.maxFrame = this.attackAnimation.maxFrame
-      if (this.frameX === 7 && !this.attackDone2) {
+      if (this.frameX === 6 && !this.attackDone2) {
         this.game.secondPlayer.lives -= this.damage
         this.game.audio.playPlayerDamage()
         this.attackDone2 = true
@@ -112,27 +102,15 @@ export default class Skeleton extends Enemy {
         this.attackDone2 = false
         this.attackBegin2 = false
         this.frameX = 0
-        this.image.src = luciferSkeleton
+        this.frameY = this.walkAnimation.frameY
         this.maxFrame = this.walkAnimation.maxFrame
-      
-        
-       
 
       }
     }
+    
 
-    //skeleton death animation
-    if (this.isDead) {
-      this.damage = 0
-      this.speed = 0
-      this.image.src = luciferSkeletonDeath
-      this.maxFrame = this.deathAnimation.maxFrame
-      if (this.frameX === this.deathAnimation.maxFrame - 1) {
-        this.markedForDeletion = true
-      }
-    }
+    
 
-    // Skeleton Walk Animation and frame update
     if (this.timer > this.interval) {
       this.frameX++
       this.timer = 0
@@ -143,24 +121,23 @@ export default class Skeleton extends Enemy {
     if (this.frameX >= this.maxFrame) {
       this.frameX = 0
     }
-
-    // calculate distance between player and the skeleton
+    // calculate distance between player and the skeleton boss
     const dx = player.x - this.x
     const dy = player.y - this.y
-    const dx2 = secondPlayer.x - this.x
-    const dy2 = secondPlayer.y - this.y
-    const distance = Math.sqrt(dx * dx + dy * dy)
-    const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2)
+    const dx2 = secondPlayer.x - this.x 
+    const dy2 = secondPlayer.y - this.y 
+    const distance = Math.sqrt(dx * dx + dy * dy) 
+    const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2) 
 
     const speedX = (dx / distance) * this.speed
     const speedY = (dy / distance) * this.speed
     const speedX2 = (dx2 / distance2) * this.speed
     const speedY2 = (dy2 / distance2) * this.speed
 
-    // if distance is greater than distance2 move towards player1 else move towards player2
+    // if  distance is greater than distance2 move towards player else move towards second player
     if (distance > distance2) {
-      this.x += speedX2
-      this.y += speedY2
+      this.x += speedX2 
+      this.y += speedY2 
     } else {
       this.x += speedX
       this.y += speedY
@@ -168,26 +145,20 @@ export default class Skeleton extends Enemy {
   }
 
   draw(context) {
-    if (this.flip) {
-      context.save()
-      context.scale(-1, 1)
-    }
+  
 
     context.drawImage(
       this.image,
-      this.frameX * this.width,
-      this.frameY * this.height,
-      this.width,
-      this.height,
-      this.flip ? this.x * -1 - (this.width + 25) : this.x - 25,
-      this.y - 25,
-      this.width * 2,
-      this.height * 2
+      this.frameX * this.imageheight,
+      this.frameY * this.imagewidth,
+      this.imagewidth,
+      this.imageheight,
+      this.flip ? this.x * -1 - (this.width + 85) : this.x - 85,
+      this.y - 100,
+      this.width * 2.5,
+      this.height * 2.5
     )
 
-    if (this.flip) {
-      context.restore()
-    }
 
     // Skeleton Debugging
     if (this.game.debug) {
@@ -200,4 +171,5 @@ export default class Skeleton extends Enemy {
       context.fillText(`y: ${this.y.toFixed()}`, this.x + 20, this.y - 20)
     }
   }
+
 }
