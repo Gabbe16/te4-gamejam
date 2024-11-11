@@ -6,8 +6,8 @@
 
 
 ## Göra spelet svårare och mer gameplay
-* Levels med någon typ av progression
-    - Nya bakgrunder, enemies och bossar
+* Nya bakgrunder, enemies och bossar på levels
+* Sätt att nå nya levels
 
 
 ## Borde läggas till
@@ -20,6 +20,7 @@
 
 
 ## Klart
+* Levels
 * IFrame för itch.io embedd
 * Lagt till en boss
 * Sätta max hp
