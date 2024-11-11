@@ -5,6 +5,7 @@ import Skeleton from './enemies/Skeleton.js'
 import Skeletonking from './enemies/SkeletonKing.js'
 import SkeletonBoss from './enemies/SkeletonBoss.js'
 import AncientSkeleton from './enemies/AncientSkeleton.js'
+import Level1 from './levels/level1_example.js'
 import Jackolantern from './drops/Jackolantern.js'
 import Bloodvial from './drops/Bloodvial.js'
 import Background from './backgrounds/Background.js'
@@ -65,7 +66,7 @@ export default class Game {
     }
 
     if (this.gameStart === true) {
-      if (this.enemyTimer > this.skeletonInterval) {
+     /*  if (this.enemyTimer > this.skeletonInterval) {
         const xcoords = [246, 905, 1560]
         let mathrandom = Math.random() * 2
         let rounded = Math.round(mathrandom)
@@ -108,7 +109,7 @@ export default class Game {
       } else {
         this.enemyTimer += deltaTime
       }
-
+ */
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
 
