@@ -90,6 +90,9 @@ export default class AncientSkeleton extends Enemy {
         this.attackDone = false
         this.attackBegin = false
         this.frameX = 0
+        this.width = 96
+        this.height = 96
+        this.image.src = ancientskeletonimage
         
        
 
@@ -116,6 +119,8 @@ export default class AncientSkeleton extends Enemy {
         this.attackDone2 = false
         this.attackBegin2 = false
         this.frameX = 0
+        this.width = 96
+        this.height = 96
         this.image.src = ancientskeletonimage
         
        
@@ -177,11 +182,22 @@ export default class AncientSkeleton extends Enemy {
 
     // if distance is greater than distance2 move towards player1 else move towards player2
     if (distance > distance2) {
-      this.x += speedX2
-      this.y += speedY2
+      this.x += speedX2 
+      this.y += speedY2 
+      if(speedX2 < 0) {
+        this.flip = true
+
+      } else {
+        this.flip = false
+      }
     } else {
       this.x += speedX
       this.y += speedY
+      if(speedX < 0) {
+        this.flip = true
+      } else {
+        this.flip = false
+      }
     }
   }
 

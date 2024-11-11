@@ -55,17 +55,17 @@ export default class SkeletonBoss extends Enemy {
 
   update(player, secondPlayer, deltaTime) {
     // SkeletonKing Walk Animation
-    if (this.speedX < 0) {
+   /*  if (this.speedX < 0) {
       this.flip = true
     } else if (this.speedX > 0) {
       this.flip = false
-    }
+    } */
     if(this.attackPlayer1) {
       if(this.attackBegin === false) {
         this.attackBegin = true
         this.frameX = 0
       }
-
+      
       this.frameY = this.attackAnimation.frameY
       this.maxFrame = this.attackAnimation.maxFrame
       if (this.frameX === 6 && !this.attackDone) {
@@ -81,7 +81,7 @@ export default class SkeletonBoss extends Enemy {
         this.frameX = 0
         this.frameY = this.walkAnimation.frameY
         this.maxFrame = this.walkAnimation.maxFrame
-
+        
       }
     }
     if(this.attackPlayer2) {
@@ -104,20 +104,20 @@ export default class SkeletonBoss extends Enemy {
         this.frameX = 0
         this.frameY = this.walkAnimation.frameY
         this.maxFrame = this.walkAnimation.maxFrame
-
+        
       }
     }
     
-
     
-
+    
+    
     if (this.timer > this.interval) {
       this.frameX++
       this.timer = 0
     } else {
       this.timer += deltaTime
     }
-
+    
     if (this.frameX >= this.maxFrame) {
       this.frameX = 0
     }
@@ -128,37 +128,56 @@ export default class SkeletonBoss extends Enemy {
     const dy2 = secondPlayer.y - this.y 
     const distance = Math.sqrt(dx * dx + dy * dy) 
     const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2) 
-
+    
     const speedX = (dx / distance) * this.speed
     const speedY = (dy / distance) * this.speed
     const speedX2 = (dx2 / distance2) * this.speed
     const speedY2 = (dy2 / distance2) * this.speed
+    
 
+    
     // if  distance is greater than distance2 move towards player else move towards second player
     if (distance > distance2) {
       this.x += speedX2 
       this.y += speedY2 
+      if(speedX2 < 0) {
+        this.flip = true
+
+      } else {
+        this.flip = false
+      }
     } else {
       this.x += speedX
       this.y += speedY
+      if(speedX < 0) {
+        this.flip = true
+      } else {
+        this.flip = false
+      }
     }
+    
   }
-
-  draw(context) {
   
-
+  draw(context) {
+    if (this.flip) {
+      context.save()
+      context.scale(-1, 1)
+    }
+    
     context.drawImage(
       this.image,
       this.frameX * this.imageheight,
       this.frameY * this.imagewidth,
       this.imagewidth,
       this.imageheight,
-      this.flip ? this.x * -1 - (this.width + 85) : this.x - 85,
-      this.y - 100,
+      this.flip ? this.x * -1 - (this.width + 50) : this.x - 50,
+      this.y - 50,
       this.width * 2.5,
       this.height * 2.5
     )
-
+    if (this.flip) {
+      context.restore()
+    }
 
     // Skeleton Debugging
     if (this.game.debug) {

@@ -159,11 +159,22 @@ export default class Skeleton extends Enemy {
 
     // if distance is greater than distance2 move towards player1 else move towards player2
     if (distance > distance2) {
-      this.x += speedX2
-      this.y += speedY2
+      this.x += speedX2 
+      this.y += speedY2 
+      if(speedX2 < 0) {
+        this.flip = true
+
+      } else {
+        this.flip = false
+      }
     } else {
       this.x += speedX
       this.y += speedY
+      if(speedX < 0) {
+        this.flip = true
+      } else {
+        this.flip = false
+      }
     }
   }
 

@@ -99,6 +99,9 @@ export default class SkeletonKing extends Enemy {
         this.attackDoneSecond = false
         this.attackBegin = false
         this.frameX = 0
+        this.width= 48
+        this.height = 55
+        this.image.src = skeletonkingimage
         
        
 
@@ -131,6 +134,9 @@ export default class SkeletonKing extends Enemy {
         this.attackDoneSecond2 = false
         this.attackBegin2 = false
         this.frameX = 0
+        this.width= 48
+        this.height = 55
+        this.image.src = skeletonkingimage
         
        
 
@@ -190,11 +196,22 @@ export default class SkeletonKing extends Enemy {
 
     // if distance is greater than distance2 move towards player1 else move towards player2
     if (distance > distance2) {
-      this.x += speedX2
-      this.y += speedY2
+      this.x += speedX2 
+      this.y += speedY2 
+      if(speedX2 < 0) {
+        this.flip = true
+
+      } else {
+        this.flip = false
+      }
     } else {
       this.x += speedX
       this.y += speedY
+      if(speedX < 0) {
+        this.flip = true
+      } else {
+        this.flip = false
+      }
     }
   }
 

@@ -3,7 +3,6 @@
 ## Bör justeras
 * Se till att det går att sikta och skjuta (testa andra webbläsare också)
 * Repetitiva ljudeffekter, lägg till fler för alla olika enemies (hit, death, etc.)
-* Attack när kollision med spelare, dö inte
 
 
 ## Göra spelet svårare och mer gameplay
@@ -27,3 +26,4 @@
 * Justera hur ofta drops spawnas
 * Enemies har olika speed och damage
 * (typ klar) Buggade animationer på ancient skeleton (deathanimation)
+* Attack när kollision med spelare, dö inte
