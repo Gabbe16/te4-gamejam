@@ -12,6 +12,7 @@
 
 ## Borde läggas till
 * Gameover screen (kan visa score, kills etc.)
+*fiender slår bredvid istället för i player
 
 
 ## Work in progress
