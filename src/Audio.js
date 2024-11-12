@@ -1,5 +1,6 @@
 import backgroundMusicURL from './assets/sounds/music/backgroundMusic.mp3';
 import menuMusicURL from './assets/sounds/music/mainMenuMusic.mp3'
+import gameOverMusicURL from './assets/sounds/music/sad past 16bit.mp3'
 import bowSoundURL from './assets/sounds/attacks/bow.wav'
 import damage1URL from './assets/sounds/damage/damage1.wav'
 import damage2URL from './assets/sounds/damage/damage2.wav'
@@ -15,6 +16,7 @@ export default class BackgroundMusic {
         this.game = game
         this.backgroundMusic = new Audio(backgroundMusicURL)
         this.menuMusic = new Audio(menuMusicURL)
+        this.gameOverMusic = new Audio(gameOverMusicURL)
         this.bowSound = new Audio(bowSoundURL)
         this.audioRandom = 1
 
@@ -32,6 +34,7 @@ export default class BackgroundMusic {
         // Loop the background music when it ends
         this.backgroundMusic.loop = true
         this.menuMusic.loop = true
+        this.gameOverMusic.loop = true
 
         //Volume (1 to 0)
         this.backgroundMusic.volume = 1
@@ -54,6 +57,10 @@ export default class BackgroundMusic {
 
     playMenuMusic() {
         this.menuMusic.play()
+    }
+
+    playGameOverMusic() {
+        this.gameOverMusic.play()
     }
 
     playBowSound() {

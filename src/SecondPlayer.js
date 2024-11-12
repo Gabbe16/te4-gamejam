@@ -72,9 +72,10 @@ export default class SecondPlayer {
 
     // Player2 death
     if (this.lives <= 0) {
+      
       this.game.gameOver = true
-      this.game.audio.playerDeath.play()
       this.isDead = true
+     
     }
 
     // Player2 slashing
@@ -159,9 +160,12 @@ export default class SecondPlayer {
       } else {
         this.maxFrame = this.deathAnimation.maxFrame
         this.frameY = this.deathAnimation.frameY
+        
       }
       if (this.frameX === this.deathAnimation.maxFrame - 1) {
         this.isDeadDone = true
+        this.game.audio.playerDeath.play()
+        
       }
     }
 

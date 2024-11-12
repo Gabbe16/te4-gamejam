@@ -74,7 +74,7 @@ export default class Player {
   update(deltaTime) {
     if (this.lives <= 0) {
       this.game.gameOver = true
-      this.game.audio.playerDeath.play()
+      
       this.isDead = true
     }
 
@@ -149,6 +149,7 @@ export default class Player {
       }
       if (this.frameX === this.deathAnimation.maxFrame - 1) {
         this.isDeadDone = true
+        this.game.audio.playerDeath.play()
       }
     }
 
