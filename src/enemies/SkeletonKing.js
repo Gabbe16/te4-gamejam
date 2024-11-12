@@ -14,7 +14,7 @@ export default class SkeletonKing extends Enemy {
     this.speed = 2
     this.lives = 3
     this.type = 'skeletonking'
-    this.scoreAmount = 30
+    this.scoreAmount = 70
     this.damage = 1
     this.baseDamage = 1
 

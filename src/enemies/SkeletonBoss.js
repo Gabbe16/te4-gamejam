@@ -10,10 +10,10 @@ export default class SkeletonBoss extends Enemy {
     this.imagewidth = 64
     this.x = x
     this.y = y
-    this.speed = 1
+    this.speed = 2.1
     this.lives = 25
     this.type = 'SkeletonBoss'
-    this.scoreAmount = 10
+    this.scoreAmount = 500
     this.damage = 5
     this.baseDamage = 5
 

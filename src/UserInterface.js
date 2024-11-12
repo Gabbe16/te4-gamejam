@@ -186,7 +186,7 @@ export default class UserInterface {
       }
     } else if (this.game.gameStart === true) {
       if (this.game.gameOver === false) {
-        if (this.game.score === 5000) {
+        if (this.game.score >= this.game.winScore) {
           // remove all enemies from game and keep the players alive
           this.game.enemies = []
           this.game.audio.backgroundMusic.pause()

@@ -48,15 +48,15 @@ export default class BackgroundMusic {
         this.backgroundMusic.volume = 1
         this.menuMusic.volume = 0.1
         this.bowSound.volume = 0
-        this.damage1.volume = 1
-        this.damage2.volume = 1
-        this.damage3.volume = 1
+        this.damage1.volume = 0.8
+        this.damage2.volume = 0.8
+        this.damage3.volume = 0.8
 
 
         //audio speed
         this.bowSound.playbackRate = 1.3;
 
-        /*         this.i = 1 */
+        
     }
 
     playBackgroundMusic() {

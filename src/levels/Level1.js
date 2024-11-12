@@ -11,7 +11,7 @@ export default class Level1 extends Level {
         super(game)
         this.name = 'The Skeleton Dungeon';
         this.background = new Background(this.game)
-        this.enemyInterval = 1500
+        this.enemyInterval = 800
         this.wallInterval = 10
         this.wallTimer = 10
     }
@@ -33,7 +33,7 @@ export default class Level1 extends Level {
             let mathrandom = Math.random() * 2
             let rounded = Math.round(mathrandom)
 
-            if (this.game.score >= 100) {
+            if (this.game.score >= 1500) {
                 this.game.enemies.push(new SkeletonBoss(this, 905, 124))
                 this.enemyInterval = 5000000
                 this.game.audio.backgroundMusic.pause()

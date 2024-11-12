@@ -31,8 +31,10 @@ export default class Game {
     this.gameOver = false
     this.debug = false
 
+    this.winScore = 2000
+
     // Game variables
-    this.score = 0
+    this.score = 1500
     this.keys = []
     this.enemies = []
     this.menuTime = 0
