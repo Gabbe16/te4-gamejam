@@ -21,7 +21,6 @@ export default class Level1 extends Level {
         if (this.wallTimer > this.wallInterval) {
             this.addCanvasWalls() // add walls to canvas
             this.game.doors.push(new Wall(this, 855, 18, 135, 122)) // add door to next level
-            console.log(this.game.doors)
             this.wallTimer = 0
             this.wallInterval = 5000000
         } else {
@@ -80,7 +79,6 @@ export default class Level1 extends Level {
         this.game.canvasRightLeftWalls.push(new Wall(this, 1580, 18, 190, 915))
         this.game.canvasTopBottomWalls.push(new Wall(this, 75, 18, 780, 122))
         this.game.canvasTopBottomWalls.push(new Wall(this, 990, 18, 780, 122))
-        
         this.game.canvasTopBottomWalls.push(new Wall(this, 75, 810, 1695, 122))
     }
 

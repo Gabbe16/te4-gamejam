@@ -10,6 +10,9 @@ import arrowkey_right_image from './assets/controls_images/arrowkey_RIGHT.png'
 import arrowkey_up_image from './assets/controls_images/arrowkey_UP.png'
 import mouse_image from './assets/controls_images/controlPrompts.png'
 
+import nightborne from './assets/sprites/NightBorne.png'
+import necromancer from './assets/sprites/necromancerSheet.png'
+
 import Menuparalax from './backgrounds/Menuparalax.js'
 
 export default class UserInterface {
@@ -63,6 +66,15 @@ export default class UserInterface {
     const mouseicon = new Image()
     mouseicon.src = mouse_image
     this.mouseicon = mouseicon
+
+    // Load player sprites
+    const player1 = new Image()
+    player1.src = nightborne
+    this.player1 = player1
+
+    const player2 = new Image()
+    player2.src = necromancer
+    this.player2 = player2
     
   }
 
@@ -177,38 +189,34 @@ export default class UserInterface {
       context.shadowOffsetX = 4
       context.shadowOffsetY = 4
       context.font = `40px ${this.fontFamily}`
-      context.fillRect(1500, 850, 200, 50)
+      context.fillRect(1500, 800, 250, 100)
       context.fillStyle = 'white'
-      context.fillText(`Ammo: ${this.game.player.ammo}`, 1525, 895)
+      context.fillText(`Ammo: ${this.game.player.ammo}`, 1550, 850)
+      context.fillText(`Lives: ${this.game.player.lives}`, 1555, 895)
 
       context.fillStyle = 'rgba(65, 65, 65, 65)'
       context.shadowOffsetX = 4
       context.shadowOffsetY = 4
       context.font = `40px ${this.fontFamily}`
-      context.fillRect(1500, 50, 200, 50)
+      context.fillRect(1500, 50, 215, 50)
       context.fillStyle = 'white'
-      context.fillText(`Lives: ${this.game.player.lives}`, 1535, 95)
+      context.fillText(`Score: ${(this.game.score)}`, 1525, 95)
 
       context.fillStyle = 'rgba(65, 65, 65, 65)'
       context.shadowOffsetX = 4
       context.shadowOffsetY = 4
       context.font = `40px ${this.fontFamily}`
-      context.fillRect(135, 50, 200, 50)
+      context.fillRect(135, 50, 500, 50)
       context.fillStyle = 'white'
-      context.fillText(`Lives: ${this.game.secondPlayer.lives}`, 170, 95)
-
-      context.fillStyle = 'rgba(65, 65, 65, 65)'
-      context.font = `60px ${this.fontFamily}`
-      context.fillRect(this.game.width / 2 -160, 5, 300, 50)
-      context.fillStyle = 'white'
-      context.fillText(`Score: ${(this.game.score)}`, (this.game.width / 2) -130, 59)
+      context.fillText(`Level ${this.game.currentLevel}: ` + ` ${this.game.levels[this.game.currentLevel].name}`, 150, 95)
 
       context.fillStyle = 'rgba(65, 65, 65, 65)'
       context.shadowOffsetX = 4
       context.shadowOffsetY = 4
       context.font = `40px ${this.fontFamily}`
-      context.fillRect(135, 850, 250, 50)
+      context.fillRect(135, 800, 250, 100)
       context.fillStyle = 'white'
+      context.fillText(`Lives: ${this.game.secondPlayer.lives}`, 155, 850)
       context.fillText(`Slash cd: ${this.game.secondPlayer.slashInterval / 1000}s`, 155, 895)
     }
 
