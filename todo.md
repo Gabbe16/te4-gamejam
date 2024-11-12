@@ -7,7 +7,6 @@
 
 ## Göra spelet svårare och mer gameplay
 * Nya bakgrunder, enemies och bossar på levels
-* Sätt att nå nya levels, mest troligt genom dörrar
 
 
 ## Borde läggas till
@@ -21,7 +20,8 @@
 
 
 ## Klart
-* Levels
+* UI Revamp
+* Levels, sätt att nå nya levels, mest troligt genom dörrar
 * IFrame för itch.io embedd
 * Lagt till en boss
 * Sätta max hp
