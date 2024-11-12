@@ -1,6 +1,9 @@
 import backgroundMusicURL from './assets/sounds/music/backgroundMusic.mp3';
 import menuMusicURL from './assets/sounds/music/mainMenuMusic.mp3'
 import gameOverMusicURL from './assets/sounds/music/sad past 16bit.mp3'
+import bossMusic1URL from './assets/sounds/music/bossMusic1.mp3'
+import VictoryMusicURL from './assets/sounds/music/victoryMusic.wav'
+
 import bowSoundURL from './assets/sounds/attacks/bow.wav'
 import damage1URL from './assets/sounds/damage/damage1.wav'
 import damage2URL from './assets/sounds/damage/damage2.wav'
@@ -17,6 +20,9 @@ export default class BackgroundMusic {
         this.backgroundMusic = new Audio(backgroundMusicURL)
         this.menuMusic = new Audio(menuMusicURL)
         this.gameOverMusic = new Audio(gameOverMusicURL)
+        this.bossMusic1 = new Audio(bossMusic1URL)
+        this.VictoryMusic = new Audio(VictoryMusicURL)
+
         this.bowSound = new Audio(bowSoundURL)
         this.audioRandom = 1
 
@@ -35,6 +41,8 @@ export default class BackgroundMusic {
         this.backgroundMusic.loop = true
         this.menuMusic.loop = true
         this.gameOverMusic.loop = true
+        this.bossMusic1.loop = true
+        this.VictoryMusic.loop = true
 
         //Volume (1 to 0)
         this.backgroundMusic.volume = 1
@@ -62,6 +70,16 @@ export default class BackgroundMusic {
     playGameOverMusic() {
         this.gameOverMusic.play()
     }
+
+    playBossMusic1() {
+        this.bossMusic1.play()
+    }
+
+    playVictoryMusic() {
+        this.VictoryMusic.play()
+    }
+
+
 
     playBowSound() {
         const newBowSound = this.bowSound.cloneNode()

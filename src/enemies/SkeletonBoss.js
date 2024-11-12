@@ -20,6 +20,8 @@ export default class SkeletonBoss extends Enemy {
 
     this.isDead = false
     this.isHit = false
+    this.stayFlipped = false
+
     this.attackPlayer1 = false
     this.attackDone = false
     this.attackBegin = false
@@ -123,6 +125,9 @@ export default class SkeletonBoss extends Enemy {
       }
     }
     if (this.isDead) {
+      if(this.flip) {
+        this.stayFlipped = true
+      }
       this.damage = 0
       this.speed = 0
       this.frameY = this.deathAnimation.frameY
@@ -185,6 +190,9 @@ export default class SkeletonBoss extends Enemy {
     if (this.flip) {
       context.save()
       context.scale(-1, 1)
+    } else if (this.stayFlipped){
+      context.save()
+      context.scale(-1, 1)
     }
 
     context.drawImage(
@@ -193,13 +201,15 @@ export default class SkeletonBoss extends Enemy {
       this.frameY * this.imagewidth,
       this.imagewidth,
       this.imageheight,
-      this.flip ? this.x * -1 - (this.width + 50) : this.x - 50,
+      this.flip || this.stayFlipped ? this.x * -1 - (this.width + 50) : this.x - 50,
       this.y - 50,
       this.width * 2.5,
       this.height * 2.5
     )
 
     if (this.flip) {
+      context.restore()
+    } else if (this.stayFlipped) {
       context.restore()
     }
     // Skeleton Debugging

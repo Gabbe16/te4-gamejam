@@ -188,6 +188,10 @@ export default class UserInterface {
         if (this.game.score === 5000) {
           // remove all enemies from game and keep the players alive
           this.game.enemies = []
+          this.game.audio.backgroundMusic.pause()
+          this.game.audio.menuMusic.pause()
+          this.game.audio.bossMusic1.pause()
+          this.game.audio.VictoryMusic.play()
 
           context.fillStyle = 'rgba(0, 0, 0, 0.5)'
           context.fillRect(0, 0, this.game.width, this.game.height)
