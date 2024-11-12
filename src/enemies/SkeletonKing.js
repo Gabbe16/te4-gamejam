@@ -20,6 +20,7 @@ export default class SkeletonKing extends Enemy {
 
     this.isDead = false
     this.isHit = false
+    this.stayFlipped = false
 
     this.attackPlayer1 = false
     this.attackDoneFirst = false
@@ -157,6 +158,9 @@ export default class SkeletonKing extends Enemy {
 
     // Skeleton death animation
     if (this.isDead) {
+      if(this.flip) {
+        this.stayFlipped = true
+      }
       this.damage = 0
       this.speed = 0
       this.width = 48
@@ -219,6 +223,9 @@ export default class SkeletonKing extends Enemy {
     if (this.flip) {
       context.save()
       context.scale(-1, 1)
+    } else if (this.stayFlipped){
+      context.save()
+      context.scale(-1, 1)
     }
 
     context.drawImage(
@@ -227,13 +234,15 @@ export default class SkeletonKing extends Enemy {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - (this.width + 25) : this.x - 25,
+      this.flip  || this.stayFlipped ? this.x * -1 - (this.width + 25) : this.x - 25,
       this.y - 25,
       this.width * 2,
       this.height * 2
     )
 
     if (this.flip) {
+      context.restore()
+    } else if (this.stayFlipped) {
       context.restore()
     }
 

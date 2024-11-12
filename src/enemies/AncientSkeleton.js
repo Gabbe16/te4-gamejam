@@ -19,6 +19,7 @@ export default class AncientSkeleton extends Enemy {
 
     this.isDead = false
     this.isHit = false
+    this.stayFlipped = false
 
     this.attackPlayer1 = false
     this.attackDone = false
@@ -144,6 +145,9 @@ export default class AncientSkeleton extends Enemy {
 
     //skeleton death animation
     if (this.isDead) {
+      if(this.flip) {
+        this.stayFlipped = true
+      }
       this.width = 80
       this.damage = 0
       this.speed = 0
@@ -205,6 +209,9 @@ export default class AncientSkeleton extends Enemy {
     if (this.flip) {
       context.save()
       context.scale(-1, 1)
+    } else if (this.stayFlipped){
+      context.save()
+      context.scale(-1, 1)
     }
 
     context.drawImage(
@@ -213,13 +220,15 @@ export default class AncientSkeleton extends Enemy {
       this.frameY * this.height,
       this.width,
       this.height,
-      this.flip ? this.x * -1 - (this.width + 75) : this.x - 75,
+      this.flip || this.stayFlipped ? this.x * -1 - (this.width + 75) : this.x - 75,
       this.y - 35,
       this.width * 2,
       this.height * 2
     )
 
     if (this.flip) {
+      context.restore()
+    } else if (this.stayFlipped) {
       context.restore()
     }
 

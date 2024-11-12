@@ -103,20 +103,21 @@ export default class Game {
         enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
           /* enemy.isDead = true */
-          enemy.attackPlayer1 = true
           
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             enemy.markedForDeletion = true
+            console.log('jackolantern')
           } else if (enemy.type === 'bloodvial' && this.player.lives < this.player.maxLives) {
             this.player.lives += 1
             enemy.markedForDeletion = true
+            console.log('bloodvial')
           } else {
+            enemy.attackPlayer1 = true
             this.player.hit = true
           }
         } else if (this.checkCollision(this.secondPlayer, enemy)) {
           /* enemy.isDead = true */
-          enemy.attackPlayer2 = true
           if (enemy.type === 'jackolantern') {
             this.secondPlayer.slashInterval -= 50
             enemy.markedForDeletion = true
@@ -127,6 +128,7 @@ export default class Game {
             this.secondPlayer.lives += 1
             enemy.markedForDeletion = true
           } else {
+            enemy.attackPlayer2 = true
 
             this.secondPlayer.hit = true
           }
@@ -137,7 +139,7 @@ export default class Game {
           if (this.checkProjectileCollision(projectile, enemy)) {
             if (enemy.lives > 1) {
               enemy.lives -= projectile.damage
-              /* enemy.frameX = 1 */
+              enemy.frameX = 0
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
@@ -169,10 +171,16 @@ export default class Game {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
-
+              
+            }
+            if(enemy.damage === 1){
+              projectile.markedForDeletion = true
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
-              projectile.markedForDeletion = true
+              if(!enemy.isDead){
+                
+                projectile.markedForDeletion = true
+              }
             }
 
           }
@@ -183,6 +191,7 @@ export default class Game {
           if (this.checkCollision(slash, enemy)) {
             if (enemy.lives > slash.damage) {
               enemy.lives -= slash.damage
+              enemy.frameX = 0
               enemy.isHit = true
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
@@ -215,6 +224,7 @@ export default class Game {
               }
             }
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
+             
               slash.markedForDeletion = true
 
             }
