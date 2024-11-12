@@ -15,7 +15,7 @@
 
 ## Things to add in the future
 * Fler levlar med olika bakgrunder, enemies, drops och bossar
-* Story och discription till spelet
+* Story och description till spelet
 
 
 ## Klart
