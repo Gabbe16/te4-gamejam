@@ -242,6 +242,9 @@ export default class UserInterface {
           this.game.enemies = []
           this.game.player.isDead = true
           this.game.secondPlayer.isDead = true
+          this.game.audio.backgroundMusic.pause()
+          this.game.audio.menuMusic.pause()
+          this.game.audio.gameOverMusic.play()
 
           // Game over screen
           context.fillStyle = 'rgba(0, 0, 0, 0.5)'
