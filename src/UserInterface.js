@@ -155,6 +155,7 @@ export default class UserInterface {
         context.fillText('Menu Music made by --RyanAvx', this.game.width - 495, this.game.height - 700)
         context.fillText('Game Music made by --Evilduckk', this.game.width - 495, this.game.height - 600)
         context.fillText('Game SFX made by --Leohpaz', this.game.width - 495, this.game.height - 500)
+        context.fillText('Game Over, Victory and boss Music made by --Megumi Ryu', this.game.width - 495, this.game.height - 400)
         context.textAlign = 'right'
         context.font = `40px ${this.fontFamily}`
         context.fillText('Press v to return to main menu', this.game.width - 20, this.game.height - 20)
