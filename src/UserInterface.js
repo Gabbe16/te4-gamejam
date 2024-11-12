@@ -185,40 +185,57 @@ export default class UserInterface {
       }
     } else if (this.game.gameStart === true) {
       if (this.game.gameOver === false) {
-        // Player ammo and lives ui
-        context.fillStyle = 'rgba(65, 65, 65, 65)'
-        context.shadowOffsetX = 4
-        context.shadowOffsetY = 4
-        context.font = `40px ${this.fontFamily}`
-        context.fillRect(1500, 800, 250, 100)
-        context.fillStyle = 'white'
-        context.fillText(`Ammo: ${this.game.player.ammo}`, 1550, 850)
-        context.fillText(`Lives: ${this.game.player.lives}`, 1555, 895)
+        if (this.game.score === 5000) {
+          // remove all enemies from game and keep the players alive
+          this.game.enemies = []
 
-        context.fillStyle = 'rgba(65, 65, 65, 65)'
-        context.shadowOffsetX = 4
-        context.shadowOffsetY = 4
-        context.font = `40px ${this.fontFamily}`
-        context.fillRect(1500, 50, 215, 50)
-        context.fillStyle = 'white'
-        context.fillText(`Score: ${(this.game.score)}`, 1525, 95)
+          context.fillStyle = 'rgba(0, 0, 0, 0.5)'
+          context.fillRect(0, 0, this.game.width, this.game.height)
+          context.textAlign = 'center'
+          context.fillStyle = 'white'
+          context.font = `70px ${this.fontFamily}`
+          context.fillText('You win!', this.game.width / 2, this.game.height / 2 - 70)
+          context.font = `60px ${this.fontFamily}`
+          context.fillText('You have defeated all the enemies', this.game.width / 2, this.game.height / 2 - 5)
+          context.fillText('and escaped The Gateway To Hell', this.game.width / 2, this.game.height / 2 + 60)
+          context.font = `55px ${this.fontFamily}`
+          context.fillText('Thank you for playing!', this.game.width / 2, this.game.height / 2 + 160)
+        } else {
+          // Player ammo and lives ui
+          context.fillStyle = 'rgba(65, 65, 65, 65)'
+          context.shadowOffsetX = 4
+          context.shadowOffsetY = 4
+          context.font = `40px ${this.fontFamily}`
+          context.fillRect(1500, 800, 250, 100)
+          context.fillStyle = 'white'
+          context.fillText(`Ammo: ${this.game.player.ammo}`, 1550, 850)
+          context.fillText(`Lives: ${this.game.player.lives}`, 1555, 895)
 
-        context.fillStyle = 'rgba(65, 65, 65, 65)'
-        context.shadowOffsetX = 4
-        context.shadowOffsetY = 4
-        context.font = `40px ${this.fontFamily}`
-        context.fillRect(135, 50, 500, 50)
-        context.fillStyle = 'white'
-        context.fillText(`Level ${(this.game.currentLevel) + 1}: ` + ` ${this.game.levels[this.game.currentLevel].name}`, 150, 95)
+          context.fillStyle = 'rgba(65, 65, 65, 65)'
+          context.shadowOffsetX = 4
+          context.shadowOffsetY = 4
+          context.font = `40px ${this.fontFamily}`
+          context.fillRect(1500, 50, 215, 50)
+          context.fillStyle = 'white'
+          context.fillText(`Score: ${(this.game.score)}`, 1525, 95)
 
-        context.fillStyle = 'rgba(65, 65, 65, 65)'
-        context.shadowOffsetX = 4
-        context.shadowOffsetY = 4
-        context.font = `40px ${this.fontFamily}`
-        context.fillRect(135, 800, 250, 100)
-        context.fillStyle = 'white'
-        context.fillText(`Lives: ${this.game.secondPlayer.lives}`, 155, 850)
-        context.fillText(`Slash cd: ${this.game.secondPlayer.slashInterval / 1000}s`, 155, 895)
+          context.fillStyle = 'rgba(65, 65, 65, 65)'
+          context.shadowOffsetX = 4
+          context.shadowOffsetY = 4
+          context.font = `40px ${this.fontFamily}`
+          context.fillRect(135, 50, 500, 50)
+          context.fillStyle = 'white'
+          context.fillText(`Level ${(this.game.currentLevel) + 1}: ` + ` ${this.game.levels[this.game.currentLevel].name}`, 150, 95)
+
+          context.fillStyle = 'rgba(65, 65, 65, 65)'
+          context.shadowOffsetX = 4
+          context.shadowOffsetY = 4
+          context.font = `40px ${this.fontFamily}`
+          context.fillRect(135, 800, 250, 100)
+          context.fillStyle = 'white'
+          context.fillText(`Lives: ${this.game.secondPlayer.lives}`, 155, 850)
+          context.fillText(`Slash cd: ${this.game.secondPlayer.slashInterval / 1000}s`, 155, 895)
+        }
       } else {
         if (this.game.gameOver) {
           // remove all enemies from game and kill all players
@@ -250,15 +267,6 @@ export default class UserInterface {
           context.fillText('Reload the page to restart', this.game.width / 2, this.game.height / 2 + 160)
         }
       }
-    }
-
-    if (this.game.score >= 1000) {
-      context.textAlign = 'center'
-      context.fillStyle = 'white'
-      context.font = `70px ${this.fontFamily}`
-      context.fillText('You win!', this.game.width / 2, this.game.height / 2 - 35)
-      context.font = `50px ${this.fontFamily}`
-      context.fillText('Thank you for playing!', this.game.width / 2, this.game.height / 2 + 20)
     }
 
     // debug
