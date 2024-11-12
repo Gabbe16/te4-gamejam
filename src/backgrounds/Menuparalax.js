@@ -11,11 +11,11 @@ export default class{
         // layer(game, image, width, height, speedModifier)
         const layer1 = new Image()
         layer1.src = Mushroom_Cave_L1
-        this.mushroom_l1 = new Layer(this.game, layer1, this.game.width, this.game.height, 0.15)
+        this.mushroom_l1 = new Layer(this.game, layer1, this.game.width, this.game.height, 0)
 
         const layer2 = new Image()
         layer2.src = Mushroom_Cave_L2
-        this.mushroom_l2 = new Layer(this.game, layer2, this.game.width, this.game.height, 0.25)
+        this.mushroom_l2 = new Layer(this.game, layer2, this.game.width, this.game.height, 0.10)
 
         const layer3 = new Image()
         layer3.src = Mushroom_Cave_L3
