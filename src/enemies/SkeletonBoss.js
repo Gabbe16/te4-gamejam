@@ -64,7 +64,7 @@ export default class SkeletonBoss extends Enemy {
   update(player, secondPlayer, deltaTime) {
     console.log(this.lives)
 
-    if (this.attackPlayer1) {
+    if (this.attackPlayer1 && !this.isDead) {
       if (this.attackBegin === false) {
         this.attackBegin = true
         this.frameX = 0
@@ -88,7 +88,7 @@ export default class SkeletonBoss extends Enemy {
 
       }
     }
-    if (this.attackPlayer2) {
+    if (this.attackPlayer2  && !this.isDead) {
       if (this.attackBegin2 === false) {
         this.attackBegin2 = true
         this.frameX = 0
@@ -112,7 +112,7 @@ export default class SkeletonBoss extends Enemy {
       }
     }
 
-    if (this.isHit) {
+    if (this.isHit && !this.isDead) {
       this.frameY = this.hitAnimation.frameY
       this.maxFrame = this.hitAnimation.maxFrame
       if (this.frameX === this.hitAnimation.maxFrame - 1) {

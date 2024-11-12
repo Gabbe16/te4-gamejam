@@ -10,6 +10,7 @@ export default class Bloodvial extends Enemy {
     this.y = y
     this.type = 'bloodvial'
     this.damage = 0
+   
 
     // bloodvial Image
     const image = new Image()
@@ -17,6 +18,8 @@ export default class Bloodvial extends Enemy {
     this.image = image
     this.frameX = 0
     this.frameY = 1
+
+
   }
 
   draw(context) {

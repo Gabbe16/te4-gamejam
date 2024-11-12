@@ -73,7 +73,7 @@ export default class SkeletonKing extends Enemy {
     } else if (this.speedX > 0) {
       this.flip = false
     }
-    if(this.attackPlayer1) {
+    if(this.attackPlayer1 && !this.isDead) {
       if(this.attackBegin === false) {
         this.attackBegin = true
         this.frameX = 0
@@ -108,7 +108,7 @@ export default class SkeletonKing extends Enemy {
 
       }
     }
-    if(this.attackPlayer2) {
+    if(this.attackPlayer2 && !this.isDead) {
       if(this.attackBegin2 === false) {
         this.attackBegin2 = true
         this.frameX = 0
@@ -145,7 +145,7 @@ export default class SkeletonKing extends Enemy {
     }
 
     // SkeletonKing Hit Animation
-    if (this.isHit) {
+    if (this.isHit  && !this.isDead) {
       this.maxFrame = this.hitAnimation.maxFrame
       this.image.src = skeletonkinghit
       this.width = 48

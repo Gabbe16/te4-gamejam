@@ -69,7 +69,7 @@ export default class Skeleton extends Enemy {
     } else if (this.speedX > 0) {
       this.flip = false
     }
-    if(this.attackPlayer1) {
+    if(this.attackPlayer1 && !this.isDead) {
       if(this.attackBegin === false) {
         this.attackBegin = true
         this.frameX = 0
@@ -93,7 +93,7 @@ export default class Skeleton extends Enemy {
         this.frameX = 0
       }
     }
-    if(this.attackPlayer2) {
+    if(this.attackPlayer2 && !this.isDead) {
       if(this.attackBegin2 === false) {
         this.attackBegin2 = true
         this.frameX = 0

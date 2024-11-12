@@ -127,11 +127,15 @@ export default class Game {
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             enemy.markedForDeletion = true
-            console.log('jackolantern')
+            
           } else if (enemy.type === 'bloodvial' && this.player.lives < this.player.maxLives) {
-            this.player.lives += 1
-            enemy.markedForDeletion = true
-            console.log('bloodvial')
+            
+            
+              
+              enemy.markedForDeletion = true
+              this.player.lives += 1
+            
+            
           
           } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
             enemy.attackPlayer1 = true
@@ -148,7 +152,7 @@ export default class Game {
           } else if (enemy.type === 'bloodvial' && this.secondPlayer.lives < this.secondPlayer.maxLives) {
             this.secondPlayer.lives += 1
             enemy.markedForDeletion = true
-          } else {
+          } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss'){
             enemy.attackPlayer2 = true
 
             this.secondPlayer.hit = true
@@ -170,6 +174,10 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
+              
+             enemy.isDead = true
+             if (enemy.damage === enemy.baseDamage) {
+              //spawn drops
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
                 if (Math.random() < 0.15) {
@@ -187,8 +195,6 @@ export default class Game {
                 }
               }
 
-              enemy.isDead = true
-              if (enemy.damage === enemy.baseDamage) {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
@@ -222,6 +228,10 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
+             
+              enemy.isDead = true
+              if (enemy.damage === enemy.baseDamage) {
+                //spawn drops
               if (enemy.type === 'skeleton') {
                 this.audio.playDamage1()
                 if (Math.random() < 0.15) {
@@ -238,8 +248,7 @@ export default class Game {
                   this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
                 }
               }
-              enemy.isDead = true
-              if (enemy.damage === enemy.baseDamage) {
+
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
