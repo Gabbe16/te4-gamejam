@@ -5,21 +5,21 @@
 * Repetitiva ljudeffekter, lägg till fler för alla olika enemies (hit, death, etc.)
 
 
-## Göra spelet svårare och mer gameplay
-* Nya bakgrunder, enemies och bossar på levels
-
-
 ## Borde läggas till
-* Gameover screen (kan visa score, kills etc.)
 * Fiender slår bredvid istället för i player
 
 
-## Work in progress
-* Struktur på projektet
-* OOP
+## Things to fix in the future
+* Struktur på projektet och arbeta mer med OOP
+
+
+## Things to add in the future
+* Fler levlar med olika bakgrunder, enemies, drops och bossar
+* Story och discription till spelet
 
 
 ## Klart
+* Gameover + victory screen revamp
 * UI Revamp
 * Levels, sätt att nå nya levels, mest troligt genom dörrar
 * IFrame för itch.io embedd

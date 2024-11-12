@@ -37,5 +37,8 @@
 * Game Music
     - made by Evilduckk (https://evilduckk.itch.io/)
 
+* Game Over, Victory and skeleton boss music
+    - made by Megumi Ryu (https://megumi-ryu.itch.io/)
+
 * Game sfx
     -made by Leohpaz (https://leohpaz.itch.io/)
