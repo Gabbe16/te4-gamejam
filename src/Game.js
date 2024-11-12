@@ -42,6 +42,7 @@ export default class Game {
     // Levels
     this.currentLevel = 0
     this.levels = []
+    this.doors = []
     this.levels.push(this.Level1)
     this.levels.push(this.Level2)
 
@@ -62,6 +63,25 @@ export default class Game {
       this.levels[this.currentLevel].update(deltaTime)
       this.player.update(deltaTime)
       this.secondPlayer.update(deltaTime)
+
+      // Check collision between players and doors for the next level
+      this.doors.forEach((door) => {
+        if (this.checkCollision(this.player, door)) {
+          this.currentLevel += 1
+          this.player.x = 1024
+          this.player.y = 390
+          this.secondPlayer.x = 740
+          this.secondPlayer.y = 405
+          this.doors = []
+        } else if (this.checkCollision(this.secondPlayer, door)) {
+          this.currentLevel += 1
+          this.player.x = 1024
+          this.player.y = 390
+          this.secondPlayer.x = 740
+          this.secondPlayer.y = 405
+          this.doors = []
+        }
+      })
 
       // check collision between players and the canvas walls
       this.canvasRightLeftWalls.forEach((wall) => {

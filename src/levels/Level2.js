@@ -6,7 +6,7 @@ import Background from "../backgrounds/Background.js";
 export default class Level1 extends Level {
     constructor(game) {
         super(game)
-        this.name = 'The Skeleton Dungeon';
+        this.name = 'Demon Realm';
         this.background = new Background(this.game)
         this.enemyInterval = 1500
         this.wallInterval = 10
