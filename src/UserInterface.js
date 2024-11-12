@@ -213,8 +213,8 @@ export default class UserInterface {
           context.font = `40px ${this.fontFamily}`
           context.fillRect(1500, 800, 250, 100)
           context.fillStyle = 'white'
-          context.fillText(`Ammo: ${this.game.player.ammo}`, 1550, 850)
-          context.fillText(`Lives: ${this.game.player.lives}`, 1555, 895)
+          context.fillText(`Ammo: ${this.game.player.ammo}`, 1550, 895)
+          context.fillText(`Lives: ${this.game.player.lives}`, 1555, 850)
 
           context.fillStyle = 'rgba(65, 65, 65, 65)'
           context.shadowOffsetX = 4
