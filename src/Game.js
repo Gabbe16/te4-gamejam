@@ -112,7 +112,8 @@ export default class Game {
             this.player.lives += 1
             enemy.markedForDeletion = true
             console.log('bloodvial')
-          } else {
+          
+          } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
             enemy.attackPlayer1 = true
             this.player.hit = true
           }
