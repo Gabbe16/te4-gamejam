@@ -34,7 +34,7 @@ export default class Game {
     this.winScore = 2000
 
     // Game variables
-    this.score = 1500
+    this.score = 0
     this.keys = []
     this.enemies = []
     this.menuTime = 0
