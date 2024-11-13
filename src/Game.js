@@ -117,20 +117,12 @@ export default class Game {
         enemy.update(this.player, this.secondPlayer, deltaTime)
         if (this.checkCollision(this.player, enemy)) {
           /* enemy.isDead = true */
-
           if (enemy.type === 'jackolantern') {
             this.player.ammo += 2
             enemy.markedForDeletion = true
-
           } else if (enemy.type === 'bloodvial' && this.player.lives < this.player.maxLives) {
-
-
-
             enemy.markedForDeletion = true
             this.player.lives += 1
-
-
-
           } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
             enemy.attackPlayer1 = true
             this.player.hit = true
@@ -148,7 +140,6 @@ export default class Game {
             enemy.markedForDeletion = true
           } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
             enemy.attackPlayer2 = true
-
             this.secondPlayer.hit = true
           }
         }
@@ -170,7 +161,6 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
-
               enemy.isDead = true
               if (enemy.damage === enemy.baseDamage) {
                 //spawn drops
@@ -194,18 +184,17 @@ export default class Game {
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
-
             }
+
             if (enemy.damage === 1) {
               projectile.markedForDeletion = true
             }
+
             if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
               if (!enemy.isDead) {
-
                 projectile.markedForDeletion = true
               }
             }
-
           }
         })
 
@@ -226,10 +215,9 @@ export default class Game {
                 this.audio.playDamage3()
               }
             } else if (enemy.type === 'skeleton' || enemy.type === 'skeletonking' || enemy.type === 'ancientskeleton' || enemy.type === 'SkeletonBoss') {
-
               enemy.isDead = true
               if (enemy.damage === enemy.baseDamage) {
-                //spawn drops
+                // Spawn drops
                 if (enemy.type === 'skeleton') {
                   this.audio.playDamage1()
                   if (Math.random() < 0.15) {
@@ -246,7 +234,6 @@ export default class Game {
                     this.enemies.push(new Jackolantern(this, enemy.x, enemy.y))
                   }
                 }
-
                 enemy.frameX = 0
                 this.score += enemy.scoreAmount
               }
