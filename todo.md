@@ -20,6 +20,7 @@
 * Loading screen
 * Effects (Walk, hit, death, spawns, etc)
 * Damage numbers (Hit feedback)
+* Abilites for each character with new keybinds
 
 
 ## Klart
