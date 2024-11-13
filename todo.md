@@ -17,8 +17,8 @@
 * Fler levlar med olika bakgrunder, enemies, drops och bossar
 * Story och description till spelet
 
-
 ## Klart
+* Ljudbug ifall boss music igång och man dör
 * Gameover + victory screen revamp
 * UI Revamp
 * Levels, sätt att nå nya levels, mest troligt genom dörrar

@@ -249,6 +249,7 @@ export default class UserInterface {
           this.game.secondPlayer.isDead = true
           this.game.audio.backgroundMusic.pause()
           this.game.audio.menuMusic.pause()
+          this.game.audio.bossMusic1.pause()
           this.game.audio.gameOverMusic.play()
 
           // Game over screen
