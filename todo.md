@@ -6,7 +6,6 @@
 
 
 ## Borde läggas till
-* Fiender slår bredvid istället för i player
 
 
 ## Things to fix in the future
@@ -36,3 +35,4 @@
 * Enemies har olika speed och damage
 * (typ klar) Buggade animationer på ancient skeleton (deathanimation)
 * Attack när kollision med spelare, dö inte
+* Fiender slår bredvid istället för i player
