@@ -117,6 +117,12 @@ export default class SecondPlayer {
     this.y += this.speedY
     this.x += this.speedX
 
+    if(this.speedX !== 0 || this.speedY !== 0) {
+      this.game.audio.WalkSound1.play()
+    } else {
+      this.game.audio.WalkSound1.pause()
+    }
+
     // Sprite flipping
     if (this.speedX < 0) {
       this.flip = true

@@ -12,11 +12,13 @@ import playerDamageURL from './assets/sounds/damage/playerdamage3.wav'
 import playerDeathURL from './assets/sounds/damage/playerdeath.wav'
 import MeleeAttackURL from './assets/sounds/attacks/meleeAttack.wav'
 import FireSoundURL from './assets/sounds/attacks/fireSound.wav'
+import WalkSound1URL from './assets/sounds/movement/walk.wav'
 
 
 export default class BackgroundMusic {
     constructor(game) {
         this.game = game
+        this.mediumVolume = 0.5
         this.backgroundMusic = new Audio(backgroundMusicURL)
         this.menuMusic = new Audio(menuMusicURL)
         this.gameOverMusic = new Audio(gameOverMusicURL)
@@ -37,24 +39,32 @@ export default class BackgroundMusic {
         this.playerDamage = new Audio(playerDamageURL)
         this.playerDeath = new Audio(playerDeathURL)
 
+        //walk sounds
+        this.WalkSound1 = new Audio(WalkSound1URL)
+
         // Loop the background music when it ends
         this.backgroundMusic.loop = true
         this.menuMusic.loop = true
         this.gameOverMusic.loop = true
         this.bossMusic1.loop = true
         this.VictoryMusic.loop = true
+        this.WalkSound1.loop = true
 
         //Volume (1 to 0)
         this.backgroundMusic.volume = 1
         this.menuMusic.volume = 0.1
         this.bowSound.volume = 0
-        this.damage1.volume = 0.8
-        this.damage2.volume = 0.8
+        this.damage1.volume = 0.6
+        this.damage2.volume = 0.6
         this.damage3.volume = 0.8
+        this.playerDamage.volume = 0
+        this.WalkSound1.volume = 0.6
+        this.gameOverMusic.volume = 0.5
 
 
         //audio speed
         this.bowSound.playbackRate = 1.3;
+        this.WalkSound1.playbackRate = 2;
 
         
     }
@@ -79,7 +89,10 @@ export default class BackgroundMusic {
         this.VictoryMusic.play()
     }
 
-
+    playWalkSound1() {
+        this.WalkSound1.play()
+        
+    }
 
     playBowSound() {
         const newBowSound = this.bowSound.cloneNode()
@@ -106,8 +119,11 @@ export default class BackgroundMusic {
     }
 
     playPlayerDamage() {
+
         const newPlayerDamage = this.playerDamage.cloneNode()
+        newPlayerDamage.volume = this.mediumVolume
         newPlayerDamage.play()
+       
         /* this.playerDamage.play() */
     }
 
