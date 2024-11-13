@@ -21,6 +21,7 @@
 * Effects (Walk, hit, death, spawns, etc)
 * Damage numbers (Hit feedback)
 * Abilites for each character with new keybinds
+* Add player icons to the UI to tell who is who
 
 
 ## Klart
