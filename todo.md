@@ -14,12 +14,16 @@
 
 
 ## Things to add in the future
-* Fler levlar med olika bakgrunder, enemies, drops och bossar
-* Story och description till spelet
+* Different levels (New bosses, enemies, backgrounds, etc)
+* Story
 * Preloader
 * Loading screen
+* Effects (Walk, hit, death, spawns, etc)
+* Damage numbers (Hit feedback)
+
 
 ## Klart
+* Description till spelet på itch.io
 * Ljudbug ifall boss music igång och man dör
 * Gameover + victory screen revamp
 * UI Revamp
