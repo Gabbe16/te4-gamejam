@@ -30,10 +30,9 @@ export default class Game {
     this.viewCredits = false
     this.gameOver = false
     this.debug = false
-
-    this.winScore = 2000
-
+    
     // Game variables
+    this.winScore = 2000
     this.score = 0
     this.keys = []
     this.enemies = []
