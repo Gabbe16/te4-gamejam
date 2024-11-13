@@ -10,7 +10,8 @@ export default class Skeleton extends Enemy {
     this.height = 48
     this.x = x
     this.y = y
-    this.speed = 2.5
+    this.baseSpeed = 2.5
+    this.speed = this.baseSpeed
     this.lives = 1
     this.type = 'skeleton'
     this.scoreAmount = 30
@@ -121,7 +122,7 @@ export default class Skeleton extends Enemy {
 
       }
     }
-
+    
     //skeleton death animation
     if (this.isDead) {
       if(this.flip) {
@@ -135,7 +136,7 @@ export default class Skeleton extends Enemy {
         this.markedForDeletion = true
       }
     }
-
+    
     // Skeleton Walk Animation and frame update
     if (this.timer > this.interval) {
       this.frameX++
@@ -143,11 +144,11 @@ export default class Skeleton extends Enemy {
     } else {
       this.timer += deltaTime
     }
-
+    
     if (this.frameX >= this.maxFrame) {
       this.frameX = 0
     }
-
+    
     // calculate distance between player and the skeleton
     const dx = player.x - this.x
     const dy = player.y - this.y
@@ -155,19 +156,19 @@ export default class Skeleton extends Enemy {
     const dy2 = secondPlayer.y - this.y
     const distance = Math.sqrt(dx * dx + dy * dy)
     const distance2 = Math.sqrt(dx2 * dx2 + dy2 * dy2)
-
+    
     const speedX = (dx / distance) * this.speed
     const speedY = (dy / distance) * this.speed
     const speedX2 = (dx2 / distance2) * this.speed
     const speedY2 = (dy2 / distance2) * this.speed
-
+    
     // if distance is greater than distance2 move towards player1 else move towards player2
     if (distance > distance2) {
       this.x += speedX2 
       this.y += speedY2 
       if(speedX2 < 0) {
         this.flip = true
-
+        
       } else {
         this.flip = false
       }
@@ -180,8 +181,19 @@ export default class Skeleton extends Enemy {
         this.flip = false
       }
     }
+    if(distance < 50 || distance2 < 50) {
+      this.speed = 0
+      if(this.flip) {
+      this.stayFlipped = true
+      }
+    } else {
+      this.speed = this.baseSpeed
+      if(!this.isDead){
+        this.stayFlipped = false
+      }
+    }
   }
-
+  
   draw(context) {
     if (this.flip) {
       context.save()

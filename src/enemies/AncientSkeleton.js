@@ -10,7 +10,8 @@ export default class AncientSkeleton extends Enemy {
     this.height = 96
     this.x = x
     this.y = y
-    this.speed = 1.5
+    this.baseSpeed = 1.5
+    this.speed = this.baseSpeed
     this.lives = 5
     this.type = 'ancientskeleton'
     this.scoreAmount = 100
@@ -201,6 +202,17 @@ export default class AncientSkeleton extends Enemy {
         this.flip = true
       } else {
         this.flip = false
+      }
+    }
+    if(distance < 50 || distance2 < 50) {
+      this.speed = 0
+      if(this.flip) {
+      this.stayFlipped = true
+      }
+    } else {
+      this.speed = this.baseSpeed
+      if(!this.isDead){
+        this.stayFlipped = false
       }
     }
   }

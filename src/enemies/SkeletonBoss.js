@@ -10,7 +10,8 @@ export default class SkeletonBoss extends Enemy {
     this.imagewidth = 64
     this.x = x
     this.y = y
-    this.speed = 2.1
+    this.baseSpeed = 2.1
+    this.speed = this.baseSpeed
     this.lives = 25
     this.type = 'SkeletonBoss'
     this.scoreAmount = 500
@@ -183,7 +184,17 @@ export default class SkeletonBoss extends Enemy {
         this.flip = false
       }
     }
-
+    if(distance < 50 || distance2 < 50) {
+      this.speed = 0
+      if(this.flip) {
+      this.stayFlipped = true
+      }
+    } else {
+      this.speed = this.baseSpeed
+      if(!this.isDead){
+        this.stayFlipped = false
+      }
+    }
   }
 
   draw(context) {

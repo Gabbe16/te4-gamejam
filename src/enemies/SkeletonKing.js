@@ -11,7 +11,8 @@ export default class SkeletonKing extends Enemy {
     this.height = 55
     this.x = x
     this.y = y
-    this.speed = 2
+    this.baseSpeed = 2
+    this.speed = this.baseSpeed
     this.lives = 3
     this.type = 'skeletonking'
     this.scoreAmount = 70
@@ -215,6 +216,17 @@ export default class SkeletonKing extends Enemy {
         this.flip = true
       } else {
         this.flip = false
+      }
+    }
+    if(distance < 50 || distance2 < 50) {
+      this.speed = 0
+      if(this.flip) {
+      this.stayFlipped = true
+      }
+    } else {
+      this.speed = this.baseSpeed
+      if(!this.isDead){
+        this.stayFlipped = false
       }
     }
   }
