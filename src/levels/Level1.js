@@ -37,8 +37,8 @@ export default class Level1 extends Level {
                 this.game.enemies.push(new SkeletonBoss(this, 905, 124))
                 this.enemyInterval = 5000000
                 this.game.audio.backgroundMusic.pause()
-          this.game.audio.menuMusic.pause()
-          this.game.audio.bossMusic1.play()  
+                this.game.audio.menuMusic.pause()
+                this.game.audio.bossMusic1.play()
             }
 
             if (Math.random() > 0.5) {

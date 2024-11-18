@@ -67,7 +67,14 @@ export default class Game {
 
       // Check collision between players and doors for the next level
       this.doors.forEach((door) => {
-        if (this.checkCollision(this.player, door) || this.checkCollision(this.secondPlayer, door)) {
+        if (this.checkCollision(this.secondPlayer, door) && this.score > 2000) {
+          this.currentLevel += 1
+          this.player.x = 1024
+          this.player.y = 390
+          this.secondPlayer.x = 740
+          this.secondPlayer.y = 405
+          this.doors = []
+        } else if (this.checkCollision(this.player, door) && this.score > 2000 ) {
           this.currentLevel += 1
           this.player.x = 1024
           this.player.y = 390
