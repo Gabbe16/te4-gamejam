@@ -24,6 +24,7 @@
 
 
 ## Klart
+* Next level bug fixed, added score checking
 * Description till spelet på itch.io
 * Ljudbug ifall boss music igång och man dör
 * Gameover + victory screen revamp
