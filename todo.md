@@ -5,7 +5,9 @@
 * Repetitiva ljudeffekter, lägg till fler för alla olika enemies (hit, death, etc.)
 
 
-## Borde läggas till
+## HighScore
+* GET route
+* POST route
 
 
 ## Things to fix in the future
