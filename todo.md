@@ -7,7 +7,12 @@
 
 ## HighScore
 * GET route
+    - gameid, score, nickname, key
+
 * POST route
+    - gameid, score nickname, key
+
+* Admin?
 
 
 ## Things to fix in the future
