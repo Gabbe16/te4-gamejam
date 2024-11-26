@@ -12,6 +12,11 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
-    "modern-css-reset": "^1.4.0"
+    "dotenv": "^16.4.5",
+    "expres": "^0.0.5",
+    "express": "^4.21.1",
+    "modern-css-reset": "^1.4.0",
+    "mysql2": "^3.11.4",
+    "nunjucks": "^3.2.4"
   }
 }
