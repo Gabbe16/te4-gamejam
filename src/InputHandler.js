@@ -1,5 +1,3 @@
-
-
 export default class InputHandler {
   constructor(game) {
     this.game = game
@@ -30,18 +28,18 @@ export default class InputHandler {
         this.game.audio.bowSound.volume = 1
       }
 
-      if (event.key === 'c'){
+      if (event.key === 'c') {
         this.game.viewControls = !this.game.viewControls
       }
 
-      if (event.key === 'v'){
+      if (event.key === 'v') {
         this.game.viewCredits = !this.game.viewCredits
       }
 
       if (event.key === 'p') {
         this.game.debug = !this.game.debug
       }
-      if (event.key === 'j'){
+      if (event.key === 'j') {
         this.game.secondPlayer.SlashInitiate()
       }
 
@@ -63,7 +61,7 @@ export default class InputHandler {
 
     window.addEventListener('mousedown', (event) => {
       this.game.player.shoot(this.mouseX, this.mouseY)
-      
+
     })
   }
 }

@@ -19,7 +19,7 @@ export default class Api {
     postScore() {
         let nickname = prompt('Enter your username')
         const data = { score: this.game.score, user_id: nickname }
-        
+
         this.throttleFetch(`${this.url}/game/${this.api_key}`, {
             method: "POST",
             headers: {
@@ -27,31 +27,31 @@ export default class Api {
             },
             body: JSON.stringify(data),
         })
-        .then((response) => response.text())
-        .then((text) => {
-            console.log(text)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+            .then((response) => response.text())
+            .then((text) => {
+                console.log(text)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 
     getScore(element) {
         throttleFetch(`${this.url}/game/${this.api_key}/scores`)
-        .then((response) => response.text())
-        .then((text) => {
-            console.log(text)
-            const scores = JSON.parse(text)
-            const list = document.createElement('ul')
-            scores.forEach((score) => {
-                const item = document.createElement('li')
-                item.textContent = `${score.nickname}: ${score.score}`
-                list.appendChild(item)
-            });
-            element.appendChild(list)
-        })
-        .catch((error) => {
-            console.error(error)
-        })
+            .then((response) => response.text())
+            .then((text) => {
+                console.log(text)
+                const scores = JSON.parse(text)
+                const list = document.createElement('ul')
+                scores.forEach((score) => {
+                    const item = document.createElement('li')
+                    item.textContent = `${score.nickname}: ${score.score}`
+                    list.appendChild(item)
+                });
+                element.appendChild(list)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
     }
 }
