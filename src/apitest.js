@@ -1,5 +1,8 @@
 import Bottleneck from 'bottleneck'
 
+// change this to your api key
+const api_key = "e3d81809-b093-4872-8b04-9269589a1b0e"
+
 const limiter = new Bottleneck({
     minTime: 200
 })
@@ -25,21 +28,9 @@ export function apiSetup(element) {
     element.innerHTML = `
     <button id="postScore">Post Score</button>
     <button id="getScore">Get Score</button>
-    <button id="login">Login</button>
-    <button id="logout">Logout</button>
     `
-
     document.querySelector("#postScore").addEventListener("click", () => {
-        postScore(1, 100, 1)
-    })
-
-    document.querySelector("#login").addEventListener("click", () => {
-        const nickname = prompt('Enter your username')
-        login(nickname)
-    })
-
-    document.querySelector("#logout").addEventListener("click", () => {
-        logout()
+        postScore(4500, "alfred")
     })
 
     document.querySelector("#getScore").addEventListener("click", () => {
@@ -47,50 +38,18 @@ export function apiSetup(element) {
     })
 }
 
-export function postScore(game_id, score, user_id) {
+export function postScore(score, user_id) {
+    // let nickname = prompt('Enter your username')
     const url = "http://localhost:3000"
-    const data = { game_id, score, user_id }
+    const data = { score, user_id }
     
-    throttleFetch(`${url}/game/1`, {
+    throttleFetch(`${url}/game/${api_key}`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(data),
     })
-    .then((response) => response.text())
-    .then((text) => {
-        console.log(text)
-    })
-    .catch((error) => {
-        console.error(error)
-    })
-}
-
-export function login(nickname) {
-    const url = "http://localhost:3000"
-    const data = { nickname }
-    
-    throttleFetch(`${url}/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data),
-    })
-    .then((response) => response.text())
-    .then((text) => {
-        console.log(text)
-    })
-    .catch((error) => {
-        console.error(error)
-    })
-}
-
-export function logout(nickname) {
-    const url = "http://localhost:3000"
-    
-    throttleFetch(`${url}/logout`)
     .then((response) => response.text())
     .then((text) => {
         console.log(text)
@@ -103,7 +62,7 @@ export function logout(nickname) {
 export function getScore(element) {
     const url = "http://localhost:3000"
 
-    throttleFetch(`${url}/game/1/scores`)
+    throttleFetch(`${url}/game/${api_key}/scores`)
     .then((response) => response.text())
     .then((text) => {
         console.log(text)

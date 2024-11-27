@@ -39,15 +39,22 @@ app.get('/', (req, res) => {
 
 app.get('/game/:id/scores', async (req, res) => {
   try {
-    // Talk to the server to get a highscore list for a specific game
+    // Talk to the server to get a top 10 highscore list for a specific game, needs an api key
     const [gameWithHighscoreList] = await pool.promise().query(`
-      select users.nickname, games.name, highscores.score from highscores
+    select
+      users.nickname,
+      games.name,
+      highscores.score
+    from
+      highscores
       join games on highscores.game_id = games.id
       join users on highscores.user_id = users.id
-      where highscores.game_id = ?
-      order by highscores.score DESC
-      limit 5`, [req.params.id]
-    );
+    where
+      games.api_key = ?
+    order by
+      highscores.score DESC
+    limit
+      10`, [req.params.id]);
     // send a response back with the highscore list
     res.json(gameWithHighscoreList)
   } catch (error) {
@@ -75,17 +82,22 @@ app.get('/user/:id/scores', async (req, res) => {
 
 app.post('/game/:id', async (req, res) => {
   try {
-    // get the game_id, hiscore and userid variables so we can put it in the db
-    // const gameID = req.body[0].game_id
-    // const hiscore = req.body[0].score
-    // const userID = req.body[0].user_id
+    // get the gameid from the api key
+    const [gameid] = await pool.promise().query(`SELECT games.id FROM games where api_key = ?`, [req.params.id])
+    console.log("gameID", gameid[0].id)
 
-    const [addedHighscore] = await pool.promise().query(`
-      insert into highscores (game_id, score, user_id) 
-      values (?, ?, ?)`, [req.body.game_id, req.body.score, req.body.user_id, req.params.id])
+    // get the userid from their name
+    const userNickname = req.body.user_id
+    console.log("username:", req.body.user_id)
+    const [userNicknameAndID] = await pool.promise().query(`select id from users where nickname = ?`, [userNickname])
+    console.log("UserID: ", userNicknameAndID[0].id)
 
-    // redirect back to start a new game after posting last score
-    res.redirect('/')
+    // send the highscore with the combined gameid and userid + the score the user got
+    const [highscoreWithgameid] = await pool.promise().query(`
+      INSERT INTO 
+        highscores (game_id, score, user_id) 
+      VALUES 
+        (?, ?, ?)`, [gameid[0].id, req.body.score, userNicknameAndID[0].id])
   } catch (error) {
     console.log(error)
     res.status(500)
@@ -100,35 +112,13 @@ app.post('/game', async (req, res) => {
   try {
     // add the unique uuid after the name has been submitted
     const [addedGame] = await pool.promise().query(`
-      insert into games (name, uuid)
+      insert into games (name, api_key)
       values (?, ?)`, [gameName, uuid])
     res.redirect('/')
   } catch (error) {
     console.log(error)
     res.status(500)
   }
-})
-
-app.post('/login', async (req, res) => {
-  const nickname = req.body.nickname
-  const [user] = await pool.promise().query(`select id from users where nickname = ?`, [nickname])
-  
-  req.session.userid = user[0].id
-  req.session.username = nickname
-  console.log(req.session)
-
-  res.redirect('/')
-})
-
-app.get('/logout', async (req, res) => {
-  req.session.destroy(function (err) {
-    if (err) {
-      console.log(err)
-    } else {
-      res.redirect('/')
-    }
-  })
-  console.log(req.session,'Logged out')
 })
 
 app.listen(port, () => {
