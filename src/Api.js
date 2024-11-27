@@ -36,19 +36,12 @@ export default class Api {
             })
     }
 
-    getScore(element) {
-        throttleFetch(`${this.url}/game/${this.api_key}/scores`)
+    getScore() {
+        this.throttleFetch(`${this.url}/game/${this.api_key}/scores`)
             .then((response) => response.text())
             .then((text) => {
                 console.log(text)
                 const scores = JSON.parse(text)
-                const list = document.createElement('ul')
-                scores.forEach((score) => {
-                    const item = document.createElement('li')
-                    item.textContent = `${score.nickname}: ${score.score}`
-                    list.appendChild(item)
-                });
-                element.appendChild(list)
             })
             .catch((error) => {
                 console.error(error)

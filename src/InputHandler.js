@@ -43,6 +43,7 @@ export default class InputHandler {
         this.game.secondPlayer.SlashInitiate()
       }
 
+      // remember to change this and check if game is over or won
       if (event.key === 'k') {
         this.api.postScore()
       }

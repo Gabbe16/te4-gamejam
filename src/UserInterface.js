@@ -18,6 +18,7 @@ import Menuparalax from './backgrounds/Menuparalax.js'
 export default class UserInterface {
   constructor(game) {
     this.game = game
+    this.api = game.api
     this.fontSize = 25
     this.fontFamily = 'dungeonFont'
     this.color = 'White'
@@ -274,6 +275,9 @@ export default class UserInterface {
             this.game.width / 2,
             this.game.height / 2 + 115)
           context.fillText('Reload the page to restart', this.game.width / 2, this.game.height / 2 + 160)
+          
+          // show visually the highscore leaderboard for this game
+          // this.api.getScore()
         }
       }
     }
