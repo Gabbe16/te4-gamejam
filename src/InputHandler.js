@@ -1,6 +1,9 @@
+
+
 export default class InputHandler {
   constructor(game) {
     this.game = game
+    this.api = game.api
     this.mouseX = 0
     this.mouseY = 0
 
@@ -40,6 +43,10 @@ export default class InputHandler {
       }
       if (event.key === 'j'){
         this.game.secondPlayer.SlashInitiate()
+      }
+
+      if (event.key === 'k') {
+        this.api.postScore()
       }
     })
 

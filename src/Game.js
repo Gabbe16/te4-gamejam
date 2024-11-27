@@ -1,4 +1,5 @@
 import InputHandler from './InputHandler.js'
+import Api from './Api.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
 import Level1 from './levels/Level1.js'
@@ -15,6 +16,7 @@ export default class Game {
     this.canvasPosition = canvasPosition
 
     // Game objects
+    this.api = new Api(this)
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
     this.audio = new Audio(this)
