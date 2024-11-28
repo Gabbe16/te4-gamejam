@@ -1,3 +1,2 @@
-flytta server
-visa score i spelet istället för med knappar
+html overlay med score + input formulär
 
