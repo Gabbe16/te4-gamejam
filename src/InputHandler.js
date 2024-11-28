@@ -44,7 +44,7 @@ export default class InputHandler {
       }
 
       // remember to change this and check if game is over or won
-      if (event.key === 'k') {
+      if (event.key === 'Enter' && this.game.gameOver === true || event.key === 'Enter' && this.game.score >= 2000) {
         this.api.postScore()
       }
     })
