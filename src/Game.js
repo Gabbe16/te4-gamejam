@@ -36,6 +36,7 @@ export default class Game {
     // Game variables
     this.winScore = 2000
     this.score = 0
+    this.gameTime = 0
     this.keys = []
     this.enemies = []
     this.menuTime = 0
@@ -59,7 +60,8 @@ export default class Game {
     this.ui.update(deltaTime)
 
     if (!this.gameOver && this.gameStart === true) {
-      this.gameTime += deltaTime
+      this.gameTime += (deltaTime/1000)
+      console.log(this.gameTime)
     }
 
     if (this.gameStart === true) {

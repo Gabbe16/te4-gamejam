@@ -1,10 +1,11 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const expressLimiter = require('express-rate-limit')
 const session = require('express-session')
 const { v4: uuidv4 } = require('uuid');
+const { query } = require('express-validator')
 
+const expressLimiter = require('express-rate-limit')
 const pool = require('./db')
 const port = process.env.PORT || 3000
 const app = express()
@@ -44,13 +45,14 @@ app.get('/game/:id/scores', async (req, res) => {
     select
       users.nickname,
       games.name,
-      highscores.score
+      highscores.score,
+      highscores.playtime
     from
       highscores
       join games on highscores.game_id = games.id
       join users on highscores.user_id = users.id
     where
-      games.api_key = ?
+      games.api_key = "e3d81809-b093-4872-8b04-9269589a1b0e"
     order by
       highscores.score DESC
     limit
@@ -67,11 +69,17 @@ app.get('/user/:id/scores', async (req, res) => {
   try {
     // Talk to the server to get a user and all their highscores
     const [userWithHighScores] = await pool.promise().query(`
-      select users.nickname, games.name, highscores.score from highscores
-      join games on highscores.game_id = games.id
-      join users on highscores.user_id = users.id
-      where highscores.user_id = ?
-      order by highscores.score DESC`, [req.params.id])
+      select 
+        users.nickname, 
+        games.name, 
+        highscores.score 
+      from highscores
+        join games on highscores.game_id = games.id
+        join users on highscores.user_id = users.id
+      where 
+        highscores.user_id = ?
+      order by 
+        highscores.score DESC`, [req.params.id])
     // send a response back with the all the users scores
     res.json(userWithHighScores)
   } catch (error) {
@@ -86,18 +94,19 @@ app.post('/game/:id', async (req, res) => {
     const [gameid] = await pool.promise().query(`SELECT games.id FROM games where api_key = ?`, [req.params.id])
     console.log("gameID", gameid[0].id)
 
-    // get the userid from their name
+    // get the userid from their name and add them to the database
     const userNickname = req.body.user_id
-    console.log("username:", req.body.user_id)
+    const [userToDatabase] = await pool.promise().query(`insert into users (nickname) values (?)`, [userNickname])
     const [userNicknameAndID] = await pool.promise().query(`select id from users where nickname = ?`, [userNickname])
+    console.log("username:", req.body.user_id)
     console.log("UserID: ", userNicknameAndID[0].id)
 
     // send the highscore with the combined gameid and userid + the score the user got
     const [highscoreWithgameid] = await pool.promise().query(`
       INSERT INTO 
-        highscores (game_id, score, user_id) 
+        highscores (game_id, score, user_id, playtime) 
       VALUES 
-        (?, ?, ?)`, [gameid[0].id, req.body.score, userNicknameAndID[0].id])
+        (?, ?, ?, ?)`, [gameid[0].id, req.body.score, userNicknameAndID[0].id, req.body.playtime])
   } catch (error) {
     console.log(error)
     res.status(500)

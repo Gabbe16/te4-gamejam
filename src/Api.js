@@ -16,9 +16,30 @@ export default class Api {
         return this.limiter.schedule(() => fetch(url, options))
     }
 
+    apiSetup(element) {
+        console.log('hello from Api.js')
+    
+        this.throttleFetch(this.url)
+            .then((response) => response.text())
+            .then((text) => {
+                console.log(text)
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    
+        element.innerHTML = `
+        <button id="getScore">Highscore Leaderboard</button>
+        `
+    
+        document.querySelector("#getScore").addEventListener("click", () => {
+            this.getScore(element)
+        })
+    }
+
     postScore() {
         let nickname = prompt('Enter your username')
-        const data = { score: this.game.score, user_id: nickname }
+        const data = { score: this.game.score, user_id: nickname, playtime: Math.round(this.game.gameTime) }
 
         this.throttleFetch(`${this.url}/game/${this.api_key}`, {
             method: "POST",
@@ -36,12 +57,19 @@ export default class Api {
             })
     }
 
-    getScore() {
+    getScore(element) {
         this.throttleFetch(`${this.url}/game/${this.api_key}/scores`)
             .then((response) => response.text())
             .then((text) => {
                 console.log(text)
                 const scores = JSON.parse(text)
+                const list = document.createElement('ol')
+                scores.forEach((score) => {
+                    const item = document.createElement('li')
+                    item.textContent = `${score.nickname}: ${score.score}, playtime: ${score.playtime}s`
+                    list.appendChild(item)
+                });
+                element.appendChild(list)
             })
             .catch((error) => {
                 console.error(error)

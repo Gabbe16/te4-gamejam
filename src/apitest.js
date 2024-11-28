@@ -26,12 +26,8 @@ export function apiSetup(element) {
         })
 
     element.innerHTML = `
-    <button id="postScore">Post Score</button>
-    <button id="getScore">Get Score</button>
+    <button id="getScore">Highscore Leaderboard</button>
     `
-    document.querySelector("#postScore").addEventListener("click", () => {
-        postScore(4500, "alfred")
-    })
 
     document.querySelector("#getScore").addEventListener("click", () => {
         getScore(element)
@@ -67,10 +63,12 @@ export function getScore(element) {
         .then((text) => {
             console.log(text)
             const scores = JSON.parse(text)
-            const list = document.createElement('ul')
+            const list = document.createElement('ol')
+
+            
             scores.forEach((score) => {
                 const item = document.createElement('li')
-                item.textContent = `${score.nickname}: ${score.score}`
+                item.textContent = `${score.nickname}: ${score.score}, playtime: ${score.playtime}s`
                 list.appendChild(item)
             });
             element.appendChild(list)
