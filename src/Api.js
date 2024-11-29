@@ -18,7 +18,7 @@ export default class Api {
 
     apiSetup(element) {
         console.log('hello from Api.js')
-    
+
         this.throttleFetch(this.url)
             .then((response) => response.text())
             .then((text) => {
@@ -27,11 +27,11 @@ export default class Api {
             .catch((error) => {
                 console.error(error)
             })
-    
+
         element.innerHTML = `
         <button id="getScore">Highscore Leaderboard</button>
         `
-    
+
         document.querySelector("#getScore").addEventListener("click", () => {
             this.getScore(element)
         })
