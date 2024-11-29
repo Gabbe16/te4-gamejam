@@ -3,7 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const session = require('express-session')
 const { v4: uuidv4, validate } = require('uuid');
-const { query, validationResult } = require('express-validator')
+const { query, validationResult, body } = require('express-validator')
+const validator = require('validator')
 
 const expressLimiter = require('express-rate-limit')
 const pool = require('./db')
@@ -88,29 +89,37 @@ app.get('/user/:id/scores', async (req, res) => {
   }
 })
 
-app.post('/game/:id', async (req, res) => {
-  try {
-    // get the gameid from the api key
-    const [gameid] = await pool.promise().query(`SELECT games.id FROM games where api_key = ?`, [req.params.id])
-    console.log("gameID", gameid[0].id)
+app.post('/game/:id', body('game_id', 'score', 'user_id', 'playtime').isInt(), async (req, res) => {
 
-    // get the userid from their name and add them to the database
-    const userNickname = req.body.user_id
-    const [userToDatabase] = await pool.promise().query(`insert into users (nickname) values (?)`, [userNickname])
-    const [userNicknameAndID] = await pool.promise().query(`select id from users where nickname = ?`, [userNickname])
-    console.log("username:", req.body.user_id)
-    console.log("UserID: ", userNicknameAndID[0].id)
-
-    // send the highscore with the combined gameid and userid + the score the user got
-    const [highscoreWithgameid] = await pool.promise().query(`
-      INSERT INTO 
-        highscores (game_id, score, user_id, playtime) 
-      VALUES 
-        (?, ?, ?, ?)`, [gameid[0].id, req.body.score, userNicknameAndID[0].id, req.body.playtime])
-  } catch (error) {
-    console.log(error)
-    res.status(500)
+  const result = validationResult(req.body)
+  console.log(result)
+  
+  if (result.isEmpty()){
+    try {
+      // get the gameid from the api key
+      const [gameid] = await pool.promise().query(`SELECT games.id FROM games where api_key = ?`, [req.params.id])
+      console.log("gameID", gameid[0].id)
+  
+      // get the userid from their name and add them to the database
+      const userNickname = req.body.user_id
+      const [userToDatabase] = await pool.promise().query(`insert into users (nickname) values (?)`, [userNickname])
+      const [userNicknameAndID] = await pool.promise().query(`select id from users where nickname = ?`, [userNickname])
+      console.log("username:", req.body.user_id)
+      console.log("UserID: ", userNicknameAndID[0].id)
+  
+      // send the highscore with the combined gameid and userid + the score the user got
+      const [highscoreWithgameid] = await pool.promise().query(`
+        INSERT INTO 
+          highscores (game_id, score, user_id, playtime) 
+        VALUES 
+          (?, ?, ?, ?)`, [gameid[0].id, req.body.score, userNicknameAndID[0].id, req.body.playtime])
+    } catch (error) {
+      console.log(error)
+      res.status(500)
+    }
   }
+
+  res.send({ errors: result.array() })
 })
 
 app.post('/game', async (req, res) => {
@@ -127,7 +136,7 @@ app.post('/game', async (req, res) => {
       res.status(500)
     }
   } else {
-    res.json('Invalid uuid')
+    res.send('Invalid uuid')
   }
 })
 
