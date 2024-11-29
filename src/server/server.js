@@ -2,8 +2,8 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const session = require('express-session')
-const { v4: uuidv4 } = require('uuid');
-const { query } = require('express-validator')
+const { v4: uuidv4, validate } = require('uuid');
+const { query, validationResult } = require('express-validator')
 
 const expressLimiter = require('express-rate-limit')
 const pool = require('./db')
@@ -52,7 +52,7 @@ app.get('/game/:id/scores', async (req, res) => {
       join games on highscores.game_id = games.id
       join users on highscores.user_id = users.id
     where
-      games.api_key = "e3d81809-b093-4872-8b04-9269589a1b0e"
+      games.api_key = ?
     order by
       highscores.score DESC
     limit
@@ -118,15 +118,16 @@ app.post('/game', async (req, res) => {
   const uuid = uuidv4();
   const gameName = req.body[0].name
 
-  try {
-    // add the unique uuid after the name has been submitted
-    const [addedGame] = await pool.promise().query(`
-      insert into games (name, api_key)
-      values (?, ?)`, [gameName, uuid])
-    res.redirect('/')
-  } catch (error) {
-    console.log(error)
-    res.status(500)
+  if (validate(uuid)) {
+    try {
+      const [addedGame] = await pool.promise().query(`insert into games (name, api_key) values (?, ?)`, [gameName, uuid])
+      res.redirect('/')
+    } catch (error) {
+      console.log(error)
+      res.status(500)
+    }
+  } else {
+    res.json('Invalid uuid')
   }
 })
 
