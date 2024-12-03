@@ -95,8 +95,7 @@ app.post('/game/:id',
   body('user_id').isEmpty().trim().escape(),
   body('playtime').isNumeric().isInt().toInt(),
   async (req, res) => {
-
-    const result = validationResult(req)
+    const result = validationResult(req.body)
     console.log(result)
 
     if (result.isEmpty()) {
@@ -128,12 +127,12 @@ app.post('/game/:id',
   })
 
 app.post('/game', body('api_key').isUUID(4), async (req, res) => {
-  const uuid = req.body[0].uuid
-  const gameName = req.body[0].name
-  const result = validationResult(req)
+  const result = validationResult(req.body)
 
   if (result.isEmpty()) {
     try {
+      const uuid = req.body.uuid
+      const gameName = req.body.name
       const [addedGame] = await pool.promise().query(`insert into games (name, api_key) values (?, ?)`, [gameName, uuid])
       res.redirect('/')
     } catch (error) {
