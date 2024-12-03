@@ -92,9 +92,10 @@ app.get('/user/:id/scores', async (req, res) => {
 app.post('/game/:id',
   body('game_id').isNumeric().isInt().toInt(),
   body('score').isNumeric().isInt().toInt(),
-  body('user_id').isEmpty().trim().escape(),
+  body('user_id').notEmpty().trim().escape(),
   body('playtime').isNumeric().isInt().toInt(),
   async (req, res) => {
+    console.log(req)
     const result = validationResult(req.body)
     console.log(result)
 
